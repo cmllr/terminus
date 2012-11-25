@@ -549,7 +549,7 @@ namespace libTerminus
 				
 				about.Copyright += "\nCopyright 2012 (c) Terminus Entwickler";		
 				about.SetPosition (WindowPosition.Center);
-				about.Authors = new string[] {"Hauptprogramm - Christoph Müller"};
+				
 
 				about.Run ();
 				about.Destroy ();
