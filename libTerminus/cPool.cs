@@ -73,6 +73,10 @@ namespace libTerminus
 		public void appendColumns ()
 		{
 			try {
+				try{
+				for (int i = 0; i < treeview1.Columns.Length; i++)
+					treeview1.RemoveColumn(treeview1.Columns[i]);
+				}catch{}
 				TreeViewColumn ausdruck = new TreeViewColumn ();
 				ausdruck.Title = "Ausdruck";
 				TreeViewColumn titel = new TreeViewColumn ();
@@ -158,27 +162,28 @@ namespace libTerminus
 		public void deleteItem ()
 		{
 			IDbConnection dbcon;
-			try {				
-				//TODO: this is linux only.
-				string connectionString = "URI=file:" + new cPathEnvironment ().const_examples_directory + "/Library.db";
-				//MessageBox.Show (connectionString, "", ButtonsType.None, MessageType.Info, null);
-			
-				dbcon = (IDbConnection)new SqliteConnection (connectionString);
-				dbcon.Open ();
-				IDbCommand dbcmd = dbcon.CreateCommand ();
-				string sql = "Delete Title,Phrase,Description " + "FROM phrases WHERE 'Title' = '" + g_name + "'";
-				dbcmd.CommandText = sql;
-				IDataReader reader = dbcmd.ExecuteReader ();
-				while (reader.Read()) {				
-					g_regexList.AppendValues (reader.GetString (1), reader.GetString (0), reader.GetString (2));
+			try {			
+
+				if (g_name != "" || g_name != string.Empty || g_name != null){
+					if (MessageBox.Show("Sind Sie sich sicher, das Element zu löschen?","Bestätigung erforderlich",ButtonsType.YesNo,MessageType.Question,null) == ResponseType.Yes)
+					{
+						string connectionString = "URI=file:" + new cPathEnvironment ().const_examples_directory + new cPathEnvironment().const_path_separator + "Library.db";
+						dbcon = (IDbConnection)new SqliteConnection (connectionString);
+						dbcon.Open ();
+						IDbCommand dbcmd = dbcon.CreateCommand ();
+						string sql = "Delete " + " FROM phrases WHERE Title = \"" + g_name + "\"";
+						dbcmd.CommandText = sql;
+						int res = dbcmd.ExecuteNonQuery();
+						appendColumns();
+						appendItems();
+						dbcmd.Dispose ();
+						dbcmd = null;
+					}
 				}
-				// clean up
-				reader.Close ();
-				reader = null;
-				dbcmd.Dispose ();
-				dbcmd = null;
-				
-			 
+				else
+				{
+					MessageBox.Show("Fehler: Sie müssen ein Element auswählen, um es zu Löschen!","Fehler: Keine Auswahl getroffen",Gtk.ButtonsType.Ok,MessageType.Error,null);
+				}
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			} finally {

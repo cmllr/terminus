@@ -627,7 +627,7 @@ namespace libTerminus
 				try {
 					return ReadSTDOutput ("uname", "-o");
 				} catch {					
-					return "Unknown Operating System or Windows";
+					return "Windows";
 				}
 			}
 		}	
