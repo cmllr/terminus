@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/cRegex.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/cTerminus.cs">
     <Files>
       <File FileName="libTerminus/AssemblyInfo.cs" Line="4" Column="21" />
       <File FileName="libTerminus/cConfig.cs" Line="1" Column="1" />
@@ -9,17 +9,19 @@
       <File FileName="libTerminus/cArgumentParser.cs" Line="1" Column="1" />
       <File FileName="libTerminus/cExport.cs" Line="1" Column="1" />
       <File FileName="libTerminus/cLogger.cs" Line="1" Column="1" />
-      <File FileName="libTerminus/cPool.cs" Line="1" Column="1" />
+      <File FileName="libTerminus/cPool.cs" Line="69" Column="3" />
       <File FileName="libTerminus/cRegex.cs" Line="430" Column="52" />
-      <File FileName="libTerminus/cTerminus.cs" Line="1" Column="1" />
+      <File FileName="libTerminus/cTerminus.cs" Line="611" Column="28" />
       <File FileName="libTerminus/cTimeBack.cs" Line="1" Column="1" />
       <File FileName="libTerminus/Label.cs" Line="1" Column="1" />
+      <File FileName="Terminus/AssemblyInfo.cs" Line="20" Column="34" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
+        <State expanded="True">
           <Node name="libTerminus" expanded="True">
             <Node name="UserInterface" expanded="True" />
+            <Node name="cLogger.cs" selected="True" />
           </Node>
           <Node name="Path" expanded="True" />
           <Node name="Terminus" expanded="True" />
