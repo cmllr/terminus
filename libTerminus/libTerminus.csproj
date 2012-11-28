@@ -71,6 +71,7 @@
     <Compile Include="cTimeBack.cs" />
     <Compile Include="cConfig.cs" />
     <Compile Include="gtk-gui\libTerminus.cConfig.cs" />
+    <Compile Include="cSyntax.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

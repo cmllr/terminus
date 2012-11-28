@@ -506,6 +506,12 @@ namespace libTerminus
 		/// </param>
 		public static void setTags (ref TextView _textview)
 		{
+			try{
+				new cSyntax(new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"") + new cPathEnvironment().const_path_separator + "Default.config",ref _textview);
+			}
+			catch 
+			{
+			
 			TextTag tagnone = new TextTag ("nosyntax");
 			Gdk.Color nonecolor;
 			Gdk.Color.Parse ("black", ref nonecolor);
@@ -542,7 +548,8 @@ namespace libTerminus
 			Gdk.Color.Parse ("chocolate2", ref quantifiercolor);
 			quantifier.ForegroundGdk = quantifiercolor;
 			_textview.Buffer.TagTable.Add (quantifier);
-
+				MessageBox.Show("Fehler beim Laden des Schema's.\nEs wurde das Standardschema geladen.","Fehler",ButtonsType.Close,MessageType.Warning,null);
+			}
 		}
 		/// <summary>
 		/// Ises the literal.
