@@ -32,9 +32,11 @@ namespace libTerminus
 		public string g_otherBracketsColorDescription {get;set;}
 		public string g_constantColorDescription {get;set;}
 		public string g_QuantifierColorDescription {get;set;}
-		public cSyntax (string _scheme, ref Gtk.TextView _textview)
+		public string g_BackGroundColor {get;set;}
+		public cSyntax (string _scheme, ref Gtk.TextView _textview,bool _onlybackground)
 		{
 			//TODO: Create example scheme
+
 			string[] content = System.IO.File.ReadAllLines(_scheme);
 			g_noneColorDescription = content[0].Split(new char[] {';'})[1];
 			g_colorCorrectDescription = content[1].Split(new char[] {';'})[1];
@@ -43,6 +45,8 @@ namespace libTerminus
 			g_otherBracketsColorDescription = content[4].Split(new char[] {';'})[1];
 			g_constantColorDescription = content[5].Split(new char[] {';'})[1];
 			g_QuantifierColorDescription = content[6].Split(new char[] {';'})[1];
+			g_BackGroundColor = content[7].Split(new char[] {';'})[1];
+			if (_onlybackground == false){
 			TextTag tagnone = new TextTag ("nosyntax");
 			Gdk.Color nonecolor;
 			Gdk.Color.Parse (g_noneColorDescription, ref nonecolor);
@@ -79,7 +83,17 @@ namespace libTerminus
 			Gdk.Color quantifiercolor;
 			Gdk.Color.Parse (g_QuantifierColorDescription, ref quantifiercolor);
 			quantifier.ForegroundGdk = quantifiercolor;
+			Gdk.Color backgroundcolor;
+			Gdk.Color.Parse(g_BackGroundColor,ref backgroundcolor);
+			_textview.ModifyBase(StateType.Normal,backgroundcolor);
 			_textview.Buffer.TagTable.Add (quantifier);
+			}
+			else
+			{
+				Gdk.Color backgroundcolor;
+				Gdk.Color.Parse(g_BackGroundColor,ref backgroundcolor);
+				_textview.ModifyBase(StateType.Normal,backgroundcolor);
+			}
 		}
 		/// <summary>
 		/// Gets the bold.

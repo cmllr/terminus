@@ -82,6 +82,20 @@ namespace libTerminus
 		/// The language.
 		/// </value>
 		public string Language { get; set; }
+		/// <summary>
+		/// Gets or sets the theme.
+		/// </summary>
+		/// <value>
+		/// The theme.
+		/// </value>
+		public string Theme {get;set;}
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="libTerminus.cConfigPlatform"/> reduce syntax changing.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if reduce syntax changing; otherwise, <c>false</c>.
+		/// </value>
+		public bool ReduceSyntaxChanging {get;set;}
 		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cConfigPlatform"/> class.
@@ -98,7 +112,7 @@ namespace libTerminus
 				//set the config member
 				ConfFile = _confFileName;
 				//Get the values using an regular expression.
-				String rgx = @"ExplicitCapture;(?<ec>[a-z]*)\nIgnoreCase;(?<ic>[a-z]*)\nIgnoreWhitespace;(?<iw>[a-z]*)\nuseSyntax;(?<useSyntax>[a-z]*)\nHideText;(?<hide>[a-z]*)\nLanguage;(?<language>[a-z]*)";
+				String rgx = @"ExplicitCapture;(?<ec>[a-z]*)\nIgnoreCase;(?<ic>[a-z]*)\nIgnoreWhitespace;(?<iw>[a-z]*)\nUseSyntax;(?<useSyntax>[a-z]*)\nHideText;(?<hide>[a-z]*)\nLanguage;(?<language>[a-z]*)\nTheme;(?<theme>[a-z]*)\nreducesyntaxchanging;(?<reducesyntaxchanging>[a-z]*)";
 				Regex _rgx = new Regex (rgx, RegexOptions.IgnoreCase);
 
 				MatchCollection matches = _rgx.Matches (File.ReadAllText (_confFileName));
@@ -109,6 +123,8 @@ namespace libTerminus
 					useSyntax = Boolean.Parse (mt.Groups ["useSyntax"].Value);
 					HideText = Boolean.Parse (mt.Groups ["hide"].Value);
 					Language = mt.Groups ["language"].Value;
+					Theme = mt.Groups["theme"].Value;
+					ReduceSyntaxChanging = Boolean.Parse(mt.Groups["reducesyntaxchanging"].Value);
 				}
 			} catch (Exception ex) {
 				throw new ApplicationException ("Exception due incorrect config file", ex);
@@ -126,7 +142,7 @@ namespace libTerminus
 		/// </summary>
 		public void Save ()
 		{		
-			File.WriteAllText (ConfFile, String.Format ("ExplicitCapture;{0}\nIgnoreCase;{1}\nIgnoreWhitespace;{2}\nUseSyntax;{3}\nHideText;{4}\nLanguage;{5}", Explicit, IgnoreCase, IgnoreWhitespace, useSyntax, HideText, Language));
+			File.WriteAllText (ConfFile, String.Format ("ExplicitCapture;{0}\nIgnoreCase;{1}\nIgnoreWhitespace;{2}\nUseSyntax;{3}\nHideText;{4}\nLanguage;{5}\nTheme;{6}\nreducesyntaxchanging;{7}", Explicit, IgnoreCase, IgnoreWhitespace, useSyntax, HideText, Language,Theme,ReduceSyntaxChanging));
 		}
 	}
 }

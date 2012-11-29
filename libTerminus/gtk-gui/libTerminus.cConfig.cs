@@ -13,6 +13,10 @@ namespace libTerminus
 		private global::Gtk.CheckButton SyntaxEnabled;
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.CheckButton DisplayStyle;
+		private global::Gtk.CheckButton reduce;
+		private global::Gtk.HBox hbox2;
+		private global::Gtk.ComboBox combobox2;
+		private global::Gtk.TextView textview1;
 		private global::Gtk.Label GtkLabel7;
 		
 		protected virtual void Build ()
@@ -105,6 +109,43 @@ namespace libTerminus
 			w6.Position = 4;
 			w6.Expand = false;
 			w6.Fill = false;
+			// Container child vbox3.Gtk.Box+BoxChild
+			this.reduce = new global::Gtk.CheckButton ();
+			this.reduce.TooltipMarkup = "Diese Option bewirkt, dass der Regex - Syntax nur bei jedem 5. Zeichen modifiziert wird, dies verbessert die Leistung vor allem bei leistungsschwachen Rechnern.";
+			this.reduce.CanFocus = true;
+			this.reduce.Name = "reduce";
+			this.reduce.Label = global::Mono.Unix.Catalog.GetString ("Syntax - Markierungen reduzieren (erhöht Leistung)");
+			this.reduce.DrawIndicator = true;
+			this.reduce.UseUnderline = true;
+			this.vbox3.Add (this.reduce);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.reduce]));
+			w7.Position = 5;
+			w7.Expand = false;
+			w7.Fill = false;
+			// Container child vbox3.Gtk.Box+BoxChild
+			this.hbox2 = new global::Gtk.HBox ();
+			this.hbox2.Name = "hbox2";
+			this.hbox2.Spacing = 6;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.combobox2 = global::Gtk.ComboBox.NewText ();
+			this.combobox2.Name = "combobox2";
+			this.hbox2.Add (this.combobox2);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.combobox2]));
+			w8.Position = 0;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.textview1 = new global::Gtk.TextView ();
+			this.textview1.Buffer.Text = "Terminus, \\d{2}.\\d{2}.\\d{2}.\\d+";
+			this.textview1.CanFocus = true;
+			this.textview1.Name = "textview1";
+			this.textview1.Editable = false;
+			this.hbox2.Add (this.textview1);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.textview1]));
+			w9.Position = 2;
+			this.vbox3.Add (this.hbox2);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
+			w10.Position = 6;
+			w10.Expand = false;
+			w10.Fill = false;
 			this.GtkAlignment.Add (this.vbox3);
 			this.frame1.Add (this.GtkAlignment);
 			this.GtkLabel7 = new global::Gtk.Label ();

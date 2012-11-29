@@ -40,6 +40,7 @@ namespace libTerminus
 			this.ExplicitCapture.Active = _cfgPlatform.Explicit;
 			this.SyntaxEnabled.Active = _cfgPlatform.useSyntax;
 			DisplayStyle.Active = _cfgPlatform.HideText;
+			reduce.Active = _cfgPlatform.ReduceSyntaxChanging;
 			//set the events to change the values in the main config class
 			IgnoreCase.Toggled += delegate {
 				cTerminus.Configuration.IgnoreCase = IgnoreCase.Active;
@@ -55,6 +56,25 @@ namespace libTerminus
 			};
 			DisplayStyle.Toggled += delegate {
 				cTerminus.Configuration.HideText = DisplayStyle.Active;
+			};
+			reduce.Toggled += delegate {
+				cTerminus.Configuration.ReduceSyntaxChanging = reduce.Active;
+			};
+			string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator) ;
+			int i = 0;
+			foreach (string st in System.IO.Directory.GetFiles(path,"*.config")){
+				combobox2.InsertText(i,st); i++;
+				if (st.Contains(cTerminus.Configuration.Theme))
+				{
+					combobox2.Active = i ;
+
+					//TODO: Add code to select the active config file
+				}
+			}
+			combobox2.Changed += delegate(object sender, EventArgs e) {
+				Gtk.TreeIter iter;
+				if (((Gtk.ComboBox)sender).GetActiveIter(out iter))
+					cTerminus.Configuration.Theme = new System.IO.FileInfo( ((string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0))).Name.Replace(".config","");
 			};
 		}
 	}

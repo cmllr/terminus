@@ -67,6 +67,7 @@ namespace libTerminus
 		public string g_DataSource;
 		public string g_lastresult = "";
 		public string g_UniqueID;
+		int step =0;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cRegex"/> class.
 		/// </summary>
@@ -78,7 +79,7 @@ namespace libTerminus
 		
 			try {
 				this.Build ();
-				setTags (ref Expression);
+				setTags (ref Expression,ref DataSource);
 				this.g_filename = _filename;
 				
 				if (_filename == "")
@@ -117,8 +118,20 @@ namespace libTerminus
 				g_regexHistoryIndex++;
 				Saved = false;
 				try {
-					if (Expression.Buffer.Text.Contains ("\n") == false)
-						MarkSyntax (ref Expression);
+					if (Expression.Buffer.Text.Contains ("\n") == false){
+						if (cTerminus.Configuration.ReduceSyntaxChanging){
+							if (step == 5){
+								MarkSyntax (ref Expression);
+								step = 0;
+							}
+							else
+							{
+								step++;
+							}	
+						}
+						else
+							MarkSyntax(ref Expression);
+					}
 					cTerminus.TimeBackMachine.add(DateTime.Now,new String[] {Expression.Buffer.Text,DataSource.Buffer.Text});
 		
 				} catch {
@@ -504,10 +517,13 @@ namespace libTerminus
 		/// <param name='_textview'>
 		/// _textview.
 		/// </param>
-		public static void setTags (ref TextView _textview)
+		public static void setTags (ref TextView _textview,ref TextView _data)
 		{
 			try{
-				new cSyntax(new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"") + new cPathEnvironment().const_path_separator + "Default.config",ref _textview);
+				string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + "Orange.config") ;
+				new cSyntax(path,ref _textview,false);
+				if (_data != null)
+					new cSyntax(path,ref _data,true);
 			}
 			catch 
 			{
