@@ -95,7 +95,7 @@ namespace libTerminus
 					addToDataHistory ();
 				};
 
-				MarkSyntax (ref Expression);
+				cTerminus.MarkSyntax (ref Expression);
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
@@ -121,7 +121,7 @@ namespace libTerminus
 					if (Expression.Buffer.Text.Contains ("\n") == false){
 						if (cTerminus.Configuration.ReduceSyntaxChanging){
 							if (step == 5){
-								MarkSyntax (ref Expression);
+								cTerminus.MarkSyntax (ref Expression);
 								step = 0;
 							}
 							else
@@ -130,7 +130,7 @@ namespace libTerminus
 							}	
 						}
 						else
-							MarkSyntax(ref Expression);
+							cTerminus.MarkSyntax(ref Expression);
 					}
 					cTerminus.TimeBackMachine.add(DateTime.Now,new String[] {Expression.Buffer.Text,DataSource.Buffer.Text});
 		
@@ -449,56 +449,7 @@ namespace libTerminus
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 		}
-		/// <summary>
-		/// Marks the syntax.
-		/// </summary>
-		/// <param name='_textview'>
-		/// _textview.
-		/// </param>
-		public void MarkSyntax (ref TextView _textview)
-		{		
-			try {		
-				if (cTerminus.Configuration.useSyntax == false)
-					_textview.Buffer.RemoveAllTags (_textview.Buffer.StartIter, _textview.Buffer.EndIter);
-				for (int i = 0; i < _textview.Buffer.Text.Length; i++) {
-					try {
-						if (cTerminus.Configuration.useSyntax == true && isChar (_textview.Buffer.Text [i])) {
-							if (_textview.Buffer.Text [i].ToString () == @"\" && (i <= _textview.Buffer.Text.Length || _textview.Buffer.Text [i + 1].ToString () != @"\")) {
-								_textview.Buffer.ApplyTag ("backslashliteral", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
-						
-							}
-							if ((_textview.Buffer.Text [i].ToString () == @"[" || _textview.Buffer.Text [i].ToString () == @"]") && (i == 0 || _textview.Buffer.Text [i - 1].ToString () != @"\")) {
-								_textview.Buffer.ApplyTag ("edgedBrackets", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
-							}
-							if ((_textview.Buffer.Text [i].ToString () == @"(" || _textview.Buffer.Text [i].ToString () == @")") && (i == 0 || _textview.Buffer.Text [i - 1].ToString () != @"\")) {
-								_textview.Buffer.ApplyTag ("roundBrackets", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
-							}
-							if ((_textview.Buffer.Text [i].ToString () == @"{" || _textview.Buffer.Text [i].ToString () == @"}") && (i == 0 || _textview.Buffer.Text [i - 1].ToString () != @"\")) {
-								_textview.Buffer.ApplyTag ("otherBrackets", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
-							}
-							if (isLiteral (_textview.Buffer.Text [i]) && (i == 0 || _textview.Buffer.Text [i - 1].ToString () != @"\")) {
-								_textview.Buffer.ApplyTag ("constant", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
-							}
-							if (isQuantifier (_textview.Buffer.Text [i])) {
-								_textview.Buffer.ApplyTag ("quantifier", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
-							}
-						} else {
-							try {
-								_textview.Buffer.ApplyTag ("nosyntax", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
-							} catch {
-			
-							}	
-						}
-					} catch {
-			
-					}	
-					
-				}
-			} catch {
-			}
 
-
-		}
 		/// <summary>
 		/// Gets the bold.
 		/// </summary>
@@ -520,7 +471,7 @@ namespace libTerminus
 		public static void setTags (ref TextView _textview,ref TextView _data)
 		{
 			try{
-				string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + "Orange.config") ;
+				string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + cTerminus.Configuration.Theme + ".config") ;
 				new cSyntax(path,ref _textview,false);
 				if (_data != null)
 					new cSyntax(path,ref _data,true);
@@ -576,42 +527,7 @@ namespace libTerminus
 		/// <param name='_value'>
 		/// If set to <c>true</c> _value.
 		/// </param>
-		public static bool isLiteral (Char _value)
-		{
-			string pattern = @"[\wa-zA-Z0-9:/]";
-			Regex rgx = new Regex (pattern);
-			return rgx.IsMatch (_value.ToString ());
-		}
-		/// <summary>
-		/// Ises the quantifier.
-		/// </summary>
-		/// <returns>
-		/// The quantifier.
-		/// </returns>
-		/// <param name='_value'>
-		/// If set to <c>true</c> _value.
-		/// </param>
-		public static bool isQuantifier (Char _value)
-		{
-			string pattern = @"[\+\.\*\?]";
-			Regex rgx = new Regex (pattern);
-			return rgx.IsMatch (_value.ToString ());
-		}
-		/// <summary>
-		/// Ises the char.
-		/// </summary>
-		/// <returns>
-		/// The char.
-		/// </returns>
-		/// <param name='_value'>
-		/// If set to <c>true</c> _value.
-		/// </param>
-		public static bool isChar (Char _value)
-		{
-			string pattern = @"[\n\r]";
-			Regex rgx = new Regex (pattern);
-			return !rgx.IsMatch (_value.ToString ());
-		}
+
 
 	}
 }

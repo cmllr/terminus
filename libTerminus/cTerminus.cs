@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 namespace libTerminus
 {
 	/// <summary>
@@ -670,7 +671,92 @@ namespace libTerminus
 		{
 			return System.IO.File.ReadAllText (new cPathEnvironment ().const_data_dir + "build.log");
 		}
-	
+		/// <summary>
+		/// Marks the syntax.
+		/// </summary>
+		/// <param name='_textview'>
+		/// _textview.
+		/// </param>
+		public static void MarkSyntax (ref TextView _textview)
+		{		
+			try {		
+				if (cTerminus.Configuration.useSyntax == false)
+					_textview.Buffer.RemoveAllTags (_textview.Buffer.StartIter, _textview.Buffer.EndIter);
+				for (int i = 0; i < _textview.Buffer.Text.Length; i++) {
+					try {
+						if (cTerminus.Configuration.useSyntax == true && isChar (_textview.Buffer.Text [i])) {
+							if (_textview.Buffer.Text [i].ToString () == @"\" && (i <= _textview.Buffer.Text.Length || _textview.Buffer.Text [i + 1].ToString () != @"\")) {
+								_textview.Buffer.ApplyTag ("backslashliteral", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
+								
+							}
+							if ((_textview.Buffer.Text [i].ToString () == @"[" || _textview.Buffer.Text [i].ToString () == @"]") && (i == 0 || _textview.Buffer.Text [i - 1].ToString () != @"\")) {
+								_textview.Buffer.ApplyTag ("edgedBrackets", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
+							}
+							if ((_textview.Buffer.Text [i].ToString () == @"(" || _textview.Buffer.Text [i].ToString () == @")") && (i == 0 || _textview.Buffer.Text [i - 1].ToString () != @"\")) {
+								_textview.Buffer.ApplyTag ("roundBrackets", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
+							}
+							if ((_textview.Buffer.Text [i].ToString () == @"{" || _textview.Buffer.Text [i].ToString () == @"}") && (i == 0 || _textview.Buffer.Text [i - 1].ToString () != @"\")) {
+								_textview.Buffer.ApplyTag ("otherBrackets", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
+							}
+							if (isLiteral (_textview.Buffer.Text [i]) && (i == 0 || _textview.Buffer.Text [i - 1].ToString () != @"\")) {
+								_textview.Buffer.ApplyTag ("constant", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
+							}
+							if (isQuantifier (_textview.Buffer.Text [i])) {
+								_textview.Buffer.ApplyTag ("quantifier", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
+							}
+						} else {
+							try {
+								_textview.Buffer.ApplyTag ("nosyntax", _textview.Buffer.GetIterAtLineOffset (0, i), _textview.Buffer.GetIterAtLineOffset (0, i + 1));
+							} catch {
+								
+							}	
+						}
+					} catch {
+						
+					}	
+					
+				}
+			} catch {
+			}
+			
+			
+		}
+		public static bool isLiteral (System.Char _value)
+		{
+			string pattern = @"[\wa-zA-Z0-9:/]";
+			Regex rgx = new Regex (pattern);
+			return rgx.IsMatch (_value.ToString ());
+		}
+		/// <summary>
+		/// Ises the quantifier.
+		/// </summary>
+		/// <returns>
+		/// The quantifier.
+		/// </returns>
+		/// <param name='_value'>
+		/// If set to <c>true</c> _value.
+		/// </param>
+		public static bool isQuantifier (System.Char _value)
+		{
+			string pattern = @"[\+\.\*\?]";
+			Regex rgx = new Regex (pattern);
+			return rgx.IsMatch (_value.ToString ());
+		}
+		/// <summary>
+		/// Ises the char.
+		/// </summary>
+		/// <returns>
+		/// The char.
+		/// </returns>
+		/// <param name='_value'>
+		/// If set to <c>true</c> _value.
+		/// </param>
+		public static bool isChar (System.Char _value)
+		{
+			string pattern = @"[\n\r]";
+			Regex rgx = new Regex (pattern);
+			return !rgx.IsMatch (_value.ToString ());
+		}
 
 	}
 	

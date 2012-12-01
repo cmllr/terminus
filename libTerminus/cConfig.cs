@@ -63,18 +63,28 @@ namespace libTerminus
 			string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator) ;
 			int i = 0;
 			foreach (string st in System.IO.Directory.GetFiles(path,"*.config")){
-				combobox2.InsertText(i,st); i++;
+				combobox2.InsertText(i,st); 
 				if (st.Contains(cTerminus.Configuration.Theme))
 				{
-					combobox2.Active = i ;
-
-					//TODO: Add code to select the active config file
+					Gtk.TreeIter iter;
+					combobox2.Active = i;
+					combobox2.Model.IterNthChild (out iter, i);
+					combobox2.SetActiveIter (iter);
 				}
+				i++;
 			}
+
 			combobox2.Changed += delegate(object sender, EventArgs e) {
 				Gtk.TreeIter iter;
-				if (((Gtk.ComboBox)sender).GetActiveIter(out iter))
+				if (((Gtk.ComboBox)sender).GetActiveIter(out iter)){
 					cTerminus.Configuration.Theme = new System.IO.FileInfo( ((string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0))).Name.Replace(".config","");
+					string tmp = textview1.Buffer.Text;
+					textview1.Buffer.RemoveAllTags (textview1.Buffer.StartIter, textview1.Buffer.EndIter);
+					textview1.Buffer.Text = tmp;
+					new cSyntax((string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0),ref textview1,false);
+					//TODO: Remove bug --> Font isn't changed.
+					cTerminus.MarkSyntax(ref textview1);
+				}
 			};
 		}
 	}
