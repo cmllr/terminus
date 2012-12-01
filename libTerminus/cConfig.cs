@@ -78,12 +78,6 @@ namespace libTerminus
 				Gtk.TreeIter iter;
 				if (((Gtk.ComboBox)sender).GetActiveIter(out iter)){
 					cTerminus.Configuration.Theme = new System.IO.FileInfo( ((string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0))).Name.Replace(".config","");
-					string tmp = textview1.Buffer.Text;
-					textview1.Buffer.RemoveAllTags (textview1.Buffer.StartIter, textview1.Buffer.EndIter);
-					textview1.Buffer.Text = tmp;
-					new cSyntax((string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0),ref textview1,false);
-					//TODO: Remove bug --> Font isn't changed.
-					cTerminus.MarkSyntax(ref textview1);
 				}
 			};
 		}

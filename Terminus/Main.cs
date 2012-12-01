@@ -25,7 +25,7 @@ namespace Terminus
 				Application.Init ();
 				if (argsP.FileToOpen == "") {
 					MainWindow win = new MainWindow ("");	
-					win.Maximize ();
+					//win.Maximize ();
 					win.Show ();
 				} else {
 					MainWindow win = new MainWindow (argsP.FileToOpen);

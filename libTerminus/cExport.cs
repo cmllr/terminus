@@ -140,7 +140,7 @@ namespace libTerminus
 					System.IO.File.WriteAllText (_path, content,System.Text.Encoding.Default);
 					return true;					
 				} else {
-					MessageBox.Show ("Beim Export ins *.txt - Format ist ein Fehler aufgetreten", "Fehler", ButtonsType.Ok, MessageType.Error);
+					MessageBox.Show ("Beim Export ins *.html - Format ist ein Fehler aufgetreten", "Fehler", ButtonsType.Ok, MessageType.Error);
 					return false;
 				}
 			} catch {

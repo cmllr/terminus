@@ -65,8 +65,13 @@ namespace libTerminus
 					AllowedToRun = false;
 				} else if (System.IO.File.Exists (_args [i])) {
 					FileToOpen = _args [i];
+				}else if (_args[i] == "--s" || _args[i] == "--nosyntax"){
+					cTerminus.Configuration.useSyntax = false;
+				}else if (_args[i] == "--c" || _args[i] == "--shell"){
+					//TODO: Feature is still missing.
 				} else {
 					Console.WriteLine("Unknow Parameter: " + _args[i]);
+					AllowedToRun = false;
 				}
 			}
 		}

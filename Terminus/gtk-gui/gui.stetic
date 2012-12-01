@@ -9,7 +9,7 @@
     <widget-library name="../../libTerminus/bin/Debug/libTerminus.dll" />
     <widget-library name="../bin/Debug/Terminus.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1296 450">
+  <widget class="Gtk.Window" id="MainWindow" design-size="1296 500">
     <action-group name="Default">
       <action id="DateiAction">
         <property name="Type">Action</property>
@@ -37,12 +37,15 @@
       </action>
       <action id="saveAsAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;&lt;Alt&gt;s</property>
+        <property name="HideIfEmpty">False</property>
         <property name="Label" translatable="yes">Speichern unter</property>
         <property name="ShortLabel" translatable="yes">Speichern unter</property>
         <property name="StockId">gtk-save-as</property>
       </action>
       <action id="closeAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;e</property>
         <property name="Label" translatable="yes">Schließen</property>
         <property name="ShortLabel" translatable="yes">Schließen</property>
         <property name="StockId">gtk-close</property>
@@ -142,12 +145,14 @@
       </action>
       <action id="undoAction1">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;z</property>
         <property name="Label" translatable="yes">Rückgängig</property>
         <property name="ShortLabel" translatable="yes">_Undo</property>
         <property name="StockId">gtk-undo</property>
       </action>
       <action id="redoAction1">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;w</property>
         <property name="Label" translatable="yes">Wiederholen</property>
         <property name="ShortLabel" translatable="yes">_Redo</property>
         <property name="StockId">gtk-redo</property>
@@ -180,6 +185,7 @@
       </action>
       <action id="mediaPlayAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;space</property>
         <property name="Label" translatable="yes">Ausführen</property>
         <property name="ShortLabel" translatable="yes">_Execute</property>
         <property name="StockId">gtk-media-play</property>
@@ -202,6 +208,7 @@
       </action>
       <action id="cancelAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;b</property>
         <property name="Label" translatable="yes">Fehler melden</property>
         <property name="ShortLabel" translatable="yes">Fehler melden</property>
         <property name="StockId">gtk-cancel</property>
@@ -209,6 +216,7 @@
       </action>
       <action id="aboutAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;i</property>
         <property name="Label" translatable="yes">_About</property>
         <property name="ShortLabel" translatable="yes">_About</property>
         <property name="StockId">gtk-about</property>
@@ -216,6 +224,7 @@
       </action>
       <action id="preferencesAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;p</property>
         <property name="Label" translatable="yes">Einstellungen</property>
         <property name="ShortLabel" translatable="yes">_Properties</property>
         <property name="StockId">gtk-preferences</property>
@@ -223,6 +232,7 @@
       </action>
       <action id="selectAllAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;l</property>
         <property name="Label" translatable="yes">Bibliothek</property>
         <property name="ShortLabel" translatable="yes">Bibliothek</property>
         <property name="StockId">gtk-select-all</property>
@@ -257,18 +267,21 @@
       </action>
       <action id="NurTextTxtAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;&lt;Alt&gt;t</property>
         <property name="Label" translatable="yes">Nur Text (*.txt)</property>
         <property name="ShortLabel" translatable="yes">Nur Text (*.txt)</property>
         <signal name="Activated" handler="OnNurTextTxtActionActivated" />
       </action>
       <action id="HypertextHtmlAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;&lt;Alt&gt;h</property>
         <property name="Label" translatable="yes">Hypertext (*.html)</property>
         <property name="ShortLabel" translatable="yes">Hypertext (*.html)</property>
         <signal name="Activated" handler="OnHypertextHtmlActionActivated" />
       </action>
       <action id="KommaGetrenntCsvAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;&lt;Alt&gt;c</property>
         <property name="Label" translatable="yes">Komma - getrennt (*.csv)</property>
         <property name="ShortLabel" translatable="yes">Komma - getrennt (*.csv)</property>
         <signal name="Activated" handler="OnKommaGetrenntCsvActionActivated" />
@@ -286,6 +299,7 @@
       </action>
       <action id="dialogQuestionAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;y</property>
         <property name="Label" translatable="yes">Über diese Version</property>
         <property name="ShortLabel" translatable="yes">Über diese Version</property>
         <property name="StockId">gtk-dialog-question</property>
@@ -293,10 +307,18 @@
       </action>
       <action id="connectAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;i</property>
         <property name="Label" translatable="yes">Web</property>
         <property name="ShortLabel" translatable="yes">Web</property>
         <property name="StockId">gtk-connect</property>
         <signal name="Activated" handler="OnConnectActionActivated" />
+      </action>
+      <action id="clearAction1">
+        <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;&lt;Alt&gt;&lt;Mod4&gt;&lt;Super&gt;c</property>
+        <property name="Label" translatable="yes">Leeren</property>
+        <property name="ShortLabel" translatable="yes">Leeren</property>
+        <property name="StockId">gtk-clear</property>
       </action>
     </action-group>
     <property name="MemberName" />
@@ -335,6 +357,7 @@
                   <node type="Menuitem" action="HypertextHtmlAction" />
                   <node type="Menuitem" action="KommaGetrenntCsvAction" />
                 </node>
+                <node type="Menuitem" action="clearAction1" />
               </node>
               <node type="Menu" action="ExtrasAction">
                 <node type="Menuitem" action="selectAllAction" />
@@ -411,7 +434,6 @@
               <widget class="Gtk.Expander" id="expander3">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Expanded">True</property>
                 <child>
                   <widget class="Gtk.VBox" id="vbox3">
                     <property name="MemberName" />
@@ -481,6 +503,7 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                             <property name="Tooltip" translatable="yes" context="yes">AllResults|Alle aus dem Ausdruck resultierenden Ergebnisse anzeigen</property>
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes" context="yes">AllResults|Alle Ergebnisse anzeigen</property>
+                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>

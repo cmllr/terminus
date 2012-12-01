@@ -126,6 +126,10 @@ namespace libTerminus
 		/// </summary>
 		public static string CurrentRegexUniqueID;
 		/// <summary>
+		/// The doesnt load theme.
+		/// </summary>
+		public static bool doesntLoadTheme;
+		/// <summary>
 		/// The configuration.
 		/// </summary>
 		public static cConfigPlatform Configuration = new cConfigPlatform (new cPathEnvironment ().const_settings_path);
@@ -251,6 +255,7 @@ namespace libTerminus
 					//FileName = FileNameNew;	//Fixme: If nothing happens, change this comment.			
 					_nb.AppendPage (new libTerminus.cRegex (FileNameNew), new Label (new FileInfo (FileNameNew).Name, ref _nb));
 					_nb.ShowAll ();			
+					_nb.Page = _nb.NPages - 1;
 					g_files.Add (FileNameNew);
 				}
 			} catch (Exception ex) {
@@ -564,9 +569,9 @@ namespace libTerminus
 		public static void PrintHelpText ()
 		{
 			try {
-				Console.WriteLine ("--v | --version - Prints the version. \n--h | --help - Prints this message.\n<filename> - Opens an existing file");
+				Console.WriteLine ("--v | --version - Prints the version. \n--h | --help - Prints this message.\n--s | --nosyntax - Don't enable syntax - hightlighting.\n<filename> - Opens an existing file\n--c | --shell - Start interactive regex shell.");
 			} catch (Exception ex) {
-				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
+				Console.WriteLine(ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 		}
 		/// <summary>
@@ -608,7 +613,7 @@ namespace libTerminus
 		public static ResponseType AskForClear ()
 		{
 			try {
-				return MessageBox.Show ("Möchten Sie wirklich leeren", g_programName, ButtonsType.YesNo, MessageType.Question);
+				return MessageBox.Show ("Möchten Sie wirklich leeren?\nDie Änderungen können <b>nicht</b> wiederhergestellt werden!", g_programName, ButtonsType.YesNo, MessageType.Question);
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return ResponseType.None;

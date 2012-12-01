@@ -1,30 +1,32 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/cConfig.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Terminus/MainWindow.cs">
     <Files>
       <File FileName="libTerminus/AssemblyInfo.cs" Line="4" Column="21" />
-      <File FileName="libTerminus/cConfigPlatform.cs" Line="145" Column="186" />
+      <File FileName="libTerminus/cConfigPlatform.cs" Line="127" Column="1" />
       <File FileName="libTerminus/cDebugger.cs" Line="1" Column="1" />
       <File FileName="libTerminus/cArgumentParser.cs" Line="1" Column="1" />
       <File FileName="libTerminus/cExport.cs" Line="1" Column="1" />
       <File FileName="libTerminus/cLogger.cs" Line="1" Column="1" />
       <File FileName="libTerminus/cPool.cs" Line="69" Column="3" />
-      <File FileName="libTerminus/cRegex.cs" Line="523" Column="5" />
-      <File FileName="libTerminus/cTerminus.cs" Line="659" Column="21" />
+      <File FileName="libTerminus/cTerminus.cs" Line="141" Column="61" />
       <File FileName="libTerminus/Label.cs" Line="32" Column="14" />
       <File FileName="Terminus/AssemblyInfo.cs" Line="20" Column="34" />
-      <File FileName="libTerminus/cSyntax.cs" Line="49" Column="32" />
-      <File FileName="libTerminus/cConfig.cs" Line="43" Column="54" />
+      <File FileName="libTerminus/cConfig.cs" Line="81" Column="5" />
+      <File FileName="libTerminus/cRegex.cs" Line="85" Column="25" />
+      <File FileName="Terminus/MainWindow.cs" Line="1" Column="1" />
+      <File FileName="Terminus/Main.cs" Line="28" Column="8" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="libTerminus" expanded="True">
             <Node name="UserInterface" expanded="True" />
-            <Node name="cConfig.cs" selected="True" />
           </Node>
           <Node name="Path" expanded="True" />
-          <Node name="Terminus" expanded="True" />
+          <Node name="Terminus" expanded="True">
+            <Node name="MainWindow.cs" selected="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

@@ -52,6 +52,7 @@ public partial class MainWindow
 	private global::Gtk.Action berDieseVersionAction;
 	private global::Gtk.Action dialogQuestionAction;
 	private global::Gtk.Action connectAction;
+	private global::Gtk.Action clearAction1;
 	private global::Gtk.VBox vbox1;
 	private global::Gtk.MenuBar menubar1;
 	private global::Gtk.Toolbar toolbar1;
@@ -92,11 +93,12 @@ public partial class MainWindow
 		this.saveAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Speichern");
 		w1.Add (this.saveAction, null);
 		this.saveAsAction = new global::Gtk.Action ("saveAsAction", global::Mono.Unix.Catalog.GetString ("Speichern unter"), null, "gtk-save-as");
+		this.saveAsAction.HideIfEmpty = false;
 		this.saveAsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Speichern unter");
-		w1.Add (this.saveAsAction, null);
+		w1.Add (this.saveAsAction, "<Primary><Alt>s");
 		this.closeAction = new global::Gtk.Action ("closeAction", global::Mono.Unix.Catalog.GetString ("Schließen"), null, "gtk-close");
 		this.closeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Schließen");
-		w1.Add (this.closeAction, null);
+		w1.Add (this.closeAction, "<Primary>e");
 		this.quitAction = new global::Gtk.Action ("quitAction", global::Mono.Unix.Catalog.GetString ("Beenden"), null, "gtk-quit");
 		this.quitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Beenden");
 		w1.Add (this.quitAction, null);
@@ -135,10 +137,10 @@ public partial class MainWindow
 		w1.Add (this.separatorAction, null);
 		this.undoAction1 = new global::Gtk.Action ("undoAction1", global::Mono.Unix.Catalog.GetString ("Rückgängig"), null, "gtk-undo");
 		this.undoAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Undo");
-		w1.Add (this.undoAction1, null);
+		w1.Add (this.undoAction1, "<Primary>z");
 		this.redoAction1 = new global::Gtk.Action ("redoAction1", global::Mono.Unix.Catalog.GetString ("Wiederholen"), null, "gtk-redo");
 		this.redoAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Redo");
-		w1.Add (this.redoAction1, null);
+		w1.Add (this.redoAction1, "<Primary>w");
 		this.cutAction1 = new global::Gtk.Action ("cutAction1", global::Mono.Unix.Catalog.GetString ("Ausschneiden"), null, "gtk-cut");
 		this.cutAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("Cu_t");
 		w1.Add (this.cutAction1, null);
@@ -153,7 +155,7 @@ public partial class MainWindow
 		w1.Add (this.RegexAction, null);
 		this.mediaPlayAction = new global::Gtk.Action ("mediaPlayAction", global::Mono.Unix.Catalog.GetString ("Ausführen"), null, "gtk-media-play");
 		this.mediaPlayAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Execute");
-		w1.Add (this.mediaPlayAction, null);
+		w1.Add (this.mediaPlayAction, "<Primary>space");
 		this.ExtrasAction = new global::Gtk.Action ("ExtrasAction", global::Mono.Unix.Catalog.GetString ("Extras"), null, null);
 		this.ExtrasAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Extras");
 		w1.Add (this.ExtrasAction, null);
@@ -165,16 +167,16 @@ public partial class MainWindow
 		w1.Add (this.HilfeAction, null);
 		this.cancelAction = new global::Gtk.Action ("cancelAction", global::Mono.Unix.Catalog.GetString ("Fehler melden"), null, "gtk-cancel");
 		this.cancelAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Fehler melden");
-		w1.Add (this.cancelAction, null);
+		w1.Add (this.cancelAction, "<Primary>b");
 		this.aboutAction = new global::Gtk.Action ("aboutAction", global::Mono.Unix.Catalog.GetString ("_About"), null, "gtk-about");
 		this.aboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_About");
-		w1.Add (this.aboutAction, null);
+		w1.Add (this.aboutAction, "<Primary>i");
 		this.preferencesAction = new global::Gtk.Action ("preferencesAction", global::Mono.Unix.Catalog.GetString ("Einstellungen"), null, "gtk-preferences");
 		this.preferencesAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Properties");
-		w1.Add (this.preferencesAction, null);
+		w1.Add (this.preferencesAction, "<Primary>p");
 		this.selectAllAction = new global::Gtk.Action ("selectAllAction", global::Mono.Unix.Catalog.GetString ("Bibliothek"), null, "gtk-select-all");
 		this.selectAllAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Bibliothek");
-		w1.Add (this.selectAllAction, null);
+		w1.Add (this.selectAllAction, "<Primary>l");
 		this.spellCheckAction = new global::Gtk.Action ("spellCheckAction", global::Mono.Unix.Catalog.GetString ("_Spell Check"), null, "gtk-spell-check");
 		this.spellCheckAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Spell Check");
 		w1.Add (this.spellCheckAction, null);
@@ -190,13 +192,13 @@ public partial class MainWindow
 		w1.Add (this.gotoBottomAction, null);
 		this.NurTextTxtAction = new global::Gtk.Action ("NurTextTxtAction", global::Mono.Unix.Catalog.GetString ("Nur Text (*.txt)"), null, null);
 		this.NurTextTxtAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Nur Text (*.txt)");
-		w1.Add (this.NurTextTxtAction, null);
+		w1.Add (this.NurTextTxtAction, "<Primary><Alt>t");
 		this.HypertextHtmlAction = new global::Gtk.Action ("HypertextHtmlAction", global::Mono.Unix.Catalog.GetString ("Hypertext (*.html)"), null, null);
 		this.HypertextHtmlAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Hypertext (*.html)");
-		w1.Add (this.HypertextHtmlAction, null);
+		w1.Add (this.HypertextHtmlAction, "<Primary><Alt>h");
 		this.KommaGetrenntCsvAction = new global::Gtk.Action ("KommaGetrenntCsvAction", global::Mono.Unix.Catalog.GetString ("Komma - getrennt (*.csv)"), null, null);
 		this.KommaGetrenntCsvAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Komma - getrennt (*.csv)");
-		w1.Add (this.KommaGetrenntCsvAction, null);
+		w1.Add (this.KommaGetrenntCsvAction, "<Primary><Alt>c");
 		this.preferencesAction1 = new global::Gtk.Action ("preferencesAction1", null, null, "gtk-preferences");
 		w1.Add (this.preferencesAction1, null);
 		this.berDieseVersionAction = new global::Gtk.Action ("berDieseVersionAction", global::Mono.Unix.Catalog.GetString ("Über diese Version"), null, null);
@@ -204,10 +206,13 @@ public partial class MainWindow
 		w1.Add (this.berDieseVersionAction, null);
 		this.dialogQuestionAction = new global::Gtk.Action ("dialogQuestionAction", global::Mono.Unix.Catalog.GetString ("Über diese Version"), null, "gtk-dialog-question");
 		this.dialogQuestionAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Über diese Version");
-		w1.Add (this.dialogQuestionAction, null);
+		w1.Add (this.dialogQuestionAction, "<Primary>y");
 		this.connectAction = new global::Gtk.Action ("connectAction", global::Mono.Unix.Catalog.GetString ("Web"), null, "gtk-connect");
 		this.connectAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Web");
-		w1.Add (this.connectAction, null);
+		w1.Add (this.connectAction, "<Primary>i");
+		this.clearAction1 = new global::Gtk.Action ("clearAction1", global::Mono.Unix.Catalog.GetString ("Leeren"), null, "gtk-clear");
+		this.clearAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("Leeren");
+		w1.Add (this.clearAction1, "<Primary><Alt><Mod4><Super>c");
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -219,7 +224,7 @@ public partial class MainWindow
 		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='DateiAction' action='DateiAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='saveAsAction' action='saveAsAction'/><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='BearbeitenAction' action='BearbeitenAction'><menuitem name='undoAction1' action='undoAction1'/><menuitem name='redoAction1' action='redoAction1'/><menuitem name='cutAction1' action='cutAction1'/><menuitem name='copyAction1' action='copyAction1'/><menuitem name='pasteAction1' action='pasteAction1'/><menuitem name='preferencesAction' action='preferencesAction'/></menu><menu name='RegexAction' action='RegexAction'><menuitem name='mediaPlayAction' action='mediaPlayAction'/><menu name='gotoBottomAction' action='gotoBottomAction'><menuitem name='NurTextTxtAction' action='NurTextTxtAction'/><menuitem name='HypertextHtmlAction' action='HypertextHtmlAction'/><menuitem name='KommaGetrenntCsvAction' action='KommaGetrenntCsvAction'/></menu></menu><menu name='ExtrasAction' action='ExtrasAction'><menuitem name='selectAllAction' action='selectAllAction'/></menu><menu name='HilfeAction' action='HilfeAction'><menuitem name='connectAction' action='connectAction'/><menuitem name='dialogQuestionAction' action='dialogQuestionAction'/><menuitem name='cancelAction' action='cancelAction'/><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+		this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='DateiAction' action='DateiAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='saveAsAction' action='saveAsAction'/><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='BearbeitenAction' action='BearbeitenAction'><menuitem name='undoAction1' action='undoAction1'/><menuitem name='redoAction1' action='redoAction1'/><menuitem name='cutAction1' action='cutAction1'/><menuitem name='copyAction1' action='copyAction1'/><menuitem name='pasteAction1' action='pasteAction1'/><menuitem name='preferencesAction' action='preferencesAction'/></menu><menu name='RegexAction' action='RegexAction'><menuitem name='mediaPlayAction' action='mediaPlayAction'/><menu name='gotoBottomAction' action='gotoBottomAction'><menuitem name='NurTextTxtAction' action='NurTextTxtAction'/><menuitem name='HypertextHtmlAction' action='HypertextHtmlAction'/><menuitem name='KommaGetrenntCsvAction' action='KommaGetrenntCsvAction'/></menu><menuitem name='clearAction1' action='clearAction1'/></menu><menu name='ExtrasAction' action='ExtrasAction'><menuitem name='selectAllAction' action='selectAllAction'/></menu><menu name='HilfeAction' action='HilfeAction'><menuitem name='connectAction' action='connectAction'/><menuitem name='dialogQuestionAction' action='dialogQuestionAction'/><menuitem name='cancelAction' action='cancelAction'/><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
 		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 		this.menubar1.Name = "menubar1";
 		this.vbox1.Add (this.menubar1);
@@ -256,7 +261,6 @@ public partial class MainWindow
 		this.expander3 = new global::Gtk.Expander (null);
 		this.expander3.CanFocus = true;
 		this.expander3.Name = "expander3";
-		this.expander3.Expanded = true;
 		// Container child expander3.Gtk.Container+ContainerChild
 		this.vbox3 = new global::Gtk.VBox ();
 		this.vbox3.Name = "vbox3";
@@ -397,7 +401,7 @@ public partial class MainWindow
 			this.Child.ShowAll ();
 		}
 		this.DefaultWidth = 1296;
-		this.DefaultHeight = 450;
+		this.DefaultHeight = 500;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.newAction.Activated += new global::System.EventHandler (this.OnNewActionActivated);

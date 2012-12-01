@@ -75,7 +75,7 @@ public partial class MainWindow: Gtk.Window
 		if (cTerminus.Configuration.HideText)
 			toolbar1.ToolbarStyle = ToolbarStyle.Icons;
 		mediaPlayAction.Activated += OnExecuteActionActivated;
-	
+		clearAction1.Activated += OnClearActionActivated;
 		
 	}
 	/// <summary>

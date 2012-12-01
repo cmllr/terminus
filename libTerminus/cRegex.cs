@@ -94,6 +94,9 @@ namespace libTerminus
 				DataSource.Buffer.Changed += delegate {
 					addToDataHistory ();
 				};
+				Expression.PasteClipboard += delegate {
+					cTerminus.MarkSyntax (ref Expression);
+				};
 
 				cTerminus.MarkSyntax (ref Expression);
 			} catch (Exception ex) {

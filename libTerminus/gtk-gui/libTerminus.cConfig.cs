@@ -15,8 +15,8 @@ namespace libTerminus
 		private global::Gtk.CheckButton DisplayStyle;
 		private global::Gtk.CheckButton reduce;
 		private global::Gtk.HBox hbox2;
+		private global::Gtk.Label label1;
 		private global::Gtk.ComboBox combobox2;
-		private global::Gtk.TextView textview1;
 		private global::Gtk.Label GtkLabel7;
 		
 		protected virtual void Build ()
@@ -127,20 +127,22 @@ namespace libTerminus
 			this.hbox2.Name = "hbox2";
 			this.hbox2.Spacing = 6;
 			// Container child hbox2.Gtk.Box+BoxChild
+			this.label1 = new global::Gtk.Label ();
+			this.label1.Name = "label1";
+			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Farbschema");
+			this.hbox2.Add (this.label1);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label1]));
+			w8.Position = 0;
+			w8.Expand = false;
+			w8.Fill = false;
+			// Container child hbox2.Gtk.Box+BoxChild
 			this.combobox2 = global::Gtk.ComboBox.NewText ();
 			this.combobox2.Name = "combobox2";
 			this.hbox2.Add (this.combobox2);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.combobox2]));
-			w8.Position = 0;
-			// Container child hbox2.Gtk.Box+BoxChild
-			this.textview1 = new global::Gtk.TextView ();
-			this.textview1.Buffer.Text = "Terminus, \\d{2}.\\d{2}.\\d{2}.\\d+";
-			this.textview1.CanFocus = true;
-			this.textview1.Name = "textview1";
-			this.textview1.Editable = false;
-			this.hbox2.Add (this.textview1);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.textview1]));
-			w9.Position = 2;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.combobox2]));
+			w9.Position = 1;
+			w9.Expand = false;
+			w9.Fill = false;
 			this.vbox3.Add (this.hbox2);
 			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
 			w10.Position = 6;
