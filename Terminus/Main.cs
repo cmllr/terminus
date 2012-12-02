@@ -34,7 +34,10 @@ namespace Terminus
 				}
 				Application.Run ();
 				
-			} else
+			}else if (argsP.AllowedToRun == false && argsP.RunIntoShell == true)
+			{
+				new libTerminus.cShell();
+			}else
 				Environment.Exit (0);
 
 		}

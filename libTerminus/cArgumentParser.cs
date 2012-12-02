@@ -43,6 +43,13 @@ namespace libTerminus
 		/// The file to open.
 		/// </value>
 		public string FileToOpen { get; set; }
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="libTerminus.cArgumentParser"/> run into shell.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if run into shell; otherwise, <c>false</c>.
+		/// </value>
+		public bool RunIntoShell {get;set;}
 		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cArgumentParser"/> class.
@@ -69,6 +76,8 @@ namespace libTerminus
 					cTerminus.Configuration.useSyntax = false;
 				}else if (_args[i] == "--c" || _args[i] == "--shell"){
 					//TODO: Feature is still missing.
+					RunIntoShell = true;
+					AllowedToRun = false;
 				} else {
 					Console.WriteLine("Unknow Parameter: " + _args[i]);
 					AllowedToRun = false;
