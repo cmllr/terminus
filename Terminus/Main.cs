@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using System.Reflection;
+using System.Threading;
 
 namespace Terminus
 {
@@ -19,18 +20,19 @@ namespace Terminus
 		{
 			//Initalize a new object of the argument parser
 			libTerminus.cArgumentParser argsP = new libTerminus.cArgumentParser (args, Assembly.GetExecutingAssembly ().GetName ().Version.ToString ());
-			GLib.ExceptionManager.UnhandledException += HandleGLibExceptionManagerUnhandledException;
+			GLib.ExceptionManager.UnhandledException += delegate {
+			
+			};
+
 			//if the program should be runned..
 			if (argsP.AllowedToRun) {			
 				Application.Init ();
 				if (argsP.FileToOpen == "") {
 					MainWindow win = new MainWindow ("");	
-					//win.Maximize ();
 					win.Show ();
 				} else {
 					MainWindow win = new MainWindow (argsP.FileToOpen);
-					win.Maximize ();
-					win.Show ();
+					win.Show ();			
 				}
 				Application.Run ();
 				
@@ -38,13 +40,8 @@ namespace Terminus
 			{
 				new libTerminus.cShell();
 			}else
-				Environment.Exit (0);
+				Environment.Exit (-1);
 
-		}
-
-		static void HandleGLibExceptionManagerUnhandledException (GLib.UnhandledExceptionArgs args)
-		{
-			
 		}
 	}
 }

@@ -7,6 +7,13 @@
   <import>
     <widget-library name="../bin/Debug/libTerminus.dll" internal="true" />
   </import>
+  <icon-factory>
+    <icon-set id="ProgramIcon">
+      <source>
+        <property name="Image">resource:libTerminus.Programm.png</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Bin" id="libTerminus.cRegex" design-size="620 213">
     <property name="MemberName" />
     <property name="Visible">False</property>

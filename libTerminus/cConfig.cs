@@ -63,7 +63,7 @@ namespace libTerminus
 			string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator) ;
 			int i = 0;
 			foreach (string st in System.IO.Directory.GetFiles(path,"*.config")){
-				combobox2.InsertText(i,st); 
+				combobox2.InsertText(i,new System.IO.FileInfo(st).Name.Replace(".config","")); 
 				if (st.Contains(cTerminus.Configuration.Theme))
 				{
 					Gtk.TreeIter iter;
@@ -77,7 +77,7 @@ namespace libTerminus
 			combobox2.Changed += delegate(object sender, EventArgs e) {
 				Gtk.TreeIter iter;
 				if (((Gtk.ComboBox)sender).GetActiveIter(out iter)){
-					cTerminus.Configuration.Theme = new System.IO.FileInfo( ((string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0))).Name.Replace(".config","");
+					cTerminus.Configuration.Theme = (string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0);//new System.IO.FileInfo( ((string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0))).Name.Replace(".config","");
 				}
 			};
 		}

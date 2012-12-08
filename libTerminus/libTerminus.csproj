@@ -79,6 +79,8 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\Terminus\bin\Debug\Boot\Images\Programm.ico" />
+    <EmbeddedResource Include="..\Terminus\bin\Debug\Boot\Images\Programm.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Path\Path.csproj">
