@@ -96,6 +96,13 @@ namespace libTerminus
 		/// <c>true</c> if reduce syntax changing; otherwise, <c>false</c>.
 		/// </value>
 		public bool ReduceSyntaxChanging {get;set;}
+		/// <summary>
+		/// Gets or sets the custom interval (only via commandline)
+		/// </summary>
+		/// <value>
+		/// The custom interval.
+		/// </value>
+		public int CustomInterval {get;set;}
 		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cConfigPlatform"/> class.

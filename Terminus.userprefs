@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/cShell.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/cConfigPlatform.cs">
     <Files>
       <File FileName="libTerminus/AssemblyInfo.cs" Line="4" Column="21" />
       <File FileName="libTerminus/cConfigPlatform.cs" Line="127" Column="1" />
@@ -9,33 +9,40 @@
       <File FileName="libTerminus/cExport.cs" Line="1" Column="1" />
       <File FileName="libTerminus/cLogger.cs" Line="1" Column="1" />
       <File FileName="libTerminus/cPool.cs" Line="69" Column="3" />
-      <File FileName="libTerminus/cTerminus.cs" Line="141" Column="15" />
-      <File FileName="libTerminus/Label.cs" Line="32" Column="14" />
+      <File FileName="libTerminus/cTerminus.cs" Line="79" Column="69" />
+      <File FileName="libTerminus/Label.cs" Line="32" Column="3" />
       <File FileName="Terminus/AssemblyInfo.cs" Line="20" Column="34" />
-      <File FileName="libTerminus/cConfig.cs" Line="81" Column="5" />
-      <File FileName="libTerminus/cRegex.cs" Line="318" Column="7" />
-      <File FileName="Terminus/MainWindow.cs" Line="50" Column="35" />
-      <File FileName="Terminus/Main.cs" Line="39" Column="30" />
-      <File FileName="libTerminus/cShell.cs" Line="98" Column="65" />
+      <File FileName="libTerminus/cConfig.cs" Line="63" Column="4" />
+      <File FileName="libTerminus/cRegex.cs" Line="137" Column="7" />
+      <File FileName="Terminus/MainWindow.cs" Line="530" Column="16" />
+      <File FileName="Terminus/Main.cs" Line="25" Column="4" />
+      <File FileName="libTerminus/cShell.cs" Line="99" Column="19" />
+      <File FileName="Path_Final/cPathEnvironment.cs" Line="1" Column="1" />
+      <File FileName="Path/cPathEnvironment.cs" Line="1" Column="1" />
+      <File FileName="libTerminus/cHelp.cs" Line="23" Column="22" />
+      <File FileName="libTerminus/cKeyBoard.cs" Line="35" Column="1" />
+      <File FileName="libTerminus/cRestoreWizard.cs" Line="33" Column="1" />
+      <File FileName="libTerminus/cRevertData.cs" Line="34" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="libTerminus" expanded="True">
             <Node name="UserInterface" expanded="True" />
-            <Node name="cShell.cs" selected="True" />
+            <Node name="cConfigPlatform.cs" selected="True" />
           </Node>
           <Node name="Path" expanded="True" />
-          <Node name="Terminus" expanded="True" />
+          <Node name="Path_Final" expanded="True" />
+          <Node name="Terminus" expanded="True">
+            <Node name="bin" expanded="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>website.SourceCode</Value>
-        </State>
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
@@ -50,8 +57,6 @@
       <Breakpoint file="/home/christoph/Dropbox/Programmieren/Terminus/libTerminus/cRegex.cs" line="125" />
       <Breakpoint hitAction="PrintExpression" traceExpression="{pr}" file="/home/christoph/Dropbox/Programmieren/Terminus/libTerminus/cTerminus.cs" line="1126" />
       <Breakpoint file="/home/christoph/Dropbox/Programmieren/Terminus/Terminus/MainWindow.cs" line="498" />
-      <Breakpoint file="/home/christoph/Github/libTerminus/cShell.cs" line="102" />
-      <Breakpoint file="/home/christoph/Github/libTerminus/cShell.cs" line="106" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

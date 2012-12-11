@@ -78,10 +78,17 @@ namespace libTerminus
 					//TODO: Feature is still missing.
 					RunIntoShell = true;
 					AllowedToRun = false;
-				} else {
-					Console.WriteLine("Unknow Parameter: " + _args[i]);
-					AllowedToRun = false;
+				}else if (_args[i] == "--i" || _args[i] == "--interval")
+				{
+					try{
+						cTerminus.Configuration.CustomInterval = int.Parse(_args[i +1] );
+					}
+					catch
+					{
+						Console.WriteLine("No value set.");
+					}
 				}
+				
 			}
 		}
 		/// <summary>

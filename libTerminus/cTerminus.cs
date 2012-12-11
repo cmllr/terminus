@@ -78,10 +78,6 @@ namespace libTerminus
 		/// </summary>
 		public static Version g_programVersion = new Version (0, 0, 0, 0);
 		/// <summary>
-		/// The time back machine.
-		/// </summary>
-		public static cTimeBack TimeBackMachine = new cTimeBack ();
-		/// <summary>
 		/// The last result time span.
 		/// </summary>
 		public static TimeSpan g_lastResultTimeSpan;
@@ -133,6 +129,8 @@ namespace libTerminus
 		/// The configuration.
 		/// </summary>
 		public static cConfigPlatform Configuration = new cConfigPlatform (new cPathEnvironment ().const_settings_path);
+
+
 		/// <summary>
 		/// Adds a new tab to the given notebook
 		/// </summary>
@@ -222,7 +220,7 @@ namespace libTerminus
 				} else {
 					if (AskForClosingLastTab () == ResponseType.Yes) {
 						_nb.RemovePage (_index);		
-						g_files.RemoveAt (_index);
+						g_files.RemoveAt (_index);					
 					}
 				}
 			} catch (Exception ex) {
@@ -239,6 +237,7 @@ namespace libTerminus
 				_nb.RemovePage (_index);
 
 			}
+			_nb.ParentWindow.Title = cTerminus.getTitle(_nb,_nb.Page);
 		}
 		/// <summary>
 		/// Adds the tab from file.
@@ -251,13 +250,20 @@ namespace libTerminus
 			try {
 				string FileNameNew;
 				FileNameNew = ShowOpenDialog ();
-				if (System.IO.File.Exists (FileNameNew)) {
-					//FileName = FileNameNew;	//Fixme: If nothing happens, change this comment.			
-					_nb.AppendPage (new libTerminus.cRegex (FileNameNew), new Label (new FileInfo (FileNameNew).Name, ref _nb));
-					_nb.ShowAll ();			
-					_nb.Page = _nb.NPages - 1;
-					g_files.Add (FileNameNew);
+				if (g_files.Contains(FileNameNew) == false){
+					if (System.IO.File.Exists (FileNameNew)) {
+						//FileName = FileNameNew;	//Fixme: If nothing happens, change this comment.			
+						_nb.AppendPage (new libTerminus.cRegex (FileNameNew), new Label (new FileInfo (FileNameNew).Name, ref _nb));
+						_nb.ShowAll ();			
+						_nb.Page = _nb.NPages - 1;
+						g_files.Add (FileNameNew);
+					}
 				}
+				else 
+				{
+					_nb.Page = g_files.IndexOf(FileNameNew);
+				}
+
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
@@ -435,12 +441,21 @@ namespace libTerminus
 					_nb.Page = current;
 					((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).Saved = true;
 					((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).setDataBuffer (data);
-
-
 				}
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
+		}
+		public static void SaveCopy(Notebook _nb, int _Index)
+		{
+			string filename = ShowSaveDialog(null);
+			if (filename != "") {
+				((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).Save (filename,false);
+			}
+		}
+		public static void printdata()
+		{
+			throw new NotImplementedException("Printing is not implemented yet",new System.Exception());
 		}
 		/// <summary>
 		/// Shows the save dialog.
@@ -542,7 +557,7 @@ namespace libTerminus
 				//if (Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix)
 				about.Comments += "\nPlattform: " + getDistribution ();
 
-				about.Version = ProgramVersion.ToString ().Replace (".0", "") + "_nightly";
+				about.Version = ProgramVersion.ToString ().Replace (".0", "") + " (Nightly Build)";
 				about.Logo = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);				
 				about.Icon = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);	
 				about.Title = "Info über das Programm";

@@ -75,8 +75,7 @@ public partial class MainWindow: Gtk.Window
 		if (cTerminus.Configuration.HideText)
 			toolbar1.ToolbarStyle = ToolbarStyle.Icons;
 		mediaPlayAction.Activated += OnExecuteActionActivated;
-		clearAction1.Activated += OnClearActionActivated;
-		
+		clearAction1.Activated += OnClearActionActivated;	
 	}
 	/// <summary>
 	/// Raises the delete event event.
@@ -126,6 +125,7 @@ public partial class MainWindow: Gtk.Window
 			this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
 			//cTerminus.CurrentRegexUniqueID = ((cRegex)notebook1.GetNthPage()).uniqueID;
 		}
+	
 	}
 	void check ()
 	{
@@ -306,6 +306,7 @@ public partial class MainWindow: Gtk.Window
 			//this.cStatusLabele.Text = cTerminus.getMemory ().ToString () + " MB";
 		} catch (Exception ex) {
 			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);		
+			this.cStatusLabele.Text = "Bereit. Ausdruck vearbeitet in " + cTerminus.g_lastResultTimeSpan.TotalSeconds + " Sekunden.";
 		}
 	}
 	/// <summary>
@@ -423,7 +424,11 @@ public partial class MainWindow: Gtk.Window
 	protected void OnCloseActionActivated (object sender, EventArgs e)
 	{
 		try {
+			//cTerminus.CloseTab (notebook1, notebook1.Page);
+			//Close the tab which is the current selection
 			cTerminus.CloseTab (notebook1, notebook1.Page);
+			//Change the Title.
+			this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
 		} catch (Exception ex) {
 			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);				
 		}
@@ -525,6 +530,18 @@ public partial class MainWindow: Gtk.Window
 		xdg.Start ();
 	}
 
+	protected void OnSaveAsAction2Activated (object sender, EventArgs e)
+	{
+		cTerminus.SaveCopy(notebook1,notebook1.Page);
+	}
 
+	protected void OnSelectFontActionActivated (object sender, EventArgs e)
+	{
+		new cKeyBoard().Show();
+	}
 
+	protected void OnRestoreActivated (object sender, EventArgs e)
+	{
+		new cRestoreWizard().Show();
+	}
 }

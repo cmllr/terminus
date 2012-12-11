@@ -135,8 +135,6 @@ namespace libTerminus
 						else
 							cTerminus.MarkSyntax(ref Expression);
 					}
-					cTerminus.TimeBackMachine.add(DateTime.Now,new String[] {Expression.Buffer.Text,DataSource.Buffer.Text});
-		
 				} catch {
 				}
 				
@@ -189,13 +187,15 @@ namespace libTerminus
 		/// <param name='Filename'>
 		/// If set to <c>true</c> filename.
 		/// </param>
-		public bool Save (string Filename)
+		public bool Save (string Filename,bool save = true)
 		{
 			try {
 				if (Filename != "") {
 					System.IO.File.WriteAllText (Filename, GetExpressionBuffer ());
-					this.g_filename = Filename;
-					Saved = true;
+					if (save)
+						this.g_filename = Filename;
+					if (save)
+						Saved = true;
 					return true;
 				} 
 				return false;
@@ -211,8 +211,9 @@ namespace libTerminus
 		{
 			try {
 				if (Expression.HasFocus) {
-					if (g_regexHistoryIndex >= 0)
+					if (g_regexHistoryIndex >= 0){
 						Expression.Buffer.Text = g_regexHistory [--g_regexHistoryIndex];
+						cTerminus.MarkSyntax (ref Expression);}
 				} else if (DataSource.HasFocus) {
 					if (g_inputHistoryIndex >= 0)
 						DataSource.Buffer.Text = g_inputHistory [--g_inputHistoryIndex];
@@ -227,12 +228,14 @@ namespace libTerminus
 		{
 			try {		
 				if (Expression.HasFocus) {
-					if (g_regexHistoryIndex + 1 < g_regexHistory.Count)
+					if (g_regexHistoryIndex + 1 < g_regexHistory.Count){
 						Expression.Buffer.Text = g_regexHistory [++g_regexHistoryIndex];
+						cTerminus.MarkSyntax (ref Expression);}
 				} else if (DataSource.HasFocus) {
 					if (g_inputHistoryIndex + 1 < g_inputHistory.Count)
 						DataSource.Buffer.Text = g_inputHistory [++g_inputHistoryIndex];
 				}
+
 			} catch {
 
 			}
@@ -243,9 +246,10 @@ namespace libTerminus
 		public void Paste ()
 		{
 			try {
-				if (Expression.HasFocus)
+				if (Expression.HasFocus){
 					Expression.Buffer.PasteClipboard (Clipboard.Get (Gdk.Selection.Clipboard));
-				else
+					cTerminus.MarkSyntax (ref Expression);
+				}else
 					DataSource.Buffer.PasteClipboard (Clipboard.Get (Gdk.Selection.Clipboard));
 			} catch {
 
@@ -474,7 +478,12 @@ namespace libTerminus
 		public static void setTags (ref TextView _textview,ref TextView _data)
 		{
 			try{
-				string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + cTerminus.Configuration.Theme + ".config") ;
+				//string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + cTerminus.Configuration.Theme + ".config") ;
+				string path;
+				if (new cPathEnvironment().const_settings_path.Contains("Program.cfg"))
+					path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + cTerminus.Configuration.Theme + ".config");
+				else
+					path =  @"/usr/share/terminus/Boot/Config/ColorShemes/" + cTerminus.Configuration.Theme + ".config";
 				new cSyntax(path,ref _textview,false);
 				if (_data != null)
 					new cSyntax(path,ref _data,true);

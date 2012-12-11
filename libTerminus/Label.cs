@@ -26,44 +26,10 @@ namespace libTerminus
 		{
 			this.Build ();
 			label1.Text = _text;
-			label1.ButtonPressEvent += HandleButtonPressEvent;
-			label1.PopupMenu += HandlePopupMenu;
-			label1.PopulatePopup += HandlePopulatePopup;
+			//label1.ButtonPressEvent += HandleButtonPressEvent;
 			gnb = _nb;
 		}
 		
-		void HandlePopulatePopup (object o, PopulatePopupArgs args)
-		{
-			Menu contextmenue = new Menu ();
-			
-			MenuItem beenden = new MenuItem ("Beenden");
-			beenden.Activated += delegate {
-				Application.Quit ();
-			};
-			
-		
-		
-			contextmenue.Add (beenden);			
-			contextmenue.ShowAll ();
-			contextmenue.Popup ();
-		}
-
-		void HandlePopupMenu (object o, Gtk.PopupMenuArgs args)
-		{
-			Menu contextmenue = new Menu ();
-			
-			MenuItem beenden = new MenuItem ("Beenden");
-			beenden.Activated += delegate {
-				Application.Quit ();
-			};
-			
-		
-		
-			contextmenue.Add (beenden);			
-			contextmenue.ShowAll ();
-			contextmenue.Popup ();
-
-		}
 
 		void HandleButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
 		{
@@ -73,6 +39,7 @@ namespace libTerminus
 
 		protected void OnButton1Clicked (object sender, System.EventArgs e)
 		{
+			//int pre =  gnb.NPages;
 			cTerminus.CloseTab(gnb,gnb.Page);
 		}
 	}

@@ -68,11 +68,15 @@
     <Compile Include="gtk-gui\libTerminus.cPool.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="gtk-gui\libTerminus.Label.cs" />
-    <Compile Include="cTimeBack.cs" />
     <Compile Include="cConfig.cs" />
     <Compile Include="gtk-gui\libTerminus.cConfig.cs" />
     <Compile Include="cSyntax.cs" />
     <Compile Include="cShell.cs" />
+    <Compile Include="cKeyBoard.cs" />
+    <Compile Include="gtk-gui\libTerminus.cKeyBoard.cs" />
+    <Compile Include="cRestoreWizard.cs" />
+    <Compile Include="gtk-gui\libTerminus.cRestoreWizard.cs" />
+    <Compile Include="cRevertData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -60,7 +60,11 @@ namespace libTerminus
 			reduce.Toggled += delegate {
 				cTerminus.Configuration.ReduceSyntaxChanging = reduce.Active;
 			};
-			string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator) ;
+			string path;
+			if (new cPathEnvironment().const_settings_path.Contains("Program.cfg"))
+				 path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator) ;
+			else
+				path =  @"/usr/share/terminus/Boot/Config/ColorShemes/";
 			int i = 0;
 			foreach (string st in System.IO.Directory.GetFiles(path,"*.config")){
 				combobox2.InsertText(i,new System.IO.FileInfo(st).Name.Replace(".config","")); 

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Path", "Path\Path.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Path_Final", "Path_Final\Path_Final.csproj", "{337DF905-E55E-4B87-8E2A-870907E80BBD}"
 EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Translation", "Translation\Translation.mdproj", "{51F8013F-29E8-4A6C-A41A-477F9817FA32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -23,6 +25,10 @@ Global
 		{501268F5-7C6F-49F0-B460-AAD176C66E68}.Debug|x86.Build.0 = Debug|Any CPU
 		{501268F5-7C6F-49F0-B460-AAD176C66E68}.Release|x86.ActiveCfg = Release|Any CPU
 		{501268F5-7C6F-49F0-B460-AAD176C66E68}.Release|x86.Build.0 = Release|Any CPU
+		{51F8013F-29E8-4A6C-A41A-477F9817FA32}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{51F8013F-29E8-4A6C-A41A-477F9817FA32}.Debug|x86.Build.0 = Debug|Any CPU
+		{51F8013F-29E8-4A6C-A41A-477F9817FA32}.Release|x86.ActiveCfg = Release|Any CPU
+		{51F8013F-29E8-4A6C-A41A-477F9817FA32}.Release|x86.Build.0 = Release|Any CPU
 		{7CC1A539-00D2-4862-898C-B497F7870C04}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{7CC1A539-00D2-4862-898C-B497F7870C04}.Debug|x86.Build.0 = Debug|Any CPU
 		{7CC1A539-00D2-4862-898C-B497F7870C04}.Release|x86.ActiveCfg = Release|Any CPU

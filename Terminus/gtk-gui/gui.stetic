@@ -9,7 +9,7 @@
     <widget-library name="../../libTerminus/bin/Debug/libTerminus.dll" />
     <widget-library name="../bin/Debug/Terminus.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1296 723">
+  <widget class="Gtk.Window" id="MainWindow" design-size="1453 723">
     <action-group name="Default">
       <action id="DateiAction">
         <property name="Type">Action</property>
@@ -217,7 +217,7 @@
       <action id="aboutAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Primary&gt;i</property>
-        <property name="Label" translatable="yes">_About</property>
+        <property name="Label" translatable="yes">Info</property>
         <property name="ShortLabel" translatable="yes">_About</property>
         <property name="StockId">gtk-about</property>
         <signal name="Activated" handler="OnAboutActionActivated" />
@@ -307,7 +307,7 @@
       </action>
       <action id="connectAction">
         <property name="Type">Action</property>
-        <property name="Accelerator">&lt;Primary&gt;i</property>
+        <property name="Accelerator">&lt;Primary&gt;&lt;Alt&gt;i</property>
         <property name="Label" translatable="yes">Web</property>
         <property name="ShortLabel" translatable="yes">Web</property>
         <property name="StockId">gtk-connect</property>
@@ -319,6 +319,36 @@
         <property name="Label" translatable="yes">Leeren</property>
         <property name="ShortLabel" translatable="yes">Leeren</property>
         <property name="StockId">gtk-clear</property>
+      </action>
+      <action id="saveAsAction2">
+        <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;k</property>
+        <property name="Label" translatable="yes">Kopie speichern unter</property>
+        <property name="ShortLabel" translatable="yes">Kopie speichern unter</property>
+        <property name="StockId">gtk-save-as</property>
+        <signal name="Activated" handler="OnSaveAsAction2Activated" />
+      </action>
+      <action id="printAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Drucken</property>
+        <property name="ShortLabel" translatable="yes">Drucken</property>
+        <property name="StockId">gtk-print</property>
+        <signal name="Activated" handler="OnPrintActionActivated" />
+      </action>
+      <action id="selectFontAction">
+        <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;&lt;Alt&gt;k</property>
+        <property name="Label" translatable="yes">Tastenkombinationen</property>
+        <property name="ShortLabel" translatable="yes">Tastenkombinationen</property>
+        <property name="StockId">gtk-select-font</property>
+        <signal name="Activated" handler="OnSelectFontActionActivated" />
+      </action>
+      <action id="restore">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Ausdrücke wiederherstellen</property>
+        <property name="ShortLabel" translatable="yes">Ausdrücke wiederherstellen</property>
+        <property name="StockId">gtk-undelete</property>
+        <signal name="Activated" handler="OnRestoreActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -339,6 +369,7 @@
                 <node type="Menuitem" action="openAction" />
                 <node type="Menuitem" action="saveAction" />
                 <node type="Menuitem" action="saveAsAction" />
+                <node type="Menuitem" action="saveAsAction2" />
                 <node type="Menuitem" action="closeAction" />
                 <node type="Menuitem" action="quitAction" />
               </node>
@@ -361,9 +392,11 @@
               </node>
               <node type="Menu" action="ExtrasAction">
                 <node type="Menuitem" action="selectAllAction" />
+                <node type="Menuitem" action="restore" />
               </node>
               <node type="Menu" action="HilfeAction">
                 <node type="Menuitem" action="connectAction" />
+                <node type="Menuitem" action="selectFontAction" />
                 <node type="Menuitem" action="dialogQuestionAction" />
                 <node type="Menuitem" action="cancelAction" />
                 <node type="Menuitem" action="aboutAction" />
@@ -503,7 +536,6 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                             <property name="Tooltip" translatable="yes" context="yes">AllResults|Alle aus dem Ausdruck resultierenden Ergebnisse anzeigen</property>
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes" context="yes">AllResults|Alle Ergebnisse anzeigen</property>
-                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>

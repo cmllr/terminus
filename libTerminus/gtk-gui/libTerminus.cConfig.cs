@@ -137,6 +137,7 @@ namespace libTerminus
 			w8.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.combobox2 = global::Gtk.ComboBox.NewText ();
+			this.combobox2.TooltipMarkup = "Sie können hier das Designschema für die Syntax - Hervorhebung Ihres Regulären Ausdrucks einstellen. <b>Hinweis</b> Es wird ein Neustart empfohlen.";
 			this.combobox2.Name = "combobox2";
 			this.hbox2.Add (this.combobox2);
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.combobox2]));

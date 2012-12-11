@@ -27,6 +27,7 @@ namespace libTerminus
 			w1.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.button1 = new global::Gtk.Button ();
+			this.button1.TooltipMarkup = "Klicken Sie hier, um den Tab zu schließen.";
 			this.button1.CanFocus = true;
 			this.button1.Name = "button1";
 			this.button1.UseUnderline = true;

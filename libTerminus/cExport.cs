@@ -48,16 +48,17 @@ namespace libTerminus
 		{
 			try {
 				string _path = "";
-				if (_pattern != "" && _source != "" && _results != "") {
+				if (_pattern != "" && _source != "") {
 					_path = cTerminus.ShowSaveDialog (null, "CSV", "*.csv");
 					string content = "";
 					content += "Pattern;Data;Results";
-					
-					string[] resultarray = _results.Split(new char[] {'\n'});
-					content += "\n" + _pattern + ";" + _source + ";" + resultarray[0] + "\n";
-					for (int i = 1; i < resultarray.Length- 1; i++)
-					{
-						content += ";;" + resultarray[i] +"\n";
+					if (_results != ""){
+						string[] resultarray = _results.Split(new char[] {'\n'});
+						content += "\n" + _pattern + ";" + _source + ";" + resultarray[0] + "\n";
+						for (int i = 1; i < resultarray.Length- 1; i++)
+						{
+							content += ";;" + resultarray[i] +"\n";
+						}
 					}
 					System.IO.File.WriteAllText (_path, content);
 					return true;					
@@ -88,13 +89,15 @@ namespace libTerminus
 		{
 			try {
 				string _path;
-				if (_pattern != "" && _source != "" && _results != "") {
+				if (_pattern != "" && _source != "") {
 					_path = cTerminus.ShowSaveDialog (null, "Textdateien", "*.txt");
 					string content = "";
 					content += "----Pattern----\n" + _pattern + "\n";
-					content += "----Data:----\n" + _source + "\n";
-					content += "----Results----\n";
-					content += _results;
+					content += "----Data-------\n" + _source + "\n";
+					if (_results != ""){
+						content += "----Results----\n";
+						content += _results;
+					}
 					System.IO.File.WriteAllText (_path, content);
 					return true;					
 				} else {
@@ -124,19 +127,21 @@ namespace libTerminus
 		{
 			try {
 				string _path;
-				if (_pattern != "" && _source != "" && _results != "") {
+				if (_pattern != "" && _source != "") {
 					_path = cTerminus.ShowSaveDialog (null, "Textdateien", "*.html");
 					string content = "";
 					//begin of html file
 					
-					content += @"<html><head><title>Export</title><meta http-equiv='content-type' content='text/html; charset=ISO-8859-1'><META NAME='Generator' CONTENT='" + cTerminus.g_programName + "'></head><body>";
-					content += @"<h2>Pattern</h2>";
-					content += _pattern + "<p>";
-					content += @"<h2>Data</h2>";
-					content += _source + "<p>";
-					content += @"<h2>Results</h2>";
-					content += _results.Replace("\n","<p>") + "<p>";
-					content += @"</body></html>";
+					content += "<html>\n<head>\n<title>Export</title>\n<meta http-equiv='content-type' content='text/html; charset=ISO-8859-1'>\n<META NAME='Generator' CONTENT='" + cTerminus.g_programName + "'>\n</head>\n<body>\n";
+					content += "<h2>Pattern</h2>\n";
+					content += _pattern + "<p>\n";
+					content += "<h2>Data</h2>\n";
+					content += _source + "<p>\n";
+					if (_results != ""){
+						content += "<h2>Results</h2>\n";
+						content += _results.Replace("\n","<p>") + "<p>";
+					}
+					content += "\n</body>\n</html>";
 					System.IO.File.WriteAllText (_path, content,System.Text.Encoding.Default);
 					return true;					
 				} else {
