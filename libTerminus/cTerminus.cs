@@ -566,7 +566,6 @@ namespace libTerminus
 				about.Icon = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);	
 				about.Title = "Info über das Programm";
 				about.Website = "";
-				//Icon: http://commons.wikimedia.org/wiki/File:Torchlight_apply.png
 
 				about.License = System.IO.File.ReadAllText (new cPathEnvironment ().const_data_dir + new cPathEnvironment ().const_path_separator + "Boot" + new cPathEnvironment ().const_path_separator + "Texts" + new cPathEnvironment ().const_path_separator + "License", System.Text.Encoding.UTF8);
 				about.WrapLicense = true;
