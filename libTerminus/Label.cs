@@ -13,6 +13,7 @@ namespace libTerminus
 		/// The Notebook to use
 		/// </summary>
 		Notebook gnb;
+		Widget widg;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.Label"/> class.
 		/// </summary>
@@ -22,25 +23,28 @@ namespace libTerminus
 		/// <param name='_nb'>
 		/// _nb.
 		/// </param>
-		public Label (string _text,ref Notebook _nb)
+		public Label (string _text,ref Notebook _nb,Widget _widg)
 		{
 			this.Build ();
 			label1.Text = _text;
-			//label1.ButtonPressEvent += HandleButtonPressEvent;
 			gnb = _nb;
+			widg = _widg;
 		}
-		
-
-		void HandleButtonPressEvent (object o, Gtk.ButtonPressEventArgs args)
-		{
-			MessageBox.Show ("test", "test", Gtk.ButtonsType.Close, Gtk.MessageType.Question);
-		}
-
-
 		protected void OnButton1Clicked (object sender, System.EventArgs e)
 		{
-			//int pre =  gnb.NPages;
-			cTerminus.CloseTab(gnb,gnb.Page);
+			int i = 0;
+			foreach(Widget x in gnb.Children)
+			{
+				if (x == widg)
+					cTerminus.CloseTab(gnb,i);
+				i++;
+			}
+
+
+		
+
+			//TODO: Here's a bug - a tab will close at every time the current selected tab.
+			//cTerminus.CloseTab(gnb,gnb.Page);
 		}
 	}
 }

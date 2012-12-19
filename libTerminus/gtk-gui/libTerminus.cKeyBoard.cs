@@ -33,6 +33,7 @@ namespace libTerminus
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.expander2 = new global::Gtk.Expander (null);
 			this.expander2.CanFocus = true;
+			this.expander2.Name = "expander2";
 			this.expander2.Expanded = true;
 			// Container child expander2.Gtk.Container+ContainerChild
 			this.label2 = new global::Gtk.Label ();
@@ -101,7 +102,7 @@ namespace libTerminus
 			this.label5 = new global::Gtk.Label ();
 			this.label5.Name = "label5";
 			this.label5.Xalign = 0F;
-			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>STRG + Leer</b> Ausdruck verarbeiten\n<b>STRG + ALT + SUPER + C</b> Ausdruck und Daten und Ausgabe leeren\n<b>STRG + ALT + T</b> Export nach *.txt\n<b>STRG + ALT + C</b> Export nach *.csv\n<b>STRG + ALT + H</b> Export nach Hypertext");
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>STRG + Leer</b> Ausdruck verarbeiten\n<b>STRG + ALT + SUPER + C</b> Ausdruck und Daten und Ausgabe leeren\n<b>STRG + ALT + T</b> Export nach *.txt\n<b>STRG + ALT + C</b> Export nach *.csv\n<b>STRG + ALT + H</b> Export nach Hypertext\n<b>STRG + ALT + U</b>Ausdrücke wiederherstellen");
 			this.label5.UseMarkup = true;
 			this.label5.Wrap = true;
 			this.expander5.Add (this.label5);
@@ -119,7 +120,7 @@ namespace libTerminus
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 468;
-			this.DefaultHeight = 538;
+			this.DefaultHeight = 544;
 			this.Show ();
 		}
 	}

@@ -50,7 +50,7 @@ public partial class MainWindow: Gtk.Window
 		//cTerminus.enableSyntax = true;
 		cTerminus.g_programVersion = Assembly.GetExecutingAssembly ().GetName ().Version;
 		this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
-		cTerminus.AddTabFromFile (notebook1, Filename, 0);
+		cTerminus.AddTabFromFile (notebook1, (Filename == null) ? "" : Filename, 0);
 		cStatusLabele.Text = "Bereit.";
 
 	}
@@ -124,6 +124,7 @@ public partial class MainWindow: Gtk.Window
 		if (cTerminus.g_isReady == true) {
 			this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
 			//cTerminus.CurrentRegexUniqueID = ((cRegex)notebook1.GetNthPage()).uniqueID;
+			cTerminus.CurrentIndexTab = notebook1.Page;
 		}
 	
 	}
@@ -288,12 +289,15 @@ public partial class MainWindow: Gtk.Window
 			//get the current Options and run the parser.
 			Output.Buffer.Text = "";
 			RegexOptions _optionen = RegexOptions.None;
-			if (IgnoreCase.Active)
+			//version 2.12: Fixed a bug (configuration wasn't used)
+			if (IgnoreCase.Active || cTerminus.Configuration.IgnoreCase)
 				_optionen = RegexOptions.IgnoreCase;
-			if (IgnorePatternWhitespace.Active)
+			if (IgnorePatternWhitespace.Active || cTerminus.Configuration.IgnoreWhitespace)
 				_optionen = _optionen | RegexOptions.IgnorePatternWhitespace;
-			if (ExplicitCapture.Active)
+			if (ExplicitCapture.Active || cTerminus.Configuration.Explicit)
 				_optionen = _optionen | RegexOptions.ExplicitCapture;
+
+
 			libTerminus.ParsingMode mode = libTerminus.ParsingMode.All;
 			if (radiobutton1.Active)
 				mode = libTerminus.ParsingMode.All;
@@ -532,16 +536,17 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnSaveAsAction2Activated (object sender, EventArgs e)
 	{
-		cTerminus.SaveCopy(notebook1,notebook1.Page);
+		cTerminus.SaveCopy (notebook1, notebook1.Page);
 	}
 
 	protected void OnSelectFontActionActivated (object sender, EventArgs e)
 	{
-		new cKeyBoard().Show();
+		new cKeyBoard ().Show ();
 	}
 
 	protected void OnRestoreActivated (object sender, EventArgs e)
 	{
-		new cRestoreWizard().Show();
+		new cRestoreWizard ().Show ();
 	}
+
 }

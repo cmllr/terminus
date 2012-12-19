@@ -77,6 +77,7 @@
     <Compile Include="cRestoreWizard.cs" />
     <Compile Include="gtk-gui\libTerminus.cRestoreWizard.cs" />
     <Compile Include="cRevertData.cs" />
+    <Compile Include="gtk-gui\libTerminus.cHelp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

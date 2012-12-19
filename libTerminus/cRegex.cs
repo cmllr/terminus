@@ -67,7 +67,7 @@ namespace libTerminus
 		public string g_DataSource;
 		public string g_lastresult = "";
 		public string g_UniqueID;
-		int step =0;
+		int step = 0;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cRegex"/> class.
 		/// </summary>
@@ -79,7 +79,7 @@ namespace libTerminus
 		
 			try {
 				this.Build ();
-				setTags (ref Expression,ref DataSource);
+				setTags (ref Expression, ref DataSource);
 				this.g_filename = _filename;
 				
 				if (_filename == "")
@@ -100,16 +100,17 @@ namespace libTerminus
 
 				cTerminus.MarkSyntax (ref Expression);
 			} catch (Exception ex) {
-				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
+				//TODO: Here is eventually a bug.
+				//MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 			
 		}
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cRegex"/> class.
 		/// </summary>
-		cRegex()
+		cRegex ()
 		{
-			g_UniqueID = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + DateTime.Now.Millisecond.ToString();
+			g_UniqueID = DateTime.Now.Year.ToString () + DateTime.Now.Month.ToString () + DateTime.Now.Day.ToString () + DateTime.Now.Hour.ToString () + DateTime.Now.Minute.ToString () + DateTime.Now.Second.ToString () + DateTime.Now.Millisecond.ToString ();
 		}
 		/// <summary>
 		/// Adds to expression history.
@@ -121,19 +122,16 @@ namespace libTerminus
 				g_regexHistoryIndex++;
 				Saved = false;
 				try {
-					if (Expression.Buffer.Text.Contains ("\n") == false){
-						if (cTerminus.Configuration.ReduceSyntaxChanging){
-							if (step == 5){
+					if (Expression.Buffer.Text.Contains ("\n") == false) {
+						if (cTerminus.Configuration.ReduceSyntaxChanging) {
+							if (step == 5) {
 								cTerminus.MarkSyntax (ref Expression);
 								step = 0;
-							}
-							else
-							{
+							} else {
 								step++;
 							}	
-						}
-						else
-							cTerminus.MarkSyntax(ref Expression);
+						} else
+							cTerminus.MarkSyntax (ref Expression);
 					}
 				} catch {
 				}
@@ -187,7 +185,7 @@ namespace libTerminus
 		/// <param name='Filename'>
 		/// If set to <c>true</c> filename.
 		/// </param>
-		public bool Save (string Filename,bool save = true)
+		public bool Save (string Filename, bool save = true)
 		{
 			try {
 				if (Filename != "") {
@@ -211,9 +209,10 @@ namespace libTerminus
 		{
 			try {
 				if (Expression.HasFocus) {
-					if (g_regexHistoryIndex >= 0){
+					if (g_regexHistoryIndex >= 0) {
 						Expression.Buffer.Text = g_regexHistory [--g_regexHistoryIndex];
-						cTerminus.MarkSyntax (ref Expression);}
+						cTerminus.MarkSyntax (ref Expression);
+					}
 				} else if (DataSource.HasFocus) {
 					if (g_inputHistoryIndex >= 0)
 						DataSource.Buffer.Text = g_inputHistory [--g_inputHistoryIndex];
@@ -228,9 +227,10 @@ namespace libTerminus
 		{
 			try {		
 				if (Expression.HasFocus) {
-					if (g_regexHistoryIndex + 1 < g_regexHistory.Count){
+					if (g_regexHistoryIndex + 1 < g_regexHistory.Count) {
 						Expression.Buffer.Text = g_regexHistory [++g_regexHistoryIndex];
-						cTerminus.MarkSyntax (ref Expression);}
+						cTerminus.MarkSyntax (ref Expression);
+					}
 				} else if (DataSource.HasFocus) {
 					if (g_inputHistoryIndex + 1 < g_inputHistory.Count)
 						DataSource.Buffer.Text = g_inputHistory [++g_inputHistoryIndex];
@@ -246,10 +246,10 @@ namespace libTerminus
 		public void Paste ()
 		{
 			try {
-				if (Expression.HasFocus){
+				if (Expression.HasFocus) {
 					Expression.Buffer.PasteClipboard (Clipboard.Get (Gdk.Selection.Clipboard));
 					cTerminus.MarkSyntax (ref Expression);
-				}else
+				} else
 					DataSource.Buffer.PasteClipboard (Clipboard.Get (Gdk.Selection.Clipboard));
 			} catch {
 
@@ -344,6 +344,7 @@ namespace libTerminus
 					resultdisplay.Buffer.Text = result;
 					DateTime _End = DateTime.Now;
 					cTerminus.g_lastResultTimeSpan = _End - _Begin;
+					new cRevertData ().setRestoredData (DateTime.Now, expression, "");
 				} else {
 					MessageBox.Show ("Die Daten enthalten keinen Ausdruck", cTerminus.g_programName, Gtk.ButtonsType.Ok, Gtk.MessageType.Warning);
 				}
@@ -475,59 +476,57 @@ namespace libTerminus
 		/// <param name='_textview'>
 		/// _textview.
 		/// </param>
-		public static void setTags (ref TextView _textview,ref TextView _data)
+		public static void setTags (ref TextView _textview, ref TextView _data)
 		{
-			try{
+			try {
 				//string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + cTerminus.Configuration.Theme + ".config") ;
 				string path;
-				if (new cPathEnvironment().const_settings_path.Contains("Program.cfg"))
-					path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + cTerminus.Configuration.Theme + ".config");
+				if (new cPathEnvironment ().const_settings_path.Contains ("Program.cfg"))
+					path = new cPathEnvironment ().const_settings_path.Replace ("Program.cfg", "ColorShemes" + new cPathEnvironment ().const_path_separator + cTerminus.Configuration.Theme + ".config");
 				else
-					path =  @"/usr/share/terminus/Boot/Config/ColorShemes/" + cTerminus.Configuration.Theme + ".config";
-				new cSyntax(path,ref _textview,false);
+					path = @"/usr/share/terminus/Boot/Config/ColorShemes/" + cTerminus.Configuration.Theme + ".config";
+				new cSyntax (path, ref _textview, false);
 				if (_data != null)
-					new cSyntax(path,ref _data,true);
-			}
-			catch 
-			{
+					new cSyntax (path, ref _data, true);
+			} catch {
 			
-			TextTag tagnone = new TextTag ("nosyntax");
-			Gdk.Color nonecolor;
-			Gdk.Color.Parse ("black", ref nonecolor);
-			tagnone.ForegroundGdk = nonecolor;				
-			_textview.Buffer.TagTable.Add (tagnone);
-			TextTag tagcorrect = new TextTag ("backslashliteral");
-			Gdk.Color colorcorrect;
-			Gdk.Color.Parse ("darkblue", ref colorcorrect);
-			tagcorrect.ForegroundGdk = colorcorrect;
-			tagcorrect.FontDesc = getBold ();
-			_textview.Buffer.TagTable.Add (tagcorrect);
-			TextTag edgedBrackets = new TextTag ("edgedBrackets");
-			Gdk.Color coloredgetBrackets;
-			Gdk.Color.Parse ("darkred", ref coloredgetBrackets);
-			edgedBrackets.ForegroundGdk = coloredgetBrackets;
-			_textview.Buffer.TagTable.Add (edgedBrackets);
-			TextTag roundBrackets = new TextTag ("roundBrackets");
-			Gdk.Color colorroundbrackets;
-			Gdk.Color.Parse ("darkviolet", ref colorroundbrackets);
-			roundBrackets.ForegroundGdk = colorroundbrackets;
-			_textview.Buffer.TagTable.Add (roundBrackets);
-			TextTag otherBrackets = new TextTag ("otherBrackets");
-			Gdk.Color otherBracketsColor;
-			Gdk.Color.Parse ("darkgreen", ref otherBracketsColor);
-			otherBrackets.ForegroundGdk = otherBracketsColor;
-			_textview.Buffer.TagTable.Add (otherBrackets);
-			TextTag constant = new TextTag ("constant");
-			Gdk.Color constantcolor;
-			Gdk.Color.Parse ("darkgrey", ref constantcolor);
-			constant.ForegroundGdk = constantcolor;
-			_textview.Buffer.TagTable.Add (constant);
-			TextTag quantifier = new TextTag ("quantifier");
-			Gdk.Color quantifiercolor;
-			Gdk.Color.Parse ("chocolate2", ref quantifiercolor);
-			quantifier.ForegroundGdk = quantifiercolor;
-			_textview.Buffer.TagTable.Add (quantifier);
-				MessageBox.Show("Fehler beim Laden des Schema's.\nEs wurde das Standardschema geladen.","Fehler",ButtonsType.Close,MessageType.Warning,null);
+				TextTag tagnone = new TextTag ("nosyntax");
+				Gdk.Color nonecolor;
+				Gdk.Color.Parse ("black", ref nonecolor);
+				tagnone.ForegroundGdk = nonecolor;				
+				_textview.Buffer.TagTable.Add (tagnone);
+				TextTag tagcorrect = new TextTag ("backslashliteral");
+				Gdk.Color colorcorrect;
+				Gdk.Color.Parse ("darkblue", ref colorcorrect);
+				tagcorrect.ForegroundGdk = colorcorrect;
+				tagcorrect.FontDesc = getBold ();
+				_textview.Buffer.TagTable.Add (tagcorrect);
+				TextTag edgedBrackets = new TextTag ("edgedBrackets");
+				Gdk.Color coloredgetBrackets;
+				Gdk.Color.Parse ("darkred", ref coloredgetBrackets);
+				edgedBrackets.ForegroundGdk = coloredgetBrackets;
+				_textview.Buffer.TagTable.Add (edgedBrackets);
+				TextTag roundBrackets = new TextTag ("roundBrackets");
+				Gdk.Color colorroundbrackets;
+				Gdk.Color.Parse ("darkviolet", ref colorroundbrackets);
+				roundBrackets.ForegroundGdk = colorroundbrackets;
+				_textview.Buffer.TagTable.Add (roundBrackets);
+				TextTag otherBrackets = new TextTag ("otherBrackets");
+				Gdk.Color otherBracketsColor;
+				Gdk.Color.Parse ("darkgreen", ref otherBracketsColor);
+				otherBrackets.ForegroundGdk = otherBracketsColor;
+				_textview.Buffer.TagTable.Add (otherBrackets);
+				TextTag constant = new TextTag ("constant");
+				Gdk.Color constantcolor;
+				Gdk.Color.Parse ("darkgrey", ref constantcolor);
+				constant.ForegroundGdk = constantcolor;
+				_textview.Buffer.TagTable.Add (constant);
+				TextTag quantifier = new TextTag ("quantifier");
+				Gdk.Color quantifiercolor;
+				Gdk.Color.Parse ("chocolate2", ref quantifiercolor);
+				quantifier.ForegroundGdk = quantifiercolor;
+				_textview.Buffer.TagTable.Add (quantifier);
+				MessageBox.Show ("Fehler beim Laden des Schema's.\nEs wurde das Standardschema geladen.", "Fehler", ButtonsType.Close, MessageType.Warning, null);
 			}
 		}
 		/// <summary>

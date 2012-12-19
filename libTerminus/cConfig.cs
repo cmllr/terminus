@@ -85,6 +85,12 @@ namespace libTerminus
 				}
 			};
 		}
+
+		protected void OnButton1Clicked (object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Möchten Sie die Ausdrücke wirklich löschen? Diese können <b>nicht</b> wiederhergestellt werden!","Bestätigen",Gtk.ButtonsType.YesNo,Gtk.MessageType.Question,null) == Gtk.ResponseType.Yes)
+			new cRevertData().Clear();
+		}
 	}
 }
 

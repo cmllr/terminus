@@ -14,6 +14,8 @@ namespace libTerminus
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.CheckButton DisplayStyle;
 		private global::Gtk.CheckButton reduce;
+		private global::Gtk.HBox hbox3;
+		private global::Gtk.Button button1;
 		private global::Gtk.HBox hbox2;
 		private global::Gtk.Label label1;
 		private global::Gtk.ComboBox combobox2;
@@ -123,6 +125,26 @@ namespace libTerminus
 			w7.Expand = false;
 			w7.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
+			this.hbox3 = new global::Gtk.HBox ();
+			this.hbox3.Name = "hbox3";
+			this.hbox3.Spacing = 6;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.button1 = new global::Gtk.Button ();
+			this.button1.CanFocus = true;
+			this.button1.Name = "button1";
+			this.button1.UseUnderline = true;
+			this.button1.Label = global::Mono.Unix.Catalog.GetString ("Daten für die Ausdruckswiederherstellung löschen");
+			this.hbox3.Add (this.button1);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.button1]));
+			w8.Position = 0;
+			w8.Expand = false;
+			w8.Fill = false;
+			this.vbox3.Add (this.hbox3);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox3]));
+			w9.Position = 6;
+			w9.Expand = false;
+			w9.Fill = false;
+			// Container child vbox3.Gtk.Box+BoxChild
 			this.hbox2 = new global::Gtk.HBox ();
 			this.hbox2.Name = "hbox2";
 			this.hbox2.Spacing = 6;
@@ -131,24 +153,24 @@ namespace libTerminus
 			this.label1.Name = "label1";
 			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Farbschema");
 			this.hbox2.Add (this.label1);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label1]));
-			w8.Position = 0;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label1]));
+			w10.Position = 0;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.combobox2 = global::Gtk.ComboBox.NewText ();
 			this.combobox2.TooltipMarkup = "Sie können hier das Designschema für die Syntax - Hervorhebung Ihres Regulären Ausdrucks einstellen. <b>Hinweis</b> Es wird ein Neustart empfohlen.";
 			this.combobox2.Name = "combobox2";
 			this.hbox2.Add (this.combobox2);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.combobox2]));
-			w9.Position = 1;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.combobox2]));
+			w11.Position = 1;
+			w11.Expand = false;
+			w11.Fill = false;
 			this.vbox3.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
-			w10.Position = 6;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
+			w12.Position = 7;
+			w12.Expand = false;
+			w12.Fill = false;
 			this.GtkAlignment.Add (this.vbox3);
 			this.frame1.Add (this.GtkAlignment);
 			this.GtkLabel7 = new global::Gtk.Label ();
@@ -161,6 +183,7 @@ namespace libTerminus
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
 		}
 	}
 }

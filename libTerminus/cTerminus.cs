@@ -130,7 +130,7 @@ namespace libTerminus
 		/// </summary>
 		public static cConfigPlatform Configuration = new cConfigPlatform (new cPathEnvironment ().const_settings_path);
 
-
+		public static int CurrentIndexTab;
 		/// <summary>
 		/// Adds a new tab to the given notebook
 		/// </summary>
@@ -148,7 +148,9 @@ namespace libTerminus
 					FileName = new System.IO.FileInfo (_filename).Name;
 				else
 					FileName = "";
-				_nb.AppendPage (new libTerminus.cRegex (_filename), new Label ("Neuer Ausdruck", ref _nb));
+
+				libTerminus.cRegex newregex = new cRegex (_filename);
+				_nb.AppendPage (newregex, new Label ("Neuer Ausdruck", ref _nb, newregex));
 				_nb.ShowAll ();			
 				_nb.Page = _nb.NPages - 1;
 				g_files.Add (_filename);
@@ -166,7 +168,8 @@ namespace libTerminus
 		{
 			try {
 				if (isConfigTabOpen != true) {
-					_nb.AppendPage (new libTerminus.cConfig (Configuration), new Label ("Einstellungen", ref _nb));
+					libTerminus.cConfig config = new libTerminus.cConfig (Configuration);
+					_nb.AppendPage (config, new Label ("Einstellungen", ref _nb, config));
 					_nb.ShowAll ();			
 					_nb.Page = _nb.NPages - 1;
 					ConfigTabIndex = _nb.Page;
@@ -187,7 +190,8 @@ namespace libTerminus
 		{
 			try {
 				if (isLibTabOpen != true) {
-					_nb.AppendPage (new libTerminus.cPool (ref _nb), new Label ("Bibliothek", ref _nb));
+					cPool lib = new libTerminus.cPool (ref _nb);
+					_nb.AppendPage (lib, new Label ("Bibliothek", ref _nb, lib));
 					_nb.ShowAll ();			
 					_nb.Page = _nb.NPages - 1;
 					LibTabIndex = _nb.Page;
@@ -237,7 +241,7 @@ namespace libTerminus
 				_nb.RemovePage (_index);
 
 			}
-			_nb.ParentWindow.Title = cTerminus.getTitle(_nb,_nb.Page);
+			_nb.ParentWindow.Title = cTerminus.getTitle (_nb, _nb.Page);
 		}
 		/// <summary>
 		/// Adds the tab from file.
@@ -250,18 +254,16 @@ namespace libTerminus
 			try {
 				string FileNameNew;
 				FileNameNew = ShowOpenDialog ();
-				if (g_files.Contains(FileNameNew) == false){
+				if (g_files.Contains (FileNameNew) == false) {
 					if (System.IO.File.Exists (FileNameNew)) {
-						//FileName = FileNameNew;	//Fixme: If nothing happens, change this comment.			
-						_nb.AppendPage (new libTerminus.cRegex (FileNameNew), new Label (new FileInfo (FileNameNew).Name, ref _nb));
+						libTerminus.cRegex newregex = new cRegex (FileNameNew);		
+						_nb.AppendPage (newregex, new Label (new FileInfo (FileNameNew).Name, ref _nb, newregex));
 						_nb.ShowAll ();			
 						_nb.Page = _nb.NPages - 1;
 						g_files.Add (FileNameNew);
 					}
-				}
-				else 
-				{
-					_nb.Page = g_files.IndexOf(FileNameNew);
+				} else {
+					_nb.Page = g_files.IndexOf (FileNameNew);
 				}
 
 			} catch (Exception ex) {
@@ -285,18 +287,18 @@ namespace libTerminus
 			try {
 				if (System.IO.File.Exists (_fileNameNew)) {
 					//FileName = FileNameNew;	//Fixme: If nothing happens, change this comment.			
-
-					_nb.InsertPage (new libTerminus.cRegex (_fileNameNew), new Label (new FileInfo (_fileNameNew).Name, ref _nb), _pageindex);
+					libTerminus.cRegex newregex = new cRegex (_fileNameNew);
+					_nb.InsertPage (newregex, new Label (new FileInfo (_fileNameNew).Name, ref _nb, newregex), _pageindex);
 					_nb.ShowAll ();			
 					g_files.Add (_fileNameNew);
 				} else {
-					
-					_nb.InsertPage (new libTerminus.cRegex (""), new Label ("Neuer Ausdruck", ref _nb), _pageindex);
+					libTerminus.cRegex newregex = new cRegex (_fileNameNew);
+					_nb.InsertPage (newregex, new Label ("Neuer Ausdruck", ref _nb, newregex), _pageindex);
 					_nb.ShowAll ();			
 					g_files.Add (_fileNameNew);
 				}
 			} catch (Exception ex) {
-				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
+				MessageBox.Show ("error: " + ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 
 		}
@@ -413,7 +415,6 @@ namespace libTerminus
 			} catch (Exception ex) {
 				//MessageBox.Show (ex.Message, cTerminus.ProgramName, ButtonsType.Close, MessageType.Error);
 				return g_programName + " ";
-				;
 			}
 		}
 
@@ -446,16 +447,16 @@ namespace libTerminus
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 		}
-		public static void SaveCopy(Notebook _nb, int _Index)
+		public static void SaveCopy (Notebook _nb, int _Index)
 		{
-			string filename = ShowSaveDialog(null);
+			string filename = ShowSaveDialog (null);
 			if (filename != "") {
-				((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).Save (filename,false);
+				((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).Save (filename, false);
 			}
 		}
-		public static void printdata()
+		public static void printdata ()
 		{
-			throw new NotImplementedException("Printing is not implemented yet",new System.Exception());
+			throw new NotImplementedException ("Printing is not implemented yet", new System.Exception ());
 		}
 		/// <summary>
 		/// Shows the save dialog.
@@ -554,17 +555,20 @@ namespace libTerminus
 				about.ParentWindow = wind.Toplevel;
 				about.Website = "about:blank";
 				about.Comments = "Erstellen und Testen Sie schnell und einfach reguläre Ausdrücke mit der verbesserten Version von Phrasis.Studio";
-				//if (Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix)
 				about.Comments += "\nPlattform: " + getDistribution ();
 
-				about.Version = ProgramVersion.ToString ().Replace (".0", "") + " (Nightly Build)";
+				if (DateTime.Now.Day == 21 && DateTime.Now.Month == 12 && DateTime.Now.Year == 2012)
+					about.Version = ProgramVersion.ToString ().Replace (".0", "") + " (Beta I \"End is near edition\")";
+				else
+					about.Version = ProgramVersion.ToString ().Replace (".0", "") + " (Beta I)";
+
 				about.Logo = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);				
 				about.Icon = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);	
 				about.Title = "Info über das Programm";
 				about.Website = "";
 				//Icon: http://commons.wikimedia.org/wiki/File:Torchlight_apply.png
 
-				about.License = System.IO.File.ReadAllText (new cPathEnvironment ().const_data_dir + "Boot/Texts/License", System.Text.Encoding.UTF8);
+				about.License = System.IO.File.ReadAllText (new cPathEnvironment ().const_data_dir + new cPathEnvironment ().const_path_separator + "Boot" + new cPathEnvironment ().const_path_separator + "Texts" + new cPathEnvironment ().const_path_separator + "License", System.Text.Encoding.UTF8);
 				about.WrapLicense = true;
 				about.Copyright = "Programmicon: \"Torchlight\"; http://kde-look.org/content/show.php?content=26378 lizensiert unter LGPL";
 				
@@ -586,7 +590,7 @@ namespace libTerminus
 			try {
 				Console.WriteLine ("--v | --version - Prints the version. \n--h | --help - Prints this message.\n--s | --nosyntax - Don't enable syntax - hightlighting.\n<filename> - Opens an existing file\n--c | --shell - Start interactive regex shell.");
 			} catch (Exception ex) {
-				Console.WriteLine(ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
+				Console.WriteLine (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 		}
 		/// <summary>

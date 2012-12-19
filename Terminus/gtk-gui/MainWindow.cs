@@ -228,7 +228,7 @@ public partial class MainWindow
 		w1.Add (this.selectFontAction, "<Primary><Alt>k");
 		this.restore = new global::Gtk.Action ("restore", global::Mono.Unix.Catalog.GetString ("Ausdrücke wiederherstellen"), null, "gtk-undelete");
 		this.restore.ShortLabel = global::Mono.Unix.Catalog.GetString ("Ausdrücke wiederherstellen");
-		w1.Add (this.restore, null);
+		w1.Add (this.restore, "<Primary><Alt>u");
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";

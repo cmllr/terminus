@@ -21,8 +21,8 @@ namespace Terminus
 			//Mono.Unix.Catalog.Init("i18n1","./locale");
 			//Initalize a new object of the argument parser
 			libTerminus.cArgumentParser argsP = new libTerminus.cArgumentParser (args, Assembly.GetExecutingAssembly ().GetName ().Version.ToString ());
-			GLib.ExceptionManager.UnhandledException += delegate {
-			
+			GLib.ExceptionManager.UnhandledException += delegate(GLib.UnhandledExceptionArgs argsEx) {
+				Console.WriteLine (argsEx.ExceptionObject.ToString ());
 			};
 			//if the program should be runned..
 			if (argsP.AllowedToRun) {			
@@ -36,10 +36,9 @@ namespace Terminus
 				}
 				Application.Run ();
 				
-			}else if (argsP.AllowedToRun == false && argsP.RunIntoShell == true)
-			{
-				new libTerminus.cShell();
-			}else
+			} else if (argsP.AllowedToRun == false && argsP.RunIntoShell == true) {
+				new libTerminus.cShell ();
+			} else
 				Environment.Exit (-1);
 
 		}

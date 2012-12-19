@@ -58,7 +58,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="libTerminus.cConfig" design-size="657 267">
+  <widget class="Gtk.Bin" id="libTerminus.cConfig" design-size="657 269">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -195,6 +195,40 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                   </packing>
                 </child>
                 <child>
+                  <widget class="Gtk.HBox" id="hbox3">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Button" id="button1">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">Daten für die Ausdruckswiederherstellung löschen</property>
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="OnButton1Clicked" />
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">6</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="Gtk.HBox" id="hbox2">
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
@@ -226,11 +260,14 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">6</property>
+                    <property name="Position">7</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
+                </child>
+                <child>
+                  <placeholder />
                 </child>
               </widget>
             </child>
@@ -404,7 +441,7 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="libTerminus.cKeyBoard" design-size="468 538">
+  <widget class="Gtk.Window" id="libTerminus.cKeyBoard" design-size="468 544">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Tastaturkombinationen</property>
     <property name="Icon">resource:libTerminus.Programm.png</property>
@@ -532,7 +569,8 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
 &lt;b&gt;STRG + ALT + SUPER + C&lt;/b&gt; Ausdruck und Daten und Ausgabe leeren
 &lt;b&gt;STRG + ALT + T&lt;/b&gt; Export nach *.txt
 &lt;b&gt;STRG + ALT + C&lt;/b&gt; Export nach *.csv
-&lt;b&gt;STRG + ALT + H&lt;/b&gt; Export nach Hypertext</property>
+&lt;b&gt;STRG + ALT + H&lt;/b&gt; Export nach Hypertext
+&lt;b&gt;STRG + ALT + U&lt;/b&gt;Ausdrücke wiederherstellen</property>
                 <property name="UseMarkup">True</property>
                 <property name="Wrap">True</property>
               </widget>
@@ -605,10 +643,11 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="libTerminus.cRestoreWizard" design-size="570 382">
+  <widget class="Gtk.Window" id="libTerminus.cRestoreWizard" design-size="570 517">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">cRestoreWizard</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Title" translatable="yes">Elemente wiederherstellen</property>
+    <property name="Icon">resource:libTerminus.Programm.png</property>
+    <property name="WindowPosition">Center</property>
     <child>
       <widget class="Gtk.VBox" id="vbox2">
         <property name="MemberName" />
@@ -623,35 +662,10 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.HBox" id="hbox1">
+                  <widget class="Gtk.Calendar" id="calendar2">
                     <property name="MemberName" />
-                    <property name="Spacing">6</property>
-                    <child>
-                      <widget class="Gtk.Label" id="label3">
-                        <property name="MemberName" />
-                        <property name="Xalign">0</property>
-                        <property name="LabelProp" translatable="yes">Datum</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">0</property>
-                        <property name="AutoSize">False</property>
-                        <property name="Expand">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Entry" id="entry1">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="IsEditable">True</property>
-                        <property name="InvisibleChar">●</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">1</property>
-                        <property name="AutoSize">False</property>
-                        <property name="Expand">False</property>
-                        <property name="Fill">False</property>
-                      </packing>
-                    </child>
+                    <property name="CanFocus">True</property>
+                    <property name="DisplayOptions">35</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -677,9 +691,12 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                   <widget class="Gtk.HScale" id="hscale1">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
+                    <property name="UpdatePolicy">Discontinuous</property>
+                    <property name="Lower">1</property>
                     <property name="Upper">24</property>
                     <property name="PageIncrement">1</property>
                     <property name="StepIncrement">1</property>
+                    <property name="Value">1</property>
                     <property name="DrawValue">True</property>
                     <property name="Digits">0</property>
                     <property name="ValuePos">Top</property>
@@ -708,15 +725,51 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                   <widget class="Gtk.HScale" id="hscale2">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
+                    <property name="Lower">1</property>
                     <property name="Upper">24</property>
                     <property name="PageIncrement">1</property>
                     <property name="StepIncrement">1</property>
                     <property name="DrawValue">True</property>
                     <property name="Digits">0</property>
                     <property name="ValuePos">Top</property>
+                    <signal name="ValueChanged" handler="OnHscale2ValueChanged" />
                   </widget>
                   <packing>
                     <property name="Position">4</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.HBox" id="hbox2">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="button1">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">Suchen</property>
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="OnButton1Clicked" />
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">5</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -751,7 +804,7 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                 <property name="MemberName" />
                 <property name="ShadowType">In</property>
                 <child>
-                  <widget class="Gtk.NodeView" id="nodeview1">
+                  <widget class="Gtk.TreeView" id="treeview1">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="ShowScrollbars">True</property>
@@ -760,9 +813,9 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
               </widget>
             </child>
             <child>
-              <widget class="Gtk.Label" id="GtkLabel">
+              <widget class="Gtk.Label" id="GtkLabel2">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">GtkExpander</property>
+                <property name="LabelProp" translatable="yes">Ergebnisse</property>
                 <property name="UseUnderline">True</property>
               </widget>
               <packing>
@@ -775,7 +828,51 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
             <property name="AutoSize">False</property>
           </packing>
         </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.ToggleButton" id="togglebutton1">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-copy Menu</property>
+                <property name="Label" translatable="yes">In Zwischenablage kopieren</property>
+                <property name="UseUnderline">True</property>
+                <property name="Active">True</property>
+                <signal name="Clicked" handler="OnTogglebutton1Clicked" />
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder />
+            </child>
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
       </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="libTerminus.cHelp" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">cHelp</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <placeholder />
     </child>
   </widget>
 </stetic-interface>
