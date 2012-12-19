@@ -1,5 +1,4 @@
-// 
-//  cConfig.cs
+//  cConfig.cs - Provides the widget to configure Terminus
 //  
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>
@@ -24,9 +23,6 @@ using System;
 namespace libTerminus
 {
 	[System.ComponentModel.ToolboxItem(true)]
-	/// <summary>
-	/// The Configuration - Class, which provides a GTK - Widget for use as a config dialog
-	/// </summary>
 	public partial class cConfig : Gtk.Bin
 	{
 		public cConfig (cConfigPlatform _cfgPlatform)
@@ -34,7 +30,40 @@ namespace libTerminus
 			this.Build ();
 			//First, tell the Terminus - Thread that a config tab is open
 			cTerminus.isConfigTabOpen = true;
+
 			//Set the values checked/not checked 
+			appendEvents (_cfgPlatform);
+
+			//This is a workaround.
+			//If Terminus is used out of a tarball, it uses a file called "Program.cfg" to load/save the configuration.
+			//If Terminus is used out of a package, the path is another one.
+			string path = string.Empty;
+			if (new cPathEnvironment ().const_settings_path.Contains ("Program.cfg"))
+				path = new cPathEnvironment ().const_settings_path.Replace ("Program.cfg", "ColorShemes" + new cPathEnvironment ().const_path_separator);
+			else
+				path = @"/usr/share/terminus/Boot/Config/ColorShemes/";
+
+			//Fill the combobox with values to change the template
+			int i = 0;
+			foreach (string st in System.IO.Directory.GetFiles(path,"*.config")) {
+				combobox2.InsertText (i, new System.IO.FileInfo (st).Name.Replace (".config", "")); 
+				if (st.Contains (cTerminus.Configuration.Theme)) {
+					Gtk.TreeIter iter;
+					combobox2.Active = i;
+					combobox2.Model.IterNthChild (out iter, i);
+					combobox2.SetActiveIter (iter);
+				}
+				i++;
+			}
+		}
+		/// <summary>
+		/// Appends the events.
+		/// </summary>
+		/// <param name='_cfgPlatform'>
+		/// The Configuration platform to use
+		/// </param>
+		private void appendEvents (cConfigPlatform _cfgPlatform)
+		{
 			this.IgnoreCase.Active = _cfgPlatform.IgnoreCase;
 			this.IgnorePatternWhitespace.Active = _cfgPlatform.IgnoreWhitespace;
 			this.ExplicitCapture.Active = _cfgPlatform.Explicit;
@@ -60,36 +89,16 @@ namespace libTerminus
 			reduce.Toggled += delegate {
 				cTerminus.Configuration.ReduceSyntaxChanging = reduce.Active;
 			};
-			string path;
-			if (new cPathEnvironment().const_settings_path.Contains("Program.cfg"))
-				 path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator) ;
-			else
-				path =  @"/usr/share/terminus/Boot/Config/ColorShemes/";
-			int i = 0;
-			foreach (string st in System.IO.Directory.GetFiles(path,"*.config")){
-				combobox2.InsertText(i,new System.IO.FileInfo(st).Name.Replace(".config","")); 
-				if (st.Contains(cTerminus.Configuration.Theme))
-				{
-					Gtk.TreeIter iter;
-					combobox2.Active = i;
-					combobox2.Model.IterNthChild (out iter, i);
-					combobox2.SetActiveIter (iter);
-				}
-				i++;
-			}
-
 			combobox2.Changed += delegate(object sender, EventArgs e) {
 				Gtk.TreeIter iter;
-				if (((Gtk.ComboBox)sender).GetActiveIter(out iter)){
-					cTerminus.Configuration.Theme = (string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0);//new System.IO.FileInfo( ((string) ((Gtk.ComboBox)sender).Model.GetValue (iter, 0))).Name.Replace(".config","");
+				if (((Gtk.ComboBox)sender).GetActiveIter (out iter)) {
+					cTerminus.Configuration.Theme = (string)((Gtk.ComboBox)sender).Model.GetValue (iter, 0);
 				}
 			};
-		}
-
-		protected void OnButton1Clicked (object sender, EventArgs e)
-		{
-			if (MessageBox.Show("Möchten Sie die Ausdrücke wirklich löschen? Diese können <b>nicht</b> wiederhergestellt werden!","Bestätigen",Gtk.ButtonsType.YesNo,Gtk.MessageType.Question,null) == Gtk.ResponseType.Yes)
-			new cRevertData().Clear();
+			button1.Clicked += delegate(object sender, EventArgs e) {
+				if (MessageBox.Show ("Möchten Sie die Ausdrücke wirklich löschen? Diese können <b>nicht</b> wiederhergestellt werden!", "Bestätigen", Gtk.ButtonsType.YesNo, Gtk.MessageType.Question, null) == Gtk.ResponseType.Yes)
+					new cRevertData ().Clear ();
+			};
 		}
 	}
 }

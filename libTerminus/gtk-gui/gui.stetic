@@ -205,7 +205,6 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">Daten für die Ausdruckswiederherstellung löschen</property>
                         <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="OnButton1Clicked" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>

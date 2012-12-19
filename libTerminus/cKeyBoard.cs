@@ -1,5 +1,4 @@
-//
-//  cKeyBoard.cs
+//  cKeyBoard.cs - Displays an overview about the used keyboard shortcuts
 //
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>

@@ -1,5 +1,4 @@
-// 
-//  cPool.cs
+//  cPool.cs - A kind of snippet pool 
 //  
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>
@@ -31,11 +30,11 @@ namespace libTerminus
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class cPool : Gtk.Bin
 	{		
-		Notebook g_notebook;
-		ListStore g_regexList;
-		string g_selectedPath;
-		string g_selection;
-		string g_name;
+		Notebook g_notebook; // the calling notebook to get a new tab page including this widget
+		ListStore g_regexList; // A liststore which should contain the items
+		string g_selectedPath; // the current selction 
+		string g_selection;   // ^ together with the path
+		string g_name; 		  // see one/ two above
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cPool"/> class.
 		/// </summary>
@@ -73,10 +72,11 @@ namespace libTerminus
 		public void appendColumns ()
 		{
 			try {
-				try{
-				for (int i = 0; i < treeview1.Columns.Length; i++)
-					treeview1.RemoveColumn(treeview1.Columns[i]);
-				}catch{}
+				try {
+					for (int i = 0; i < treeview1.Columns.Length; i++)
+						treeview1.RemoveColumn (treeview1.Columns [i]);
+				} catch {
+				}
 				TreeViewColumn ausdruck = new TreeViewColumn ();
 				ausdruck.Title = "Ausdruck";
 				TreeViewColumn titel = new TreeViewColumn ();
@@ -164,25 +164,22 @@ namespace libTerminus
 			IDbConnection dbcon;
 			try {			
 
-				if (g_name != "" || g_name != string.Empty || g_name != null){
-					if (MessageBox.Show("Sind Sie sich sicher, das Element zu löschen?","Bestätigung erforderlich",ButtonsType.YesNo,MessageType.Question,null) == ResponseType.Yes)
-					{
-						string connectionString = "URI=file:" + new cPathEnvironment ().const_examples_directory + new cPathEnvironment().const_path_separator + "Library.db";
+				if (g_name != "" || g_name != string.Empty || g_name != null) {
+					if (MessageBox.Show ("Sind Sie sich sicher, das Element zu löschen?", "Bestätigung erforderlich", ButtonsType.YesNo, MessageType.Question, null) == ResponseType.Yes) {
+						string connectionString = "URI=file:" + new cPathEnvironment ().const_examples_directory + new cPathEnvironment ().const_path_separator + "Library.db";
 						dbcon = (IDbConnection)new SqliteConnection (connectionString);
 						dbcon.Open ();
 						IDbCommand dbcmd = dbcon.CreateCommand ();
 						string sql = "Delete " + " FROM phrases WHERE Title = \"" + g_name + "\"";
 						dbcmd.CommandText = sql;
-						int res = dbcmd.ExecuteNonQuery();
-						appendColumns();
-						appendItems();
+						int res = dbcmd.ExecuteNonQuery ();
+						appendColumns ();
+						appendItems ();
 						dbcmd.Dispose ();
 						dbcmd = null;
 					}
-				}
-				else
-				{
-					MessageBox.Show("Fehler: Sie müssen ein Element auswählen, um es zu Löschen!","Fehler: Keine Auswahl getroffen",Gtk.ButtonsType.Ok,MessageType.Error,null);
+				} else {
+					MessageBox.Show ("Fehler: Sie müssen ein Element auswählen, um es zu Löschen!", "Fehler: Keine Auswahl getroffen", Gtk.ButtonsType.Ok, MessageType.Error, null);
 				}
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);

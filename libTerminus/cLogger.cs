@@ -1,5 +1,4 @@
-// 
-//  cLogger.cs
+//  cLogger.cs Logs anything
 //  
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>
@@ -28,7 +27,7 @@ namespace libTerminus
 	/// </summary>
 	public static class cLogger
 	{
-		
+		//TODO: Imrovement of the logger	
 		/// <summary>
 		/// The log level header.
 		/// </summary>

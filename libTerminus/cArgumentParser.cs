@@ -1,6 +1,5 @@
-// 
 //  cArgumentParser.cs
-//  
+//  Description: The argument parser allows to get parameters, which the user set
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>
 //  
@@ -23,14 +22,11 @@ using System;
 
 namespace libTerminus
 {
-	/// <summary>
-	/// The argument parser.
-	/// </summary>
 	public class cArgumentParser
 	{
 		#region "Member Values or Get/Setters"
 		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="libTerminus.cArgumentParser"/> allowed to run.
+		/// Gets or sets a value indicating whether the program is allowed to run.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if allowed to run; otherwise, <c>false</c>.
@@ -44,21 +40,21 @@ namespace libTerminus
 		/// </value>
 		public string FileToOpen { get; set; }
 		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="libTerminus.cArgumentParser"/> run into shell.
+		/// Gets or sets a value indicating if the program should run into the interactive regex shell.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if run into shell; otherwise, <c>false</c>.
 		/// </value>
-		public bool RunIntoShell {get;set;}
+		public bool RunIntoShell { get; set; }
 		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cArgumentParser"/> class.
 		/// </summary>
 		/// <param name='_args'>
-		/// Arguments.
+		/// The arguments, which are given with the program
 		/// </param>
 		/// <param name='_appVersion'>
-		/// App version.
+		/// The current application version of the calling application.
 		/// </param>
 		public cArgumentParser (string[] _args, string _appVersion)
 		{
@@ -72,49 +68,22 @@ namespace libTerminus
 					AllowedToRun = false;
 				} else if (System.IO.File.Exists (_args [i])) {
 					FileToOpen = _args [i];
-				}else if (_args[i] == "--s" || _args[i] == "--nosyntax"){
+				} else if (_args [i] == "--s" || _args [i] == "--nosyntax") {
 					cTerminus.Configuration.useSyntax = false;
-				}else if (_args[i] == "--c" || _args[i] == "--shell"){
-					//TODO: Feature is still missing.
+				} else if (_args [i] == "--c" || _args [i] == "--shell") {
 					RunIntoShell = true;
 					AllowedToRun = false;
-				}else if (_args[i] == "--i" || _args[i] == "--interval")
-				{
-					try{
-						cTerminus.Configuration.CustomInterval = int.Parse(_args[i +1] );
-					}
-					catch
-					{
-						Console.WriteLine("No value set.");
+				} else if (_args [i] == "--i" || _args [i] == "--interval") {
+					try {
+						cTerminus.Configuration.CustomInterval = int.Parse (_args [i + 1]);
+					} catch {
+						Console.WriteLine ("No value set.");
 					}
 				}
 				
 			}
 		}
-		/// <summary>
-		/// Checks if an argument is member of the args array
-		/// </summary>
-		/// <returns>
-		/// The arguments.
-		/// </returns>
-		/// <param name='_haystack'>
-		/// If set to <c>true</c> arguments.
-		/// </param>
-		/// <param name='_needle'>
-		/// If set to <c>true</c> needle.
-		/// </param>
-		public bool existsinArgs (string[] _haystack, string _needle)
-		{
-			bool find = false;
 
-			foreach (string st in _haystack) {
-				if (st == _needle) {
-					find = true;
-					break;
-				}	
-			}
-			return find;
-		}
 	}
 }
 

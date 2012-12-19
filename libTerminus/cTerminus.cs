@@ -780,6 +780,30 @@ namespace libTerminus
 			Regex rgx = new Regex (pattern);
 			return !rgx.IsMatch (_value.ToString ());
 		}
+		/// <summary>
+		/// Checks, if the needle exists in the array, the haystack
+		/// </summary>
+		/// <returns>
+		/// <c>true</c>, if the needle exists in the array was, <c>false</c> otherwise.
+		/// </returns>
+		/// <param name='_haystack'>
+		/// The Haystack
+		/// </param>
+		/// <param name='_needle'>
+		/// The needle to search
+		/// </param>
+		public static bool existsInArray (string[] _haystack, string _needle)
+		{
+			bool find = false;
+			
+			foreach (string st in _haystack) {
+				if (st == _needle) {
+					find = true;
+					break;
+				}	
+			}
+			return find;
+		}
 
 	}
 	

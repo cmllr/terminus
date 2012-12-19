@@ -1,5 +1,5 @@
 //  AssemblyInfo.cs
-//  
+//  Description: Auto-generated file to set the assembly version
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>
 //  
@@ -17,6 +17,9 @@
 // 
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+// Description of this file
+
 
 using System.Reflection;
 using System.Runtime.CompilerServices;

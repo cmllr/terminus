@@ -1,5 +1,4 @@
-// 
-//  cExport.cs
+//  cExport.cs - Provides methods to export the data to several file formats.
 //  
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>
@@ -52,12 +51,11 @@ namespace libTerminus
 					_path = cTerminus.ShowSaveDialog (null, "CSV", "*.csv");
 					string content = "";
 					content += "Pattern;Data;Results";
-					if (_results != ""){
-						string[] resultarray = _results.Split(new char[] {'\n'});
-						content += "\n" + _pattern + ";" + _source + ";" + resultarray[0] + "\n";
-						for (int i = 1; i < resultarray.Length- 1; i++)
-						{
-							content += ";;" + resultarray[i] +"\n";
+					if (_results != "") {
+						string[] resultarray = _results.Split (new char[] {'\n'});
+						content += "\n" + _pattern + ";" + _source + ";" + resultarray [0] + "\n";
+						for (int i = 1; i < resultarray.Length- 1; i++) {
+							content += ";;" + resultarray [i] + "\n";
 						}
 					}
 					System.IO.File.WriteAllText (_path, content);
@@ -66,7 +64,7 @@ namespace libTerminus
 					MessageBox.Show ("Beim Export ins *.csv - Format ist ein Fehler aufgetreten", "Fehler", ButtonsType.Ok, MessageType.Error);
 					return false;
 				}
-			} catch (Exception ex){
+			} catch (Exception ex) {
 				return false;
 			}
 		}
@@ -94,7 +92,7 @@ namespace libTerminus
 					string content = "";
 					content += "----Pattern----\n" + _pattern + "\n";
 					content += "----Data-------\n" + _source + "\n";
-					if (_results != ""){
+					if (_results != "") {
 						content += "----Results----\n";
 						content += _results;
 					}
@@ -137,12 +135,12 @@ namespace libTerminus
 					content += _pattern + "<p>\n";
 					content += "<h2>Data</h2>\n";
 					content += _source + "<p>\n";
-					if (_results != ""){
+					if (_results != "") {
 						content += "<h2>Results</h2>\n";
-						content += _results.Replace("\n","<p>") + "<p>";
+						content += _results.Replace ("\n", "<p>") + "<p>";
 					}
 					content += "\n</body>\n</html>";
-					System.IO.File.WriteAllText (_path, content,System.Text.Encoding.Default);
+					System.IO.File.WriteAllText (_path, content, System.Text.Encoding.Default);
 					return true;					
 				} else {
 					MessageBox.Show ("Beim Export ins *.html - Format ist ein Fehler aufgetreten", "Fehler", ButtonsType.Ok, MessageType.Error);

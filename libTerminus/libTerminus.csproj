@@ -61,7 +61,6 @@
     <Compile Include="cLogger.cs" />
     <Compile Include="MessageBox.cs" />
     <Compile Include="cArgumentParser.cs" />
-    <Compile Include="cDebugger.cs" />
     <Compile Include="cExport.cs" />
     <Compile Include="cConfigPlatform.cs" />
     <Compile Include="cPool.cs" />

@@ -183,7 +183,6 @@ namespace libTerminus
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
-			this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
 		}
 	}
 }

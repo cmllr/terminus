@@ -1,5 +1,4 @@
-// 
-//  cConfigPlatform.cs
+//  cConfigPlatform.cs - Provides any needed Configuration values from terminus
 //  
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>
@@ -88,21 +87,21 @@ namespace libTerminus
 		/// <value>
 		/// The theme.
 		/// </value>
-		public string Theme {get;set;}
+		public string Theme { get; set; }
 		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="libTerminus.cConfigPlatform"/> reduce syntax changing.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if reduce syntax changing; otherwise, <c>false</c>.
 		/// </value>
-		public bool ReduceSyntaxChanging {get;set;}
+		public bool ReduceSyntaxChanging { get; set; }
 		/// <summary>
 		/// Gets or sets the custom interval (only via commandline)
 		/// </summary>
 		/// <value>
 		/// The custom interval.
 		/// </value>
-		public int CustomInterval {get;set;}
+		public int CustomInterval { get; set; }
 		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cConfigPlatform"/> class.
@@ -116,9 +115,9 @@ namespace libTerminus
 		public cConfigPlatform (string _confFileName)
 		{
 			try {
-				//set the config member
+				//set the Path of the configuration file
 				ConfFile = _confFileName;
-				//Get the values using an regular expression.
+				//Get the values using an regular expression - a Split() - Command would be to mainstream.
 				String rgx = @"ExplicitCapture;(?<ec>[a-z]*)\nIgnoreCase;(?<ic>[a-z]*)\nIgnoreWhitespace;(?<iw>[a-z]*)\nUseSyntax;(?<useSyntax>[a-z]*)\nHideText;(?<hide>[a-z]*)\nLanguage;(?<language>[a-z]*)\nTheme;(?<theme>[a-z]*)\nreducesyntaxchanging;(?<reducesyntaxchanging>[a-z]*)";
 				Regex _rgx = new Regex (rgx, RegexOptions.IgnoreCase);
 
@@ -130,26 +129,19 @@ namespace libTerminus
 					useSyntax = Boolean.Parse (mt.Groups ["useSyntax"].Value);
 					HideText = Boolean.Parse (mt.Groups ["hide"].Value);
 					Language = mt.Groups ["language"].Value;
-					Theme = mt.Groups["theme"].Value;
-					ReduceSyntaxChanging = Boolean.Parse(mt.Groups["reducesyntaxchanging"].Value);
+					Theme = mt.Groups ["theme"].Value;
+					ReduceSyntaxChanging = Boolean.Parse (mt.Groups ["reducesyntaxchanging"].Value);
 				}
 			} catch (Exception ex) {
 				throw new ApplicationException ("Exception due incorrect config file", ex);
 			}
 		}
 		/// <summary>
-		/// Display this instance.
-		/// </summary>
-		public string Display ()
-		{
-			return "";
-		}
-		/// <summary>
 		/// Save the content of the config file
 		/// </summary>
 		public void Save ()
 		{		
-			File.WriteAllText (ConfFile, String.Format ("ExplicitCapture;{0}\nIgnoreCase;{1}\nIgnoreWhitespace;{2}\nUseSyntax;{3}\nHideText;{4}\nLanguage;{5}\nTheme;{6}\nreducesyntaxchanging;{7}", Explicit, IgnoreCase, IgnoreWhitespace, useSyntax, HideText, Language,Theme,ReduceSyntaxChanging));
+			File.WriteAllText (ConfFile, String.Format ("ExplicitCapture;{0}\nIgnoreCase;{1}\nIgnoreWhitespace;{2}\nUseSyntax;{3}\nHideText;{4}\nLanguage;{5}\nTheme;{6}\nreducesyntaxchanging;{7}", Explicit, IgnoreCase, IgnoreWhitespace, useSyntax, HideText, Language, Theme, ReduceSyntaxChanging));
 		}
 	}
 }
