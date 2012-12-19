@@ -1,8 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/cTerminus.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/cSyntax.cs">
     <Files>
-      <File FileName="libTerminus/AssemblyInfo.cs" Line="4" Column="21" />
+      <File FileName="libTerminus/AssemblyInfo.cs" Line="16" Column="48" />
       <File FileName="libTerminus/cKeyBoard.cs" Line="35" Column="1" />
       <File FileName="libTerminus/cRestoreWizard.cs" Line="39" Column="29" />
       <File FileName="libTerminus/cRevertData.cs" Line="134" Column="5" />
@@ -10,20 +10,20 @@
       <File FileName="Path/cPathEnvironment.cs" Line="62" Column="1" />
       <File FileName="libTerminus/cRegex.cs" Line="81" Column="1" />
       <File FileName="libTerminus/Label.cs" Line="38" Column="19" />
-      <File FileName="libTerminus/cTerminus.cs" Line="561" Column="65" />
       <File FileName="Terminus/AssemblyInfo.cs" Line="20" Column="33" />
       <File FileName="Terminus/Main.cs" Line="31" Column="34" />
       <File FileName="Terminus/MainWindow.cs" Line="295" Column="60" />
       <File FileName="Terminus/gtk-gui/MainWindow.cs" Line="453" Column="3" />
       <File FileName="libTerminus/cConfig.cs" Line="91" Column="212" />
       <File FileName="Path_Final/cPathEnvironment.cs" Line="38" Column="51" />
+      <File FileName="libTerminus/cSyntax.cs" Line="32" Column="59" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="libTerminus" expanded="True">
             <Node name="UserInterface" expanded="True" />
-            <Node name="cTerminus.cs" selected="True" />
+            <Node name="cSyntax.cs" selected="True" />
           </Node>
           <Node name="Path" expanded="True" />
           <Node name="Path_Final" expanded="True" />
