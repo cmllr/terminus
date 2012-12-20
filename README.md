@@ -4,6 +4,7 @@ Terminus is an integrated development environment to create regular expression (
 Core features are the syntax highlighting, tabbed working, an library for often used phrases and much more. Also it will be possible to:
 - Export the data to *.csv, *.html and blank text (*.txt)
 - "Rescue" of changed phrases
+- A "pool" of often used phrases
 - Usage on Windows, Linux and Mac
 - A plugin System
 - User edited Color Shemes

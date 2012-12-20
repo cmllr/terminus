@@ -1,5 +1,4 @@
-// 
-//  cRegex.cs
+//  cRegex.cs - The widget which displays the expression and the data
 //  
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>
@@ -60,7 +59,13 @@ namespace libTerminus
 		/// <c>true</c> if saved; otherwise, <c>false</c>.
 		/// </value>
 		public bool Saved { get; set; }		
-		public  Gtk.TextView g_resultdisplay ;
+		/// <summary>
+		/// The GTK.TextView which should contain the result
+		/// </summary>
+		public  Gtk.TextView g_resultdisplay ; 
+		/// <summary>
+		/// The used regex options
+		/// </summary>
 		public RegexOptions g_options;
 		public libTerminus.ParsingMode g_mode;
 		public string g_Expression;

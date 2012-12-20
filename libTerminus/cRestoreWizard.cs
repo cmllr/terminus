@@ -1,5 +1,4 @@
-//
-//  cRestoreWizard.cs
+//  cRestoreWizard.cs - Restore not saved phrases
 //
 //  Author:
 //       christoph <fury@gtkforum.php-friends.de>

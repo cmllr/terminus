@@ -54,6 +54,7 @@ namespace libTerminus
 		void HandleCursorChanged (object sender, EventArgs e)
 		{
 			try {
+				//Set the current selection
 				TreeSelection selection = (sender as TreeView).Selection;
 				TreeModel model;
 				TreeIter iter;
@@ -73,10 +74,13 @@ namespace libTerminus
 		{
 			try {
 				try {
+					//Clearing collumns
 					for (int i = 0; i < treeview1.Columns.Length; i++)
 						treeview1.RemoveColumn (treeview1.Columns [i]);
 				} catch {
 				}
+				//Add new Columns 
+				//TODO: i18n
 				TreeViewColumn ausdruck = new TreeViewColumn ();
 				ausdruck.Title = "Ausdruck";
 				TreeViewColumn titel = new TreeViewColumn ();
@@ -128,15 +132,13 @@ namespace libTerminus
 		public void appendItems ()
 		{
 			IDbConnection dbcon;
-			try {				
-				//TODO: this is linux only.
-				string connectionString = "URI=file:" + new cPathEnvironment ().const_examples_directory + "/Library.db";
-				//MessageBox.Show (connectionString, "", ButtonsType.None, MessageType.Info, null);
-			
+			try {
+				string connectionString = cDataBaseStrings.g_Pool_ConnectionString;//string connectionString = "URI=file:" + new cPathEnvironment ().const_examples_directory + new cPathEnvironment ().const_path_separator + "Library.db";
+
 				dbcon = (IDbConnection)new SqliteConnection (connectionString);
 				dbcon.Open ();
 				IDbCommand dbcmd = dbcon.CreateCommand ();
-				string sql = "SELECT Title,Phrase,Description " + "FROM phrases";
+				string sql = cDataBaseStrings.g_Pool_get;//"SELECT Title,Phrase,Description " + "FROM phrases";
 				dbcmd.CommandText = sql;
 				IDataReader reader = dbcmd.ExecuteReader ();
 				while (reader.Read()) {				
@@ -146,8 +148,7 @@ namespace libTerminus
 				reader.Close ();
 				reader = null;
 				dbcmd.Dispose ();
-				dbcmd = null;
-				
+				dbcmd = null;			
 			 
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
@@ -165,14 +166,15 @@ namespace libTerminus
 			try {			
 
 				if (g_name != "" || g_name != string.Empty || g_name != null) {
+					//TODO: i18n
 					if (MessageBox.Show ("Sind Sie sich sicher, das Element zu löschen?", "Bestätigung erforderlich", ButtonsType.YesNo, MessageType.Question, null) == ResponseType.Yes) {
-						string connectionString = "URI=file:" + new cPathEnvironment ().const_examples_directory + new cPathEnvironment ().const_path_separator + "Library.db";
+						string connectionString = cDataBaseStrings.g_Pool_ConnectionString; //"URI=file:" + new cPathEnvironment ().const_examples_directory + new cPathEnvironment ().const_path_separator + "Library.db";
 						dbcon = (IDbConnection)new SqliteConnection (connectionString);
 						dbcon.Open ();
 						IDbCommand dbcmd = dbcon.CreateCommand ();
-						string sql = "Delete " + " FROM phrases WHERE Title = \"" + g_name + "\"";
+						string sql = string.Format (cDataBaseStrings.g_Pool_delete, g_name);//"Delete " + " FROM phrases WHERE Title = \"" + g_name + "\"";
 						dbcmd.CommandText = sql;
-						int res = dbcmd.ExecuteNonQuery ();
+						dbcmd.ExecuteNonQuery ();
 						appendColumns ();
 						appendItems ();
 						dbcmd.Dispose ();
@@ -191,26 +193,20 @@ namespace libTerminus
 		protected void OnButton2Clicked (object sender, EventArgs e)
 		{
 			try {
+				//add new tab containing the new expression
 				cTerminus.AddTab (g_notebook, "");
 				cTerminus.setExpressionofTab (g_notebook, g_notebook.Page, g_selection);				
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 		}	
-		protected void OnButton1Clicked (object sender, EventArgs e)
-		{
-			try {
-				//cTerminus.setExpressionofTab (notebook, notebook.Page, System.IO.File.ReadAllLines (selectedpath) [2], true);
-			} catch (Exception ex) {
-				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
-			}
-		}	
+	
 
 		protected void OnButton3Clicked (object sender, EventArgs e)
 		{
 			try {
+				//set the expression into the clipboard
 				Gtk.Clipboard clipboard = Gtk.Clipboard.Get (Gdk.Atom.Intern ("CLIPBOARD", false));
-
 				string content = g_selection;
 				clipboard.SetText (content);
 			} catch {
@@ -221,6 +217,7 @@ namespace libTerminus
 		protected void OnTreeview1CursorChanged (object sender, EventArgs e)
 		{
 			try {			
+				//set the selection
 				TreeSelection _selection = (sender as TreeView).Selection;
 				TreeModel model;
 				TreeIter iter;
@@ -241,11 +238,6 @@ namespace libTerminus
 			} catch {
 			}
 		}
-
-
-
-
-
 	}
 }
 
