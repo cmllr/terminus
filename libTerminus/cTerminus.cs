@@ -129,7 +129,7 @@ namespace libTerminus
 		/// The configuration.
 		/// </summary>
 		public static cConfigPlatform Configuration = new cConfigPlatform (new cPathEnvironment ().const_settings_path);
-
+		public static bool isWelcomeTabOpen;
 		public static int CurrentIndexTab;
 		/// <summary>
 		/// Adds a new tab to the given notebook
@@ -158,6 +158,18 @@ namespace libTerminus
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 		}
+		public static void addWelcomeTab (Notebook _nb)
+		{
+			if (isWelcomeTabOpen != true) {
+				cWelcome web = new cWelcome ();
+				_nb.AppendPage (web, new Label ("Willkommen", ref _nb, web));
+				_nb.ShowAll ();			
+				_nb.Page = _nb.NPages - 1;
+				isWelcomeTabOpen = true;
+			} else {
+
+			}
+		}
 		/// <summary>
 		/// Adds the config tab.
 		/// </summary>
@@ -174,7 +186,7 @@ namespace libTerminus
 					_nb.Page = _nb.NPages - 1;
 					ConfigTabIndex = _nb.Page;
 				} else {
-					_nb.Page = ConfigTabIndex;
+					//BUGGY:_nb.Page = ConfigTabIndex;
 				}
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
@@ -196,13 +208,14 @@ namespace libTerminus
 					_nb.Page = _nb.NPages - 1;
 					LibTabIndex = _nb.Page;
 				} else {
-					_nb.Page = LibTabIndex;
+					//BUGGY: _nb.Page = LibTabIndex;
 					
 				}
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 		}
+	
 		/// <summary>
 		/// Closes the tab of the notebook and removes it from the 	<see cref="cTerminus.Files"/> List.
 		/// </summary>
@@ -235,6 +248,9 @@ namespace libTerminus
 				} else if (_nb.GetNthPage (_nb.Page) is cPool) {
 					cTerminus.isLibTabOpen = false;
 					LibTabIndex = -1;
+				} else if (_nb.GetNthPage (_nb.Page) is cWelcome) {
+					cTerminus.isWelcomeTabOpen = false;
+
 				}
 
 				//Remove the tab

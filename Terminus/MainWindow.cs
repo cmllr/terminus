@@ -50,7 +50,10 @@ public partial class MainWindow: Gtk.Window
 		//cTerminus.enableSyntax = true;
 		cTerminus.g_programVersion = Assembly.GetExecutingAssembly ().GetName ().Version;
 		this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
-		cTerminus.AddTabFromFile (notebook1, (Filename == null) ? "" : Filename, 0);
+
+		//TODO: Add better Looking Site: cTerminus.addWelcomeTab (notebook1);
+		//cTerminus.AddTabFromFile (notebook1, (Filename == null) ? "" : Filename, 0);
+
 		cStatusLabele.Text = "Bereit.";
 
 	}
@@ -549,4 +552,8 @@ public partial class MainWindow: Gtk.Window
 		new cRestoreWizard ().Show ();
 	}
 
+	protected void OnWillkommensseiteActionActivated (object sender, EventArgs e)
+	{
+		cTerminus.addWelcomeTab (notebook1);
+	}
 }

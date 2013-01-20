@@ -6,6 +6,7 @@
   </configuration>
   <import>
     <widget-library name="../bin/Debug/libTerminus.dll" internal="true" />
+    <widget-library name="../../../../../usr/lib/cli/webkit-sharp-1.1/webkit-sharp.dll" />
   </import>
   <icon-factory>
     <icon-set id="ProgramIcon">
@@ -870,6 +871,13 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
     <property name="MemberName" />
     <property name="Title" translatable="yes">cHelp</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <placeholder />
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="libTerminus.cWelcome" design-size="300 300">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
     <child>
       <placeholder />
     </child>

@@ -111,9 +111,6 @@ namespace libTerminus
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
 		}
-
-
-
 		protected void OnHscale2ValueChanged (object sender, EventArgs e)
 		{
 			try {
@@ -122,7 +119,6 @@ namespace libTerminus
 				button1.Label = "Suchen";
 			}
 		}
-
 		protected void OnTogglebutton1Clicked (object sender, EventArgs e)
 		{
 			try {

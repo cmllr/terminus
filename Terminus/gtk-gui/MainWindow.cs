@@ -57,6 +57,7 @@ public partial class MainWindow
 	private global::Gtk.Action printAction;
 	private global::Gtk.Action selectFontAction;
 	private global::Gtk.Action restore;
+	private global::Gtk.Action homeAction;
 	private global::Gtk.VBox vbox1;
 	private global::Gtk.MenuBar menubar1;
 	private global::Gtk.Toolbar toolbar1;
@@ -229,6 +230,9 @@ public partial class MainWindow
 		this.restore = new global::Gtk.Action ("restore", global::Mono.Unix.Catalog.GetString ("Ausdrücke wiederherstellen"), null, "gtk-undelete");
 		this.restore.ShortLabel = global::Mono.Unix.Catalog.GetString ("Ausdrücke wiederherstellen");
 		w1.Add (this.restore, "<Primary><Alt>u");
+		this.homeAction = new global::Gtk.Action ("homeAction", global::Mono.Unix.Catalog.GetString ("Start"), null, "gtk-home");
+		this.homeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Willkommensseite");
+		w1.Add (this.homeAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -240,7 +244,7 @@ public partial class MainWindow
 		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='DateiAction' action='DateiAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='saveAsAction' action='saveAsAction'/><menuitem name='saveAsAction2' action='saveAsAction2'/><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='BearbeitenAction' action='BearbeitenAction'><menuitem name='undoAction1' action='undoAction1'/><menuitem name='redoAction1' action='redoAction1'/><menuitem name='cutAction1' action='cutAction1'/><menuitem name='copyAction1' action='copyAction1'/><menuitem name='pasteAction1' action='pasteAction1'/><menuitem name='preferencesAction' action='preferencesAction'/></menu><menu name='RegexAction' action='RegexAction'><menuitem name='mediaPlayAction' action='mediaPlayAction'/><menu name='gotoBottomAction' action='gotoBottomAction'><menuitem name='NurTextTxtAction' action='NurTextTxtAction'/><menuitem name='HypertextHtmlAction' action='HypertextHtmlAction'/><menuitem name='KommaGetrenntCsvAction' action='KommaGetrenntCsvAction'/></menu><menuitem name='clearAction1' action='clearAction1'/></menu><menu name='ExtrasAction' action='ExtrasAction'><menuitem name='selectAllAction' action='selectAllAction'/><menuitem name='restore' action='restore'/></menu><menu name='HilfeAction' action='HilfeAction'><menuitem name='connectAction' action='connectAction'/><menuitem name='selectFontAction' action='selectFontAction'/><menuitem name='dialogQuestionAction' action='dialogQuestionAction'/><menuitem name='cancelAction' action='cancelAction'/><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+		this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='DateiAction' action='DateiAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='saveAsAction' action='saveAsAction'/><menuitem name='saveAsAction2' action='saveAsAction2'/><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='BearbeitenAction' action='BearbeitenAction'><menuitem name='undoAction1' action='undoAction1'/><menuitem name='redoAction1' action='redoAction1'/><menuitem name='cutAction1' action='cutAction1'/><menuitem name='copyAction1' action='copyAction1'/><menuitem name='pasteAction1' action='pasteAction1'/><menuitem name='preferencesAction' action='preferencesAction'/></menu><menu name='RegexAction' action='RegexAction'><menuitem name='mediaPlayAction' action='mediaPlayAction'/><menu name='gotoBottomAction' action='gotoBottomAction'><menuitem name='NurTextTxtAction' action='NurTextTxtAction'/><menuitem name='HypertextHtmlAction' action='HypertextHtmlAction'/><menuitem name='KommaGetrenntCsvAction' action='KommaGetrenntCsvAction'/></menu><menuitem name='clearAction1' action='clearAction1'/></menu><menu name='ExtrasAction' action='ExtrasAction'><menuitem name='selectAllAction' action='selectAllAction'/><menuitem name='restore' action='restore'/></menu><menu name='HilfeAction' action='HilfeAction'><menuitem name='connectAction' action='connectAction'/><menuitem name='homeAction' action='homeAction'/><menuitem name='selectFontAction' action='selectFontAction'/><menuitem name='dialogQuestionAction' action='dialogQuestionAction'/><menuitem name='cancelAction' action='cancelAction'/><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
 		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 		this.menubar1.Name = "menubar1";
 		this.vbox1.Add (this.menubar1);
@@ -254,6 +258,7 @@ public partial class MainWindow
 		this.toolbar1.Name = "toolbar1";
 		this.toolbar1.ShowArrow = false;
 		this.toolbar1.ToolbarStyle = ((global::Gtk.ToolbarStyle)(2));
+		this.toolbar1.IconSize = ((global::Gtk.IconSize)(2));
 		this.vbox1.Add (this.toolbar1);
 		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.toolbar1]));
 		w3.Position = 1;
@@ -416,7 +421,7 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 1453;
+		this.DefaultWidth = 1514;
 		this.DefaultHeight = 723;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
@@ -449,6 +454,7 @@ public partial class MainWindow
 		//this.printAction.Activated += new global::System.EventHandler (this.OnPrintActionActivated);
 		this.selectFontAction.Activated += new global::System.EventHandler (this.OnSelectFontActionActivated);
 		this.restore.Activated += new global::System.EventHandler (this.OnRestoreActivated);
+		this.homeAction.Activated += new global::System.EventHandler (this.OnWillkommensseiteActionActivated);
 		this.notebook1.SwitchPage += new global::Gtk.SwitchPageHandler (this.OnNotebook1SwitchPage);
 	}
 }

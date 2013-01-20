@@ -51,6 +51,9 @@
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.Data" />
     <Reference Include="Mono.Posix" />
+    <Reference Include="webkit-sharp">
+      <HintPath>..\..\..\..\usr\lib\cli\webkit-sharp-1.1\webkit-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -78,6 +81,8 @@
     <Compile Include="cRevertData.cs" />
     <Compile Include="gtk-gui\libTerminus.cHelp.cs" />
     <Compile Include="cDataBaseStrings.cs" />
+    <Compile Include="cWelcome.cs" />
+    <Compile Include="gtk-gui\libTerminus.cWelcome.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

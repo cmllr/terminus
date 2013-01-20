@@ -9,7 +9,7 @@
     <widget-library name="../../libTerminus/bin/Debug/libTerminus.dll" />
     <widget-library name="../bin/Debug/Terminus.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1453 723">
+  <widget class="Gtk.Window" id="MainWindow" design-size="1514 723">
     <action-group name="Default">
       <action id="DateiAction">
         <property name="Type">Action</property>
@@ -351,6 +351,13 @@
         <property name="StockId">gtk-undelete</property>
         <signal name="Activated" handler="OnRestoreActivated" />
       </action>
+      <action id="homeAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Start</property>
+        <property name="ShortLabel" translatable="yes">Willkommensseite</property>
+        <property name="StockId">gtk-home</property>
+        <signal name="Activated" handler="OnWillkommensseiteActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
@@ -397,6 +404,7 @@
               </node>
               <node type="Menu" action="HilfeAction">
                 <node type="Menuitem" action="connectAction" />
+                <node type="Menuitem" action="homeAction" />
                 <node type="Menuitem" action="selectFontAction" />
                 <node type="Menuitem" action="dialogQuestionAction" />
                 <node type="Menuitem" action="cancelAction" />
@@ -416,6 +424,7 @@
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
             <property name="ButtonStyle">Both</property>
+            <property name="IconSize">SmallToolbar</property>
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="newAction1" />
               <node type="Toolitem" action="openAction1" />
@@ -537,7 +546,6 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                             <property name="Tooltip" translatable="yes" context="yes">AllResults|Alle aus dem Ausdruck resultierenden Ergebnisse anzeigen</property>
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes" context="yes">AllResults|Alle Ergebnisse anzeigen</property>
-                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>

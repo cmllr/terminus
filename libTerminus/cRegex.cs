@@ -92,7 +92,7 @@ namespace libTerminus
 				else
 					Expression.Buffer.Text = System.IO.File.ReadAllText (_filename);
 			
-
+				//Append needed Events
 				Expression.Buffer.Changed += delegate {
 					addToExpressionHistory ();
 				};
@@ -102,7 +102,7 @@ namespace libTerminus
 				Expression.PasteClipboard += delegate {
 					cTerminus.MarkSyntax (ref Expression);
 				};
-
+				//Start Marking the Syntax
 				cTerminus.MarkSyntax (ref Expression);
 			} catch (Exception ex) {
 				//TODO: Here is eventually a bug.
@@ -151,7 +151,6 @@ namespace libTerminus
 			if (g_inputHistory.Contains (DataSource.Buffer.Text) == false) {
 				g_inputHistory.Add (DataSource.Buffer.Text);
 				g_inputHistoryIndex++;
-			
 			}
 		}
 		/// <summary>
@@ -165,7 +164,6 @@ namespace libTerminus
 			try {
 				return 	Expression.Buffer.Text;
 			} catch (Exception ex) {
-				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return "";
 			}
 		}
