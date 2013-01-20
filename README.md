@@ -9,12 +9,41 @@ Core features are the syntax highlighting, tabbed working, an library for often 
 - A plugin System
 - User edited Color Shemes
 - Multilanguage
-- and much more ;)
+- Restore accidently deleted phrases
 
 State
 ================
 Terminus is still in an early state and it is not stable at the moment. Forking at the current state is not recommended, because I will change
-a lot more things on the sourcecode, also some features are still buggy
+a lot more things on the sourcecode, also some features are still buggy.
+
+Data Export [75%]
+Library of common phrases [80%]
+Multiplatform [65%]
+Plugin sytem [0%]
+Color Shemes [90%]
+Multilanguage [0%]
+Rescue of phrases [75%]
+
+Installation/ Usage
+================
+Just do a git - checkout
+You find following Folder(s):
+Terminus
+|
+->Terminus
+	|
+	->Bin
+	     |
+	     ->Debug
+		    |
+		    ->Run "terminus.sh"
+Requirements
+================
+Terminus requries following librarys installed
+libmono-sqlite2.0-cil or higher
+libwebkit1.1-cil or higher
+mono 2.10 or higher
+installed GTK# 2.0
 
 License
 ================

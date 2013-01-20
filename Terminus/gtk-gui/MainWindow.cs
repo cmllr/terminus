@@ -232,6 +232,7 @@ public partial class MainWindow
 		w1.Add (this.restore, "<Primary><Alt>u");
 		this.homeAction = new global::Gtk.Action ("homeAction", global::Mono.Unix.Catalog.GetString ("Start"), null, "gtk-home");
 		this.homeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Willkommensseite");
+		this.homeAction.Visible = false;
 		w1.Add (this.homeAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);

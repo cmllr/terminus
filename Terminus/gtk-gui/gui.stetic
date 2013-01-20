@@ -356,6 +356,7 @@
         <property name="Label" translatable="yes">Start</property>
         <property name="ShortLabel" translatable="yes">Willkommensseite</property>
         <property name="StockId">gtk-home</property>
+        <property name="Visible">False</property>
         <signal name="Activated" handler="OnWillkommensseiteActionActivated" />
       </action>
     </action-group>
