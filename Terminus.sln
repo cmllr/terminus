@@ -10,6 +10,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Path_Final", "Path_Final\Path_Final.csproj", "{337DF905-E55E-4B87-8E2A-870907E80BBD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Distrib", "Distrib", "{5292BA6F-8EC9-4AAA-8108-E79E81FE29F8}"
+	ProjectSection(SolutionItems) = preProject
+		Distrib\Terminus_2.7.3-all.tar.gz = Distrib\Terminus_2.7.3-all.tar.gz
+		Distrib\Terminus_2.7.8-all.tar.gz = Distrib\Terminus_2.7.8-all.tar.gz
+		Distrib\Terminus_2.11-all.tar.gz = Distrib\Terminus_2.11-all.tar.gz
+		Distrib\Terminus_2.12.1-all.tar.gz = Distrib\Terminus_2.12.1-all.tar.gz
+		Distrib\Terminus_2.12-all.tar.gz = Distrib\Terminus_2.12-all.tar.gz
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

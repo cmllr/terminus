@@ -37,8 +37,7 @@ Terminus
 	     ->Debug
 		    |
 		    ->Run "terminus.sh"
-
-Otherwise, you can use the latest Build from the folder "tarballs" 
+Otherwise, you can use the latest Build from the folder "Distrib" (the folder contains *.tar.gz's, which you can use on windows + linux + mac + whatever)
 Requirements
 ================
 Terminus requries following librarys installed:
