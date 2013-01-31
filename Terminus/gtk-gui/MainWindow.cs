@@ -283,6 +283,7 @@ public partial class MainWindow
 		this.expander3 = new global::Gtk.Expander (null);
 		this.expander3.CanFocus = true;
 		this.expander3.Name = "expander3";
+		this.expander3.Expanded = true;
 		// Container child expander3.Gtk.Container+ContainerChild
 		this.vbox3 = new global::Gtk.VBox ();
 		this.vbox3.Name = "vbox3";
@@ -452,10 +453,9 @@ public partial class MainWindow
 		this.dialogQuestionAction.Activated += new global::System.EventHandler (this.OnDialogQuestionActionActivated);
 		this.connectAction.Activated += new global::System.EventHandler (this.OnConnectActionActivated);
 		this.saveAsAction2.Activated += new global::System.EventHandler (this.OnSaveAsAction2Activated);
-		//this.printAction.Activated += new global::System.EventHandler (this.OnPrintActionActivated);
+		this.printAction.Activated += new global::System.EventHandler (this.OnPrintActionActivated);
 		this.selectFontAction.Activated += new global::System.EventHandler (this.OnSelectFontActionActivated);
 		this.restore.Activated += new global::System.EventHandler (this.OnRestoreActivated);
 		this.homeAction.Activated += new global::System.EventHandler (this.OnWillkommensseiteActionActivated);
-		this.notebook1.SwitchPage += new global::Gtk.SwitchPageHandler (this.OnNotebook1SwitchPage);
 	}
 }

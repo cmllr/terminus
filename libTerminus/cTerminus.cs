@@ -29,41 +29,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 namespace libTerminus
 {
-	/// <summary>
-	/// Parsing mode.
-	/// </summary>
-	public enum ParsingMode
-	{
-		All,
-		OnlyGroups,
-		OnlyRegular,
-	}
-	/// <summary>
-	/// Log method.
-	/// </summary>
-	public enum LogMethod
-	{
-		File,
-		Logs,
-		DataBase,
-	}
-	/// <summary>
-	/// Log level.
-	/// </summary>
-	public enum LogLevel
-	{
-		Critical,
-		Warning,
-	}
-	/// <summary>
-	/// Export type.
-	/// </summary>
-	public enum ExportType
-	{
-		Text,
-		CSV,
-		HTML,
-	}
+
 	/// <summary>
 	/// The cTerminus class is the main core of the program.
 	/// </summary>
@@ -819,6 +785,35 @@ namespace libTerminus
 				}	
 			}
 			return find;
+		}
+		public static bool checkfortabs (DeleteEventArgs a, Notebook nb)
+		{
+			if (nb.NPages == 0) {
+				cTerminus.Configuration.Save ();
+				Application.Quit ();
+				a.RetVal = false;
+
+			} else {
+				if (cTerminus.AskForClosing () == ResponseType.Yes) {
+					cTerminus.Configuration.Save ();
+					Application.Quit ();
+					a.RetVal = false;
+				} else {
+					a.RetVal = true;
+				}
+			}
+			return (bool)a.RetVal;
+		}
+		public static void check (Notebook nb)
+		{
+			try {
+				if (nb.GetNthPage (nb.Page) is cRegex) {
+					cTerminus.disable = false;
+				} else {
+					cTerminus.disable = true;
+				}
+			} catch {
+			}
 		}
 
 	}
