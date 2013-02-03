@@ -49,12 +49,7 @@ namespace libTerminus
 		/// </param>
 		public static void Log (string _logdata, string _methodName)
 		{
-			if (cTerminus.g_LogMethodUsed == LogMethod.File) {
-				string contents = string.Format (LogLevelHeader, DateTime.Now.ToShortDateString () + "|" + DateTime.Now.ToShortTimeString (), Environment.OSVersion.Platform.ToString (), cTerminus.g_programName, "Alpha", System.Environment.Version.ToString (), DateTime.Now.ToShortDateString () + "|" + DateTime.Now.ToShortTimeString (), _methodName + ":" + _logdata);
-				System.IO.File.AppendAllText (Environment.CurrentDirectory + new cPathEnvironment ().const_path_separator + "Boot" + new cPathEnvironment ().const_path_separator + "Logs" + new cPathEnvironment ().const_path_separator + "Error.log", contents);
-			}
-			
-			//libTerminus.MessageBox.Show (LogData, "", Gtk.ButtonsType.Cancel, Gtk.MessageType.Question);
+			//TODO: Add logging method here
 		}
 	}
 }

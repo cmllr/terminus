@@ -483,11 +483,12 @@ namespace libTerminus
 		{
 			try {
 				//string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + cTerminus.Configuration.Theme + ".config") ;
-				string path;
-				if (new cPathEnvironment ().const_settings_path.Contains ("Program.cfg"))
+				string path = new cPathEnvironment ().const_shemes_path + cTerminus.Configuration.Theme + ".config";
+				Console.WriteLine (path);
+				/*	if (new cPathEnvironment ().const_settings_path.Contains ("Program.cfg"))
 					path = new cPathEnvironment ().const_settings_path.Replace ("Program.cfg", "ColorShemes" + new cPathEnvironment ().const_path_separator + cTerminus.Configuration.Theme + ".config");
 				else
-					path = @"/usr/share/terminus/Boot/Config/ColorShemes/" + cTerminus.Configuration.Theme + ".config";
+					path = @"/usr/share/terminus/Boot/Config/ColorShemes/" + cTerminus.Configuration.Theme + ".config";*/
 				new cSyntax (path, ref _textview, false);
 				if (_data != null)
 					new cSyntax (path, ref _data, true);

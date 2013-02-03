@@ -532,6 +532,7 @@ namespace libTerminus
 		public static void showAboutDialog (Version ProgramVersion, Gdk.Window wind)
 		{			
 			try {
+
 				AboutDialog about = new AboutDialog ();
 				about.ProgramName = g_programName;
 				about.ParentWindow = wind.Toplevel;
@@ -549,7 +550,7 @@ namespace libTerminus
 				about.Title = "Info über das Programm";
 				about.Website = "";
 
-				about.License = System.IO.File.ReadAllText (new cPathEnvironment ().const_data_dir + new cPathEnvironment ().const_path_separator + "Boot" + new cPathEnvironment ().const_path_separator + "Texts" + new cPathEnvironment ().const_path_separator + "License", System.Text.Encoding.UTF8);
+				about.License = System.IO.File.ReadAllText (new cPathEnvironment ().const_program_license, System.Text.Encoding.UTF8);
 				about.WrapLicense = true;
 				about.Copyright = "Programmicon: \"Torchlight\"; http://kde-look.org/content/show.php?content=26378 lizensiert unter LGPL";
 				

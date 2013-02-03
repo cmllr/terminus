@@ -336,6 +336,7 @@ public partial class MainWindow
 		this.radiobutton1.TooltipMarkup = "Alle aus dem Ausdruck resultierenden Ergebnisse anzeigen";
 		this.radiobutton1.CanFocus = true;
 		this.radiobutton1.Name = "radiobutton1";
+		this.radiobutton1.Active = true;
 		this.radiobutton1.DrawIndicator = true;
 		this.radiobutton1.UseUnderline = true;
 		this.radiobutton1.Group = new global::GLib.SList (global::System.IntPtr.Zero);

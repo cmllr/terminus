@@ -79,7 +79,6 @@
     <Compile Include="cRestoreWizard.cs" />
     <Compile Include="gtk-gui\libTerminus.cRestoreWizard.cs" />
     <Compile Include="cRevertData.cs" />
-    <Compile Include="gtk-gui\libTerminus.cHelp.cs" />
     <Compile Include="cDataBaseStrings.cs" />
     <Compile Include="cWelcome.cs" />
     <Compile Include="gtk-gui\libTerminus.cWelcome.cs" />

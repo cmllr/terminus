@@ -38,10 +38,7 @@ namespace libTerminus
 			//If Terminus is used out of a tarball, it uses a file called "Program.cfg" to load/save the configuration.
 			//If Terminus is used out of a package, the path is another one.
 			string path = string.Empty;
-			if (new cPathEnvironment ().const_settings_path.Contains ("Program.cfg"))
-				path = new cPathEnvironment ().const_settings_path.Replace ("Program.cfg", "ColorShemes" + new cPathEnvironment ().const_path_separator);
-			else
-				path = @"/usr/share/terminus/Boot/Config/ColorShemes/";
+			path = new cPathEnvironment ().const_shemes_path;
 
 			//Fill the combobox with values to change the template
 			int i = 0;

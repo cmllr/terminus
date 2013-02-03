@@ -24,6 +24,7 @@ namespace Terminus
 			GLib.ExceptionManager.UnhandledException += delegate(GLib.UnhandledExceptionArgs argsEx) {
 				Console.WriteLine (argsEx.ExceptionObject.ToString ());
 			};
+			new libTerminus.cPathEnvironment ().ConfFileManagement ();
 			//if the program should be runned..
 			if (argsP.AllowedToRun) {			
 				Application.Init ();
