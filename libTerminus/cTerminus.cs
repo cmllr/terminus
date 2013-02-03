@@ -549,7 +549,7 @@ namespace libTerminus
 				about.Icon = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);	
 				about.Title = "Info über das Programm";
 				about.Website = "";
-
+				 
 				about.License = System.IO.File.ReadAllText (new cPathEnvironment ().const_program_license, System.Text.Encoding.UTF8);
 				about.WrapLicense = true;
 				about.Copyright = "Programmicon: \"Torchlight\"; http://kde-look.org/content/show.php?content=26378 lizensiert unter LGPL";

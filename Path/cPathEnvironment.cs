@@ -81,7 +81,7 @@ namespace libTerminus
 				const_settings_path = getConfPath ();//getWinPath () + @"\Boot\Config\Program.cfg";
 				const_shemes_path = Environment.CurrentDirectory + "//Boot/Config/ColorShemes/";
 			}
-
+			 
 		}
 		/// <summary>
 		/// Gets the window path.

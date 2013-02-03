@@ -49,7 +49,7 @@ namespace libTerminus
 		/// </param>
 		public static void Log (string _logdata, string _methodName)
 		{
-			//TODO: Add logging method here
+			//TODO: Add logging method here 
 		}
 	}
 }

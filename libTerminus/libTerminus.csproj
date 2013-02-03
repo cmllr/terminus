@@ -83,6 +83,7 @@
     <Compile Include="cWelcome.cs" />
     <Compile Include="gtk-gui\libTerminus.cWelcome.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="gtk-gui\libTerminus.cHelp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
