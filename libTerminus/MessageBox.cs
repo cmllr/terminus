@@ -24,7 +24,7 @@ namespace  libTerminus
 		/// <param name='_Type'>
 		/// The Type of the MessageDialog.
 		/// </param>
-		public static ResponseType Show (string text, string caption, ButtonsType _Buttons = ButtonsType.Ok, MessageType _Type = MessageType.Info,Gdk.Window parent = null)
+		public static ResponseType Show (string text, string caption, ButtonsType _Buttons = ButtonsType.Ok, MessageType _Type = MessageType.Info, Gdk.Window parent = null)
 		{
 			if (text.Contains ("not set")) {
 				cLogger.Log (text, new StackTrace ().GetFrame (0).GetMethod ().Name);				
@@ -32,7 +32,7 @@ namespace  libTerminus
 			} else {
 				MessageDialog md = new MessageDialog (null, DialogFlags.Modal, _Type, _Buttons, text);
 				if (parent != null)
-				md.ParentWindow = parent;
+					md.ParentWindow = parent;
 				md.Title = caption;				
 				ResponseType result = (ResponseType)md.Run ();
 				md.Destroy ();

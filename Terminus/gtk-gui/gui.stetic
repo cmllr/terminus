@@ -463,6 +463,8 @@
             <property name="CurrentPage">-1</property>
             <property name="ShowBorder">False</property>
             <property name="Scrollable">True</property>
+            <signal name="ChangeCurrentPage" handler="OnNotebook1ChangeCurrentPage" />
+            <signal name="SelectPage" handler="OnNotebook1SelectPage" />
           </widget>
           <packing>
             <property name="Position">2</property>
@@ -477,7 +479,6 @@
               <widget class="Gtk.Expander" id="expander3">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Expanded">True</property>
                 <child>
                   <widget class="Gtk.VBox" id="vbox3">
                     <property name="MemberName" />
@@ -547,7 +548,6 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                             <property name="Tooltip" translatable="yes" context="yes">AllResults|Alle aus dem Ausdruck resultierenden Ergebnisse anzeigen</property>
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes" context="yes">AllResults|Alle Ergebnisse anzeigen</property>
-                            <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>

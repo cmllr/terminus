@@ -120,7 +120,7 @@ namespace libTerminus
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 468;
-			this.DefaultHeight = 544;
+			this.DefaultHeight = 573;
 			this.Show ();
 		}
 	}

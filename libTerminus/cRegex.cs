@@ -108,7 +108,7 @@ namespace libTerminus
 				//TODO: Here is eventually a bug.
 				//MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
-			
+			this.Saved = true;
 		}
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cRegex"/> class.
@@ -484,7 +484,7 @@ namespace libTerminus
 			try {
 				//string path = new cPathEnvironment().const_settings_path.Replace("Program.cfg" ,"ColorShemes" + new cPathEnvironment().const_path_separator + cTerminus.Configuration.Theme + ".config") ;
 				string path = new cPathEnvironment ().const_shemes_path + cTerminus.Configuration.Theme + ".config"; 
-				Console.WriteLine (path); 
+				//Console.WriteLine (path); 
 				/*	if (new cPathEnvironment ().const_settings_path.Contains ("Program.cfg"))
 					path = new cPathEnvironment ().const_settings_path.Replace ("Program.cfg", "ColorShemes" + new cPathEnvironment ().const_path_separator + cTerminus.Configuration.Theme + ".config");
 				else

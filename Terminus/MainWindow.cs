@@ -26,6 +26,7 @@ public partial class MainWindow: Gtk.Window
 		cTerminus.g_isReady = true;
 		cTerminus.g_programVersion = Assembly.GetExecutingAssembly ().GetName ().Version;
 		this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
+		cTerminus.AddTab (notebook1, "");
 		
 	}
 	/// <summary>
@@ -50,6 +51,7 @@ public partial class MainWindow: Gtk.Window
 		cTerminus.g_programVersion = Assembly.GetExecutingAssembly ().GetName ().Version;
 		this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
 		cStatusLabele.Text = "Bereit.";
+		cTerminus.AddTab (notebook1, "");
 	}
 	/// <summary>
 	/// Appends the signals of the menu buttons and toolstrip icons
@@ -72,6 +74,7 @@ public partial class MainWindow: Gtk.Window
 			toolbar1.ToolbarStyle = ToolbarStyle.Icons;
 		mediaPlayAction.Activated += OnExecuteActionActivated;
 		clearAction1.Activated += OnClearActionActivated;	
+		notebook1.SwitchPage += OnNoteBookSwitched;
 	}
 	/// <summary>
 	/// Raises the delete event event.
@@ -358,7 +361,7 @@ public partial class MainWindow: Gtk.Window
 	protected void OnAboutActionActivated (object sender, System.EventArgs e)
 	{
 		try {
-			cTerminus.showAboutDialog (Assembly.GetExecutingAssembly ().GetName ().Version, this.GdkWindow);
+			cTerminus.showAboutDialog (Assembly.GetExecutingAssembly ().GetName ().Version, base.GdkWindow);
 		} catch (Exception ex) {
 			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);		
 		}
@@ -542,4 +545,20 @@ public partial class MainWindow: Gtk.Window
 	{
 		//FIXME: THIS IS ONLY A WORKAROUND!
 	}
+	protected void OnNotebook1ChangeCurrentPage (object o, ChangeCurrentPageArgs args)
+	{
+
+	}	
+	protected void OnNotebook1SelectPage (object o, SelectPageArgs args)
+	{
+		//If the Engine is Ready (cTerminus is a static class), get the Title of the current tab page
+		if (cTerminus.g_isReady == true) {
+			cTerminus.CurrentIndexTab = notebook1.Page;
+			this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
+			//cTerminus.CurrentRegexUniqueID = ((cRegex)notebook1.GetNthPage()).uniqueID;
+		
+		}	
+	}
+
+
 }

@@ -283,7 +283,6 @@ public partial class MainWindow
 		this.expander3 = new global::Gtk.Expander (null);
 		this.expander3.CanFocus = true;
 		this.expander3.Name = "expander3";
-		this.expander3.Expanded = true;
 		// Container child expander3.Gtk.Container+ContainerChild
 		this.vbox3 = new global::Gtk.VBox ();
 		this.vbox3.Name = "vbox3";
@@ -336,7 +335,6 @@ public partial class MainWindow
 		this.radiobutton1.TooltipMarkup = "Alle aus dem Ausdruck resultierenden Ergebnisse anzeigen";
 		this.radiobutton1.CanFocus = true;
 		this.radiobutton1.Name = "radiobutton1";
-		this.radiobutton1.Active = true;
 		this.radiobutton1.DrawIndicator = true;
 		this.radiobutton1.UseUnderline = true;
 		this.radiobutton1.Group = new global::GLib.SList (global::System.IntPtr.Zero);
@@ -458,5 +456,7 @@ public partial class MainWindow
 		this.selectFontAction.Activated += new global::System.EventHandler (this.OnSelectFontActionActivated);
 		this.restore.Activated += new global::System.EventHandler (this.OnRestoreActivated);
 		this.homeAction.Activated += new global::System.EventHandler (this.OnWillkommensseiteActionActivated);
+		this.notebook1.ChangeCurrentPage += new global::Gtk.ChangeCurrentPageHandler (this.OnNotebook1ChangeCurrentPage);
+		this.notebook1.SelectPage += new global::Gtk.SelectPageHandler (this.OnNotebook1SelectPage);
 	}
 }

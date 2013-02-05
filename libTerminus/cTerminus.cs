@@ -116,6 +116,7 @@ namespace libTerminus
 					FileName = "";
 
 				libTerminus.cRegex newregex = new cRegex (_filename);
+				newregex.Saved = true;
 				_nb.AppendPage (newregex, new Label ("Neuer Ausdruck", ref _nb, newregex));
 				_nb.ShowAll ();			
 				_nb.Page = _nb.NPages - 1;
@@ -384,18 +385,18 @@ namespace libTerminus
 		public static string getTitle (Notebook _nb, int _Index)
 		{
 			try {
-				//MessageBox.Show (((libTerminus.cRegex)_nb.GetNthPage (nb.Page)).Saved.ToString (), "", ButtonsType.None, MessageType.Other);
-				if (((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).g_filename == "")
+				cRegex p_current = ((libTerminus.cRegex)_nb.GetNthPage (_nb.Page));
+				if (p_current.g_filename == "")
 					return g_programName;
 				else {
-					if (((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).Saved)
-						return ((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).g_filename + " - " + g_programName;
+					if (p_current.Saved)
+						return p_current.g_filename + " - " + g_programName;
 					else
-						return ((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).g_filename + "* - " + g_programName;
+						return p_current.g_filename + "* - " + g_programName;
 				}
 					
 			} catch (Exception ex) {
-				//MessageBox.Show (ex.Message, cTerminus.ProgramName, ButtonsType.Close, MessageType.Error);
+				//MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return g_programName + " ";
 			}
 		}
@@ -452,7 +453,7 @@ namespace libTerminus
 		public static string ShowSaveDialog (Gtk.Dialog dlg, string FilterName = "Regex - Projekte", string FilterContent = "*.rgx")
 		{
 			try {
-				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog ("Wählen Sie den Speicherort", null, FileChooserAction.Save, "Abbrechen", ResponseType.Cancel, "Speichern", ResponseType.Accept);
+				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog ("Wählen Sie den Speicherort", null, FileChooserAction.Save, "Speichern", ResponseType.Accept, "Abbrechen", ResponseType.Cancel);
 				FileFilter flt = new FileFilter ();
 				if (FilterContent == "*.rgx") {
 					flt.Name = "Regex - Projekte";
@@ -472,7 +473,7 @@ namespace libTerminus
 				
 				}		
 				fc.Destroy ();
-				return filename;
+				return cTerminus.getCorrectedString (filename);
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return "";
@@ -487,7 +488,7 @@ namespace libTerminus
 		public static string ShowOpenDialog ()
 		{
 			try {
-				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog ("Choose the file to open", null, FileChooserAction.Open, "Abbrechen", ResponseType.Cancel, "Öffnen", ResponseType.Accept);
+				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog ("Wählen Sie eine Datei aus", null, FileChooserAction.Open, "Öffnen", ResponseType.Accept, "Abbrechen", ResponseType.Cancel);
 				FileFilter flt = new FileFilter ();
 				flt.Name = "Regex - Projekte";
 				flt.AddPattern ("*.rgx");
@@ -504,6 +505,14 @@ namespace libTerminus
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return "";
+			}
+		}
+		public static string getCorrectedString (string input)
+		{
+			if (input.EndsWith (".rgx"))
+				return input;
+			else {
+				return input + ".rgx";
 			}
 		}
 		/// <summary>
@@ -535,29 +544,20 @@ namespace libTerminus
 
 				AboutDialog about = new AboutDialog ();
 				about.ProgramName = g_programName;
-				about.ParentWindow = wind.Toplevel;
-				about.Website = "about:blank";
+				about.ParentWindow = wind;
 				about.Comments = "Erstellen und Testen Sie schnell und einfach reguläre Ausdrücke mit der verbesserten Version von Phrasis.Studio";
-				about.Comments += "\nPlattform: " + getDistribution ();
-
-				if (DateTime.Now.Day == 21 && DateTime.Now.Month == 12 && DateTime.Now.Year == 2012)
-					about.Version = ProgramVersion.ToString ().Replace (".0", "") + " (Beta I \"End is near edition\")";
-				else
-					about.Version = ProgramVersion.ToString ().Replace (".0", "") + " (Beta I)";
-
-				about.Logo = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);				
+				about.Version = ProgramVersion.ToString ();//.Replace (".0", "");
+				about.Logo = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 128, 128, true);				
 				about.Icon = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);	
 				about.Title = "Info über das Programm";
-				about.Website = "";
-				 
+				about.Website = "https://github.com/squarerootfury/terminus-project";				 
 				about.License = System.IO.File.ReadAllText (new cPathEnvironment ().const_program_license, System.Text.Encoding.UTF8);
 				about.WrapLicense = true;
-				about.Copyright = "Programmicon: \"Torchlight\"; http://kde-look.org/content/show.php?content=26378 lizensiert unter LGPL";
-				
 				about.Copyright += "\nCopyright 2012 (c) Terminus Entwickler";		
 				about.SetPosition (WindowPosition.Center);
-				
-
+				about.Authors = new string[] {"Terminus - Team:\n","\"Fury\""};
+				about.Artists = new string[] {"Anwendungsicon:\n","\"anonymous\""};
+				about.Documenters = new string[] {"Anwendungsdokumentation:\n","ups keiner :)"};
 				about.Run ();
 				about.Destroy ();
 			} catch (Exception ex) {
