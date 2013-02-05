@@ -31,8 +31,6 @@ namespace  libTerminus
 				return ResponseType.None;
 			} else {
 				MessageDialog md = new MessageDialog (null, DialogFlags.Modal, _Type, _Buttons, text);
-				if (parent != null)
-					md.ParentWindow = parent;
 				md.Title = caption;				
 				ResponseType result = (ResponseType)md.Run ();
 				md.Destroy ();
