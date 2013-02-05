@@ -34,7 +34,6 @@ namespace  libTerminus
 				md.Title = caption;				
 				ResponseType result = (ResponseType)md.Run ();
 				md.Destroy ();
-
 				return result;
 			}	
 		}		
