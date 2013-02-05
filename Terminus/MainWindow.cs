@@ -545,10 +545,6 @@ public partial class MainWindow: Gtk.Window
 	{
 		//FIXME: THIS IS ONLY A WORKAROUND!
 	}
-	protected void OnNotebook1ChangeCurrentPage (object o, ChangeCurrentPageArgs args)
-	{
-
-	}	
 	protected void OnNotebook1SelectPage (object o, SelectPageArgs args)
 	{
 		//If the Engine is Ready (cTerminus is a static class), get the Title of the current tab page

@@ -456,7 +456,6 @@ public partial class MainWindow
 		this.selectFontAction.Activated += new global::System.EventHandler (this.OnSelectFontActionActivated);
 		this.restore.Activated += new global::System.EventHandler (this.OnRestoreActivated);
 		this.homeAction.Activated += new global::System.EventHandler (this.OnWillkommensseiteActionActivated);
-		this.notebook1.ChangeCurrentPage += new global::Gtk.ChangeCurrentPageHandler (this.OnNotebook1ChangeCurrentPage);
 		this.notebook1.SelectPage += new global::Gtk.SelectPageHandler (this.OnNotebook1SelectPage);
 	}
 }
