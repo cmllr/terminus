@@ -258,7 +258,8 @@
       </action>
       <action id="aboutAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes" />
+        <property name="Label" translatable="yes" context="yes" comments="InfoButton">InfoButton|Info</property>
+        <property name="ShortLabel" translatable="yes" context="yes" comments="InfoButton">InfoButton|Info</property>
         <property name="StockId">gtk-about</property>
       </action>
       <action id="ExportAction">

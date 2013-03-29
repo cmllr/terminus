@@ -32,7 +32,7 @@ namespace libTerminus
 		}
 		public List<String> getRestoredData (string _datestring, string _begin, string _end)
 		{
-			IDbConnection dbcon;
+			IDbConnection dbcon = null;
 			List<string> _list = new List<string> ();
 			try {				
 				DateTime _date = DateTime.Parse (_datestring);
@@ -67,7 +67,7 @@ namespace libTerminus
 		}
 		public void setRestoredData (DateTime _date, String _phrase, string _filename = "")
 		{
-			IDbConnection dbcon;
+			IDbConnection dbcon = null;
 			try {
 
 				dbcon = (IDbConnection)new SqliteConnection (ConnectionString);
@@ -87,7 +87,7 @@ namespace libTerminus
 		}
 		public List<int> getDays (int _month)
 		{
-			IDbConnection dbcon;
+			IDbConnection dbcon= null;
 			List<int> _list = new List<int> ();
 			try {				
 						
@@ -119,7 +119,7 @@ namespace libTerminus
 		}
 		public void Clear ()
 		{
-			IDbConnection dbcon;
+			IDbConnection dbcon= null;
 			try {
 				
 				dbcon = (IDbConnection)new SqliteConnection (ConnectionString);

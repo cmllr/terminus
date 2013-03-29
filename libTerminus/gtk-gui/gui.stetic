@@ -115,7 +115,6 @@
       <widget class="Gtk.Frame" id="frame1">
         <property name="MemberName" />
         <property name="ShadowType">Out</property>
-        <property name="LabelXalign">0,5</property>
         <property name="LabelYalign">0</property>
         <child>
           <widget class="Gtk.Alignment" id="GtkAlignment">

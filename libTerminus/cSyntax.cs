@@ -48,49 +48,49 @@ namespace libTerminus
 			g_BackGroundColor = content[7].Split(new char[] {';'})[1];
 			if (_onlybackground == false){
 			TextTag tagnone = new TextTag ("nosyntax");
-			Gdk.Color nonecolor;
+			Gdk.Color nonecolor = new Gdk.Color();
 			Gdk.Color.Parse (g_noneColorDescription, ref nonecolor);
 			tagnone.ForegroundGdk = nonecolor;				
 			_textview.Buffer.TagTable.Add (tagnone);
 			TextTag tagcorrect = new TextTag ("backslashliteral");
-			Gdk.Color colorcorrect;
+			Gdk.Color colorcorrect= new Gdk.Color();
 			Gdk.Color.Parse (g_colorCorrectDescription, ref colorcorrect);
 			tagcorrect.ForegroundGdk = colorcorrect;
 			tagcorrect.FontDesc = getBold ();
 			_textview.Buffer.TagTable.Add (tagcorrect);
 			TextTag edgedBrackets = new TextTag ("edgedBrackets");
-			Gdk.Color coloredgetBrackets;
+			Gdk.Color coloredgetBrackets = new Gdk.Color();
 			Gdk.Color.Parse (g_edgedBracketsColorDescription, ref coloredgetBrackets);
 			edgedBrackets.ForegroundGdk = coloredgetBrackets;
 			_textview.Buffer.TagTable.Add (edgedBrackets);
 			TextTag roundBrackets = new TextTag ("roundBrackets");
-			Gdk.Color colorroundbrackets;
+			Gdk.Color colorroundbrackets = new Gdk.Color();
 			Gdk.Color.Parse (g_roundBracketsColorDescription, ref colorroundbrackets);
 			roundBrackets.ForegroundGdk = colorroundbrackets;
 			_textview.Buffer.TagTable.Add (roundBrackets);
 			TextTag otherBrackets = new TextTag ("otherBrackets");
-			Gdk.Color otherBracketsColor;
+			Gdk.Color otherBracketsColor= new Gdk.Color();
 			Gdk.Color.Parse (g_otherBracketsColorDescription, ref otherBracketsColor);
 			otherBrackets.ForegroundGdk = otherBracketsColor;
 			otherBrackets.FontDesc = getBold();
 			_textview.Buffer.TagTable.Add (otherBrackets);
 			TextTag constant = new TextTag ("constant");
-			Gdk.Color constantcolor;
+			Gdk.Color constantcolor= new Gdk.Color();
 			Gdk.Color.Parse (g_constantColorDescription, ref constantcolor);
 			constant.ForegroundGdk = constantcolor;
 			_textview.Buffer.TagTable.Add (constant);
 			TextTag quantifier = new TextTag ("quantifier");
-			Gdk.Color quantifiercolor;
+			Gdk.Color quantifiercolor= new Gdk.Color();
 			Gdk.Color.Parse (g_QuantifierColorDescription, ref quantifiercolor);
 			quantifier.ForegroundGdk = quantifiercolor;
-			Gdk.Color backgroundcolor;
+			Gdk.Color backgroundcolor= new Gdk.Color();
 			Gdk.Color.Parse(g_BackGroundColor,ref backgroundcolor);
 			_textview.ModifyBase(StateType.Normal,backgroundcolor);
 			_textview.Buffer.TagTable.Add (quantifier);
 			}
 			else
 			{
-				Gdk.Color backgroundcolor;
+				Gdk.Color backgroundcolor = new Gdk.Color();
 				Gdk.Color.Parse(g_BackGroundColor,ref backgroundcolor);
 				_textview.ModifyBase(StateType.Normal,backgroundcolor);
 			}

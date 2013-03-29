@@ -131,7 +131,7 @@ namespace libTerminus
 		/// </summary>
 		public void appendItems ()
 		{
-			IDbConnection dbcon;
+			IDbConnection dbcon = null;
 			try {
 				string connectionString = cDataBaseStrings.g_Pool_ConnectionString;//string connectionString = "URI=file:" + new cPathEnvironment ().const_examples_directory + new cPathEnvironment ().const_path_separator + "Library.db";
 
@@ -162,7 +162,7 @@ namespace libTerminus
 		/// </summary>
 		public void deleteItem ()
 		{
-			IDbConnection dbcon;
+			IDbConnection dbcon = null;
 			try {			
 
 				if (g_name != "" || g_name != string.Empty || g_name != null) {

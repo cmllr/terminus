@@ -198,7 +198,8 @@ public partial class MainWindow
 		this.spellCheckAction = new global::Gtk.Action ("spellCheckAction", global::Mono.Unix.Catalog.GetString ("_Spell Check"), null, "gtk-spell-check");
 		this.spellCheckAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Spell Check");
 		w1.Add (this.spellCheckAction, null);
-		this.aboutAction1 = new global::Gtk.Action ("aboutAction1", null, null, "gtk-about");
+		this.aboutAction1 = new global::Gtk.Action ("aboutAction1", global::Mono.Unix.Catalog.GetString ("Info"), null, "gtk-about");
+		this.aboutAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("Info");
 		w1.Add (this.aboutAction1, null);
 		this.ExportAction = new global::Gtk.Action ("ExportAction", global::Mono.Unix.Catalog.GetString ("Export"), null, null);
 		this.ExportAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Export");
@@ -355,7 +356,6 @@ public partial class MainWindow
 		this.radiobutton1.TooltipMarkup = "Alle aus dem Ausdruck resultierenden Ergebnisse anzeigen";
 		this.radiobutton1.CanFocus = true;
 		this.radiobutton1.Name = "radiobutton1";
-		this.radiobutton1.Active = true;
 		this.radiobutton1.DrawIndicator = true;
 		this.radiobutton1.UseUnderline = true;
 		this.radiobutton1.Group = new global::GLib.SList (global::System.IntPtr.Zero);
