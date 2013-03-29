@@ -46,6 +46,7 @@ namespace libTerminus
 		/// <c>true</c> if run into shell; otherwise, <c>false</c>.
 		/// </value>
 		public bool RunIntoShell { get; set; }
+		public string Path { get; set; }
 		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cArgumentParser"/> class.
@@ -59,6 +60,7 @@ namespace libTerminus
 		public cArgumentParser (string[] _args, string _appVersion)
 		{
 			AllowedToRun = true;
+			Path = "";
 			for (int i = 0; i < _args.Length; i++) {
 				if (_args [i] == "--v" || _args [i] == "--version") {
 					Console.WriteLine ("{0} {1}", cTerminus.g_programName, _appVersion);
@@ -79,7 +81,13 @@ namespace libTerminus
 					} catch {
 						Console.WriteLine ("No value set.");
 					}
+				} else if (_args [i] == "--ed" || _args [i] == "--enable-database") {
+					cTerminus.enableDataBase = true;
+					AllowedToRun = true;
+				} else if (_args [i] == "--locale") {
+					Path = _args [i + 1];
 				}
+			
 				
 			}
 		}

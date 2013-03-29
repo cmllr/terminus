@@ -18,8 +18,8 @@
       </action>
       <action id="newAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Neu</property>
-        <property name="ShortLabel" translatable="yes">Neu</property>
+        <property name="Label" translatable="yes" context="yes" comments="NewFile">NewFile|Neu</property>
+        <property name="ShortLabel" translatable="yes" context="yes" comments="NewFile">NewFile|Neu</property>
         <property name="StockId">gtk-new</property>
         <signal name="Activated" handler="OnNewActionActivated" />
       </action>
@@ -31,16 +31,16 @@
       </action>
       <action id="saveAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Speichern</property>
-        <property name="ShortLabel" translatable="yes">Speichern</property>
+        <property name="Label" translatable="yes" context="yes" comments="Speichern">Speichern|Speichern</property>
+        <property name="ShortLabel" translatable="yes" context="yes" comments="Speichern">Speichern|Speichern</property>
         <property name="StockId">gtk-save</property>
       </action>
       <action id="saveAsAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Primary&gt;&lt;Alt&gt;s</property>
         <property name="HideIfEmpty">False</property>
-        <property name="Label" translatable="yes">Speichern unter</property>
-        <property name="ShortLabel" translatable="yes">Speichern unter</property>
+        <property name="Label" translatable="yes" context="yes" comments="Speichern unter">Speichern unter|Speichern unter</property>
+        <property name="ShortLabel" translatable="yes" context="yes" comments="Speichern unter">Speichern unter|Speichern unter</property>
         <property name="StockId">gtk-save-as</property>
       </action>
       <action id="closeAction">
@@ -63,63 +63,73 @@
         <property name="Label" translatable="yes">Bearbeiten</property>
         <property name="ShortLabel" translatable="yes">Bearbeiten</property>
       </action>
-      <action id="saveAction1">
+      <action id="SaveRegex">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Save</property>
         <property name="StockId">gtk-save</property>
         <signal name="Activated" handler="OnSaveAction1Activated" />
       </action>
-      <action id="closeAction1">
+      <action id="CloseRegex">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Close</property>
         <property name="StockId">gtk-close</property>
         <signal name="Activated" handler="OnCloseAction1Activated" />
       </action>
-      <action id="saveAsAction1">
+      <action id="SaveRegexOtherFileName">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Save as</property>
         <property name="StockId">gtk-save-as</property>
         <signal name="Activated" handler="OnSaveAsAction1Activated" />
       </action>
       <action id="newAction1">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Neu</property>
         <property name="StockId">gtk-new</property>
       </action>
-      <action id="openAction1">
+      <action id="OpenRegex">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Open</property>
         <property name="StockId">gtk-open</property>
         <signal name="Activated" handler="OnOpenAction1Activated" />
       </action>
       <action id="undoAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Undo</property>
         <property name="StockId">gtk-undo</property>
         <signal name="Activated" handler="OnUndoActionActivated" />
       </action>
       <action id="redoAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Redo</property>
         <property name="StockId">gtk-redo</property>
         <signal name="Activated" handler="OnRedoActionActivated" />
       </action>
       <action id="cutAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Cut</property>
         <property name="StockId">gtk-cut</property>
       </action>
       <action id="copyAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Copy</property>
         <property name="StockId">gtk-copy</property>
       </action>
       <action id="pasteAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Paste</property>
         <property name="StockId">gtk-paste</property>
       </action>
-      <action id="mediaPlayAction1">
+      <action id="Execute">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Ausführen</property>
         <property name="ShortLabel" translatable="yes">Ausführen</property>
@@ -129,13 +139,14 @@
       <action id="clearAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Clear</property>
         <property name="StockId">gtk-clear</property>
         <signal name="Activated" handler="OnClearActionActivated" />
       </action>
-      <action id="selectAllAction1">
+      <action id="Library">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Bibliothek</property>
-        <property name="ShortLabel" translatable="yes">Bibliothek</property>
+        <property name="ShortLabel" translatable="yes">Library</property>
         <property name="StockId">gtk-select-all</property>
       </action>
       <action id="separatorAction">
@@ -186,8 +197,8 @@
       <action id="mediaPlayAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Primary&gt;space</property>
-        <property name="Label" translatable="yes">Ausführen</property>
-        <property name="ShortLabel" translatable="yes">_Execute</property>
+        <property name="Label" translatable="yes">RunParser</property>
+        <property name="ShortLabel" translatable="yes">RunParser</property>
         <property name="StockId">gtk-media-play</property>
       </action>
       <action id="ExtrasAction">
@@ -233,8 +244,8 @@
       <action id="selectAllAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Primary&gt;l</property>
-        <property name="Label" translatable="yes">Bibliothek</property>
-        <property name="ShortLabel" translatable="yes">Bibliothek</property>
+        <property name="Label" translatable="yes">LibraryMenu</property>
+        <property name="ShortLabel" translatable="yes">LibraryMenu</property>
         <property name="StockId">gtk-select-all</property>
         <signal name="Activated" handler="OnSelectAllActionActivated" />
       </action>
@@ -259,11 +270,11 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
       </action>
-      <action id="gotoBottomAction">
+      <action id="convertAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Exportieren</property>
-        <property name="ShortLabel" translatable="yes">Exportieren</property>
-        <property name="StockId">gtk-goto-bottom</property>
+        <property name="Label" translatable="yes" context="yes" comments="ExportTitleParent">ExportTitleParent|Exportieren</property>
+        <property name="ShortLabel" translatable="yes" context="yes" comments="ExportTitleParent">ExportTitleParent|Exportieren</property>
+        <property name="StockId">gtk-convert</property>
       </action>
       <action id="NurTextTxtAction">
         <property name="Type">Action</property>
@@ -289,6 +300,7 @@
       <action id="preferencesAction1">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="ShortLabel" translatable="yes">Preferences</property>
         <property name="StockId">gtk-preferences</property>
         <signal name="Activated" handler="OnPreferencesAction1Activated" />
       </action>
@@ -303,7 +315,6 @@
         <property name="Label" translatable="yes">Über diese Version</property>
         <property name="ShortLabel" translatable="yes">Über diese Version</property>
         <property name="StockId">gtk-dialog-question</property>
-        <signal name="Activated" handler="OnDialogQuestionActionActivated" />
       </action>
       <action id="connectAction">
         <property name="Type">Action</property>
@@ -323,8 +334,8 @@
       <action id="saveAsAction2">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Primary&gt;k</property>
-        <property name="Label" translatable="yes">Kopie speichern unter</property>
-        <property name="ShortLabel" translatable="yes">Kopie speichern unter</property>
+        <property name="Label" translatable="yes" context="yes" comments="Kopie speichern unter">Kopie speichern unter|Kopie speichern unter</property>
+        <property name="ShortLabel" translatable="yes" context="yes" comments="Kopie speichern unter">Kopie speichern unter|Kopie speichern unter</property>
         <property name="StockId">gtk-save-as</property>
         <signal name="Activated" handler="OnSaveAsAction2Activated" />
       </action>
@@ -354,10 +365,23 @@
       <action id="homeAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Start</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">Willkommensseite</property>
         <property name="StockId">gtk-home</property>
-        <property name="Visible">False</property>
-        <signal name="Activated" handler="OnWillkommensseiteActionActivated" />
+      </action>
+      <action id="mediaPlayAction1">
+        <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Primary&gt;space</property>
+        <property name="Label" translatable="yes" context="yes" comments="RunParsing">RunParsing|Run</property>
+        <property name="ShortLabel" translatable="yes" context="yes" comments="RunParsing">RunParsing|Run</property>
+        <property name="StockId">gtk-media-play</property>
+      </action>
+      <action id="quitAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Beenden</property>
+        <property name="ShortLabel" translatable="yes">Beenden</property>
+        <property name="StockId">gtk-quit</property>
+        <signal name="Activated" handler="OnQuitActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -380,7 +404,7 @@
                 <node type="Menuitem" action="saveAsAction" />
                 <node type="Menuitem" action="saveAsAction2" />
                 <node type="Menuitem" action="closeAction" />
-                <node type="Menuitem" action="quitAction" />
+                <node type="Menuitem" action="quitAction1" />
               </node>
               <node type="Menu" action="BearbeitenAction">
                 <node type="Menuitem" action="undoAction1" />
@@ -391,8 +415,8 @@
                 <node type="Menuitem" action="preferencesAction" />
               </node>
               <node type="Menu" action="RegexAction">
-                <node type="Menuitem" action="mediaPlayAction" />
-                <node type="Menu" action="gotoBottomAction">
+                <node type="Menuitem" action="mediaPlayAction1" />
+                <node type="Menu" action="convertAction">
                   <node type="Menuitem" action="NurTextTxtAction" />
                   <node type="Menuitem" action="HypertextHtmlAction" />
                   <node type="Menuitem" action="KommaGetrenntCsvAction" />
@@ -405,9 +429,7 @@
               </node>
               <node type="Menu" action="HilfeAction">
                 <node type="Menuitem" action="connectAction" />
-                <node type="Menuitem" action="homeAction" />
                 <node type="Menuitem" action="selectFontAction" />
-                <node type="Menuitem" action="dialogQuestionAction" />
                 <node type="Menuitem" action="cancelAction" />
                 <node type="Menuitem" action="aboutAction" />
               </node>
@@ -428,22 +450,22 @@
             <property name="IconSize">SmallToolbar</property>
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="newAction1" />
-              <node type="Toolitem" action="openAction1" />
-              <node type="Toolitem" action="saveAction1" />
-              <node type="Toolitem" action="saveAsAction1" />
-              <node type="Toolitem" action="closeAction1" />
+              <node type="Toolitem" action="OpenRegex" />
+              <node type="Toolitem" action="SaveRegex" />
+              <node type="Toolitem" action="SaveRegexOtherFileName" />
+              <node type="Toolitem" action="CloseRegex" />
               <node type="Separator" />
               <node type="Toolitem" action="undoAction" />
               <node type="Toolitem" action="redoAction" />
               <node type="Separator" />
-              <node type="Toolitem" action="mediaPlayAction1" />
+              <node type="Toolitem" action="Execute" />
               <node type="Toolitem" action="clearAction" />
               <node type="Separator" />
               <node type="Toolitem" action="cutAction" />
               <node type="Toolitem" action="copyAction" />
               <node type="Toolitem" action="pasteAction" />
               <node type="Separator" />
-              <node type="Toolitem" action="selectAllAction1" />
+              <node type="Toolitem" action="Library" />
               <node type="Separator" />
               <node type="Toolitem" action="preferencesAction1" />
               <node type="Toolitem" action="aboutAction1" />
@@ -485,10 +507,10 @@
                     <child>
                       <widget class="Gtk.CheckButton" id="IgnoreCase">
                         <property name="MemberName" />
-                        <property name="Tooltip" translatable="yes" context="yes">Kontext_IgnoreCase|Die Groß- und Kleinschreibung Ihres Ausdrucks wird ignoriert.
+                        <property name="Tooltip" translatable="yes" context="yes" comments="Kontext_IgnoreCase">Kontext_IgnoreCase|Die Groß- und Kleinschreibung Ihres Ausdrucks wird ignoriert.
 Beispiel: "test" trifft auch auf "TEST" zu.</property>
                         <property name="CanFocus">True</property>
-                        <property name="Label" translatable="yes" context="yes">Kontext_IgnoreCase|Groß- /Kleinschreibung ignorieren.</property>
+                        <property name="Label" translatable="yes" context="yes" comments="Kontext_IgnoreCase">Kontext_IgnoreCase|Groß- /Kleinschreibung ignorieren.</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>

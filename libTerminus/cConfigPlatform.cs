@@ -132,6 +132,7 @@ namespace libTerminus
 					Theme = mt.Groups ["theme"].Value;
 					ReduceSyntaxChanging = Boolean.Parse (mt.Groups ["reducesyntaxchanging"].Value);
 				}
+
 			} catch (Exception ex) {
 				throw new ApplicationException ("Exception due incorrect config file", ex);
 			}

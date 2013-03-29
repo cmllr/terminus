@@ -31,21 +31,13 @@ namespace libTerminus
 		OnlyRegular,
 	}
 	/// <summary>
-	/// Log method.
-	/// </summary>
-	public enum LogMethod
-	{
-		File,
-		Logs,
-		DataBase,
-	}
-	/// <summary>
 	/// Log level.
 	/// </summary>
 	public enum LogLevel
 	{
-		Critical,
+		Exception,
 		Warning,
+		Information,
 	}
 	/// <summary>
 	/// Export type.

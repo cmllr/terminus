@@ -5,10 +5,16 @@ namespace libTerminus
 	public partial class cRegex
 	{
 		private global::Gtk.HPaned hpaned1;
-		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
+		private global::Gtk.Frame frame1;
+		private global::Gtk.Alignment GtkAlignment;
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		private global::Gtk.TextView Expression;
-		private global::Gtk.ScrolledWindow GtkScrolledWindow2;
+		private global::Gtk.Label GtkLabel;
+		private global::Gtk.Frame frame2;
+		private global::Gtk.Alignment GtkAlignment1;
+		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
 		private global::Gtk.TextView DataSource;
+		private global::Gtk.Label GtkLabel1;
 		
 		protected virtual void Build ()
 		{
@@ -22,29 +28,61 @@ namespace libTerminus
 			this.hpaned1.Name = "hpaned1";
 			this.hpaned1.Position = 354;
 			// Container child hpaned1.Gtk.Paned+PanedChild
-			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
-			this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
-			this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
-			// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
+			this.frame1 = new global::Gtk.Frame ();
+			this.frame1.Name = "frame1";
+			this.frame1.ShadowType = ((global::Gtk.ShadowType)(2));
+			this.frame1.LabelYalign = 0F;
+			// Container child frame1.Gtk.Container+ContainerChild
+			this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.GtkAlignment.Name = "GtkAlignment";
+			this.GtkAlignment.LeftPadding = ((uint)(12));
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
 			this.Expression = new global::Gtk.TextView ();
 			this.Expression.CanFocus = true;
 			this.Expression.Name = "Expression";
 			this.Expression.WrapMode = ((global::Gtk.WrapMode)(3));
-			this.GtkScrolledWindow1.Add (this.Expression);
-			this.hpaned1.Add (this.GtkScrolledWindow1);
-			global::Gtk.Paned.PanedChild w2 = ((global::Gtk.Paned.PanedChild)(this.hpaned1 [this.GtkScrolledWindow1]));
-			w2.Resize = false;
+			this.GtkScrolledWindow.Add (this.Expression);
+			this.GtkAlignment.Add (this.GtkScrolledWindow);
+			this.frame1.Add (this.GtkAlignment);
+			this.GtkLabel = new global::Gtk.Label ();
+			this.GtkLabel.Name = "GtkLabel";
+			this.GtkLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("PhraseInput");
+			this.GtkLabel.UseMarkup = true;
+			this.frame1.LabelWidget = this.GtkLabel;
+			this.hpaned1.Add (this.frame1);
+			global::Gtk.Paned.PanedChild w4 = ((global::Gtk.Paned.PanedChild)(this.hpaned1 [this.frame1]));
+			w4.Resize = false;
 			// Container child hpaned1.Gtk.Paned+PanedChild
-			this.GtkScrolledWindow2 = new global::Gtk.ScrolledWindow ();
-			this.GtkScrolledWindow2.Name = "GtkScrolledWindow2";
-			this.GtkScrolledWindow2.ShadowType = ((global::Gtk.ShadowType)(1));
-			// Container child GtkScrolledWindow2.Gtk.Container+ContainerChild
+			this.frame2 = new global::Gtk.Frame ();
+			this.frame2.Name = "frame2";
+			this.frame2.ShadowType = ((global::Gtk.ShadowType)(2));
+			this.frame2.LabelYalign = 0F;
+			// Container child frame2.Gtk.Container+ContainerChild
+			this.GtkAlignment1 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.GtkAlignment1.Name = "GtkAlignment1";
+			this.GtkAlignment1.LeftPadding = ((uint)(12));
+			// Container child GtkAlignment1.Gtk.Container+ContainerChild
+			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
+			this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
 			this.DataSource = new global::Gtk.TextView ();
 			this.DataSource.CanFocus = true;
 			this.DataSource.Name = "DataSource";
 			this.DataSource.WrapMode = ((global::Gtk.WrapMode)(3));
-			this.GtkScrolledWindow2.Add (this.DataSource);
-			this.hpaned1.Add (this.GtkScrolledWindow2);
+			this.GtkScrolledWindow1.Add (this.DataSource);
+			this.GtkAlignment1.Add (this.GtkScrolledWindow1);
+			this.frame2.Add (this.GtkAlignment1);
+			this.GtkLabel1 = new global::Gtk.Label ();
+			this.GtkLabel1.Name = "GtkLabel1";
+			this.GtkLabel1.LabelProp = global::Mono.Unix.Catalog.GetString ("DataInput");
+			this.GtkLabel1.UseMarkup = true;
+			this.frame2.LabelWidget = this.GtkLabel1;
+			this.hpaned1.Add (this.frame2);
 			this.Add (this.hpaned1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

@@ -92,6 +92,9 @@ namespace libTerminus
 					cTerminus.Configuration.Theme = (string)((Gtk.ComboBox)sender).Model.GetValue (iter, 0);
 				}
 			};
+			if (cTerminus.enableDataBase == false) {
+				button1.Sensitive = false;
+			}
 			button1.Clicked += delegate(object sender, EventArgs e) {
 				if (MessageBox.Show ("Möchten Sie die Ausdrücke wirklich löschen? Diese können <b>nicht</b> wiederhergestellt werden!", "Bestätigen", Gtk.ButtonsType.YesNo, Gtk.MessageType.Question, null) == Gtk.ResponseType.Yes)
 					new cRevertData ().Clear ();

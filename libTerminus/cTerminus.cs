@@ -27,6 +27,7 @@ using System.Reflection;
 using System.IO;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Mono.Posix;
 namespace libTerminus
 {
 
@@ -55,10 +56,6 @@ namespace libTerminus
 		/// Determines, if the program is ready or not.
 		/// </summary>
 		public	static bool g_isReady;
-		/// <summary>
-		/// The log method which is used.
-		/// </summary>
-		public static LogMethod g_LogMethodUsed = LogMethod.File;
 		/// <summary>
 		/// Enable Syntax yes or no.
 		/// </summary>
@@ -97,6 +94,8 @@ namespace libTerminus
 		public static cConfigPlatform Configuration = new cConfigPlatform (new cPathEnvironment ().const_settings_path);
 		public static bool isWelcomeTabOpen;
 		public static int CurrentIndexTab;
+		private static cRegex g_tmp;
+		public static bool enableDataBase;
 		/// <summary>
 		/// Adds a new tab to the given notebook
 		/// </summary>
@@ -117,7 +116,7 @@ namespace libTerminus
 
 				libTerminus.cRegex newregex = new cRegex (_filename);
 				newregex.Saved = true;
-				_nb.AppendPage (newregex, new Label ("Neuer Ausdruck", ref _nb, newregex));
+				_nb.AppendPage (newregex, new Label (Catalog.GetString ("New Phrase"), ref _nb, newregex));
 				_nb.ShowAll ();			
 				_nb.Page = _nb.NPages - 1;
 				g_files.Add (_filename);
@@ -129,12 +128,10 @@ namespace libTerminus
 		{
 			if (isWelcomeTabOpen != true) {
 				cWelcome web = new cWelcome ();
-				_nb.AppendPage (web, new Label ("Willkommen", ref _nb, web));
+				_nb.AppendPage (web, new Label ("Start", ref _nb, web));
 				_nb.ShowAll ();			
 				_nb.Page = _nb.NPages - 1;
 				isWelcomeTabOpen = true;
-			} else {
-
 			}
 		}
 		/// <summary>
@@ -148,7 +145,7 @@ namespace libTerminus
 			try {
 				if (isConfigTabOpen != true) {
 					libTerminus.cConfig config = new libTerminus.cConfig (Configuration);
-					_nb.AppendPage (config, new Label ("Einstellungen", ref _nb, config));
+					_nb.AppendPage (config, new Label (Catalog.GetString ("Preferences"), ref _nb, config));
 					_nb.ShowAll ();			
 					_nb.Page = _nb.NPages - 1;
 					ConfigTabIndex = _nb.Page;
@@ -170,7 +167,7 @@ namespace libTerminus
 			try {
 				if (isLibTabOpen != true) {
 					cPool lib = new libTerminus.cPool (ref _nb);
-					_nb.AppendPage (lib, new Label ("Bibliothek", ref _nb, lib));
+					_nb.AppendPage (lib, new Label (Catalog.GetString ("Library"), ref _nb, lib));
 					_nb.ShowAll ();			
 					_nb.Page = _nb.NPages - 1;
 					LibTabIndex = _nb.Page;
@@ -270,13 +267,19 @@ namespace libTerminus
 			try {
 				if (System.IO.File.Exists (_fileNameNew)) {
 					//FileName = FileNameNew;	//Fixme: If nothing happens, change this comment.			
-					libTerminus.cRegex newregex = new cRegex (_fileNameNew);
+					libTerminus.cRegex newregex;
+					if (g_tmp != null) {
+						newregex = g_tmp;
+						g_tmp = null;
+					} else {
+						newregex = new cRegex (_fileNameNew);
+					}
 					_nb.InsertPage (newregex, new Label (new FileInfo (_fileNameNew).Name, ref _nb, newregex), _pageindex);
 					_nb.ShowAll ();			
 					g_files.Add (_fileNameNew);
 				} else {
 					libTerminus.cRegex newregex = new cRegex (_fileNameNew);
-					_nb.InsertPage (newregex, new Label ("Neuer Ausdruck", ref _nb, newregex), _pageindex);
+					_nb.InsertPage (newregex, new Label (Catalog.GetString ("New Phrase"), ref _nb, newregex), _pageindex);
 					_nb.ShowAll ();			
 					g_files.Add (_fileNameNew);
 				}
@@ -417,14 +420,18 @@ namespace libTerminus
 		{
 			try {
 				if (_Filename != "" && disable != true) {
+
 					((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).Save (_Filename);
 					int current = _nb.Page;
 					string data = ((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).GetDataSourceBuffer ();
+					((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).Saved = true;
+					((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).setDataBuffer (data);
+					g_tmp = ((libTerminus.cRegex)_nb.GetNthPage (_nb.Page));
 					_nb.Remove (_nb.GetNthPage (_nb.Page));
 					AddTabFromFile (_nb, _Filename, current);
 					_nb.Page = current;
-					((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).Saved = true;
-					((libTerminus.cRegex)_nb.GetNthPage (_nb.Page)).setDataBuffer (data);
+
+				
 				}
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
@@ -450,13 +457,13 @@ namespace libTerminus
 		/// <param name='dlg'>
 		/// Parent [obsolet]
 		/// </param>
-		public static string ShowSaveDialog (Gtk.Dialog dlg, string FilterName = "Regex - Projekte", string FilterContent = "*.rgx")
+		public static string ShowSaveDialog (Gtk.Dialog dlg, string FilterName = "Regex", string FilterContent = "*.rgx")
 		{
 			try {
-				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog ("Wählen Sie den Speicherort", null, FileChooserAction.Save, "Speichern", ResponseType.Accept, "Abbrechen", ResponseType.Cancel);
+				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog (Catalog.GetString ("SavingTitle"), null, FileChooserAction.Save, "Speichern", ResponseType.Accept, "Abbrechen", ResponseType.Cancel);
 				FileFilter flt = new FileFilter ();
 				if (FilterContent == "*.rgx") {
-					flt.Name = "Regex - Projekte";
+					flt.Name = Catalog.GetString ("Regex - Projects");
 					flt.AddPattern ("*.rgx");
 				} else {
 					flt.Name = FilterName;
@@ -470,10 +477,10 @@ namespace libTerminus
 				if (fc.Run () == (int)ResponseType.Accept) {
 				
 					filename = fc.Filename;
-				
+					filename = cTerminus.getCorrectedString (filename);
 				}		
 				fc.Destroy ();
-				return cTerminus.getCorrectedString (filename);
+				return filename;
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return "";
@@ -488,9 +495,9 @@ namespace libTerminus
 		public static string ShowOpenDialog ()
 		{
 			try {
-				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog ("Wählen Sie eine Datei aus", null, FileChooserAction.Open, "Öffnen", ResponseType.Accept, "Abbrechen", ResponseType.Cancel);
+				Gtk.FileChooserDialog fc = new Gtk.FileChooserDialog (Catalog.GetString ("OpeningTitle"), null, FileChooserAction.Open, "Öffnen", ResponseType.Accept, "Abbrechen", ResponseType.Cancel);
 				FileFilter flt = new FileFilter ();
-				flt.Name = "Regex - Projekte";
+				flt.Name = Catalog.GetString ("Regex - Projects");
 				flt.AddPattern ("*.rgx");
 				fc.Filter = flt;
 				//fc.CurrentFolder = n
@@ -545,19 +552,20 @@ namespace libTerminus
 				AboutDialog about = new AboutDialog ();
 				about.ProgramName = g_programName;
 				about.ParentWindow = wind;
-				about.Comments = "Erstellen und Testen Sie schnell und einfach reguläre Ausdrücke mit der verbesserten Version von Phrasis.Studio";
+				about.Comments = Catalog.GetString ("Erstellen und Testen Sie schnell und einfach reguläre Ausdrücke mit der verbesserten Version von Phrasis.Studio");
 				about.Version = ProgramVersion.ToString ();//.Replace (".0", "");
 				about.Logo = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 128, 128, true);				
 				about.Icon = new Gdk.Pixbuf (new cPathEnvironment ().const_program_image, 64, 64, true);	
-				about.Title = "Info über das Programm";
+				about.Title = Catalog.GetString ("Info über das Programm");
 				about.Website = "https://github.com/squarerootfury/terminus-project";				 
 				about.License = System.IO.File.ReadAllText (new cPathEnvironment ().const_program_license, System.Text.Encoding.UTF8);
 				about.WrapLicense = true;
-				about.Copyright += "\nCopyright 2012 (c) Terminus Entwickler";		
+				about.Copyright += Catalog.GetString ("\nCopyright 2012 (c) Terminus Entwickler");		
 				about.SetPosition (WindowPosition.Center);
-				about.Authors = new string[] {"Terminus - Team:\n","\"Fury\""};
+				/*about.Authors = new string[] {"Terminus - Team:\n","\"Fury\""};
 				about.Artists = new string[] {"Anwendungsicon:\n","\"anonymous\""};
 				about.Documenters = new string[] {"Anwendungsdokumentation:\n","ups keiner :)"};
+				*/
 				about.Run ();
 				about.Destroy ();
 			} catch (Exception ex) {
@@ -570,7 +578,7 @@ namespace libTerminus
 		public static void PrintHelpText ()
 		{
 			try {
-				Console.WriteLine ("--v | --version - Prints the version. \n--h | --help - Prints this message.\n--s | --nosyntax - Don't enable syntax - hightlighting.\n<filename> - Opens an existing file\n--c | --shell - Start interactive regex shell.");
+				Console.WriteLine ("--v | --version - Prints the version. \n--h | --help - Prints this message.\n--s | --nosyntax - Don't enable syntax - hightlighting.\n<filename> - Opens an existing file\n--c | --shell - Start interactive regex shell.\n--ed | --enable-database - Enables the saving database mode.");
 			} catch (Exception ex) {
 				Console.WriteLine (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
@@ -584,7 +592,7 @@ namespace libTerminus
 		public static ResponseType AskForClosing ()
 		{
 			try {
-				return MessageBox.Show ("Möchten Sie wirklich beenden?", g_programName, ButtonsType.YesNo, MessageType.Question);
+				return MessageBox.Show (Catalog.GetString ("Möchten Sie wirklich beenden?\nMögliche ungespeicherte Informationen könnten eventuell <b>verloren gehen</b>."), g_programName, ButtonsType.YesNo, MessageType.Question);
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return ResponseType.None;
@@ -599,7 +607,7 @@ namespace libTerminus
 		public static ResponseType AskForClosingLastTab ()
 		{
 			try {
-				return MessageBox.Show ("Möchten Sie den Ausdruck wirklich schließen? Alle Änderungen daran gehen verloren.", g_programName, ButtonsType.YesNo, MessageType.Question);
+				return MessageBox.Show (Catalog.GetString ("Möchten Sie den Ausdruck wirklich schließen? Alle Änderungen daran gehen verloren."), g_programName, ButtonsType.YesNo, MessageType.Question);
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return ResponseType.None;
@@ -614,7 +622,7 @@ namespace libTerminus
 		public static ResponseType AskForClear ()
 		{
 			try {
-				return MessageBox.Show ("Möchten Sie wirklich leeren?\nDie Änderungen können <b>nicht</b> wiederhergestellt werden!", g_programName, ButtonsType.YesNo, MessageType.Question);
+				return MessageBox.Show (Catalog.GetString ("Möchten Sie wirklich leeren?\nDie Änderungen können <b>nicht</b> wiederhergestellt werden!"), g_programName, ButtonsType.YesNo, MessageType.Question);
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 				return ResponseType.None;
@@ -652,30 +660,15 @@ namespace libTerminus
 		/// </param>
 		static string ReadSTDOutput (string fileName, string arguments)
 		{
-			Process process = new Process ();
-	
+			Process process = new Process ();	
 			process.StartInfo.FileName = fileName;
 			process.StartInfo.Arguments = arguments;
 			process.StartInfo.UseShellExecute = false;
-			process.StartInfo.RedirectStandardOutput = true;
-	
-			process.Start ();
-	
-			string DefaultOutput = process.StandardOutput.ReadToEnd ();
-	
-			process.Close ();
-	
+			process.StartInfo.RedirectStandardOutput = true;	
+			process.Start ();	
+			string DefaultOutput = process.StandardOutput.ReadToEnd ();	
+			process.Close ();	
 			return DefaultOutput;
-		}
-		/// <summary>
-		/// Gets the build info.
-		/// </summary>
-		/// <returns>
-		/// The build info.
-		/// </returns>
-		public static string getBuildInfo ()
-		{
-			return System.IO.File.ReadAllText (new cPathEnvironment ().const_data_dir + "build.log");
 		}
 		/// <summary>
 		/// Marks the syntax.

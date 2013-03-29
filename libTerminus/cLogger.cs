@@ -19,7 +19,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-
+using System.Threading;
 namespace libTerminus
 {
 	/// <summary>
@@ -27,11 +27,10 @@ namespace libTerminus
 	/// </summary>
 	public static class cLogger
 	{
-		//TODO: Imrovement of the logger	
+		public static LogLevel g_CurrentLogLevel = LogLevel.Exception;
 		/// <summary>
 		/// The log level header.
 		/// </summary>
-		public static string LogLevelHeader = "\n#####################{0}#####################\n#Operating System: {1}\n#{2} Version: {3}\n#Framework Version: {4}\n#Date: {5}\n#####################Log Content#####################\n{6}\n#####################End of Log Content#####################";
 		/// <summary>
 		/// Log the specified LogData.
 		/// </summary>
@@ -49,8 +48,7 @@ namespace libTerminus
 		/// </param>
 		public static void Log (string _logdata, string _methodName)
 		{
-			//TODO: Add logging method here 
+			Console.WriteLine ("\"{0}\" in \"{1}\"", _logdata, _methodName);
 		}
 	}
 }
-

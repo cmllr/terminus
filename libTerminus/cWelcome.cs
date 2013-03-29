@@ -19,19 +19,13 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using WebKit;
+
 namespace libTerminus
 {
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class cWelcome : Gtk.Bin
 	{
-		WebView g_WebView = new WebView ();
-		public cWelcome ()
-		{
-			this.Build ();
-			this.Add (g_WebView);
-			g_WebView.Open (new cPathEnvironment ().const_program_license.Replace ("License", "Welcome.html"));
-		}
+
 	
 	}
 }

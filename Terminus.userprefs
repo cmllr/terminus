@@ -1,29 +1,43 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/MessageBox.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="libTerminus/cWelcome.cs">
     <Files>
-      <File FileName="libTerminus/cRegex.cs" Line="482" Column="15" />
-      <File FileName="Path/cPathEnvironment.cs" Line="54" Column="25" />
-      <File FileName="Terminus/MainWindow.cs" Line="107" Column="47" />
-      <File FileName="libTerminus/MessageBox.cs" Line="29" Column="1" />
-      <File FileName="libTerminus/Enums.cs" Line="59" Column="2" />
-      <File FileName="libTerminus/cTerminus.cs" Line="118" Column="42" />
+      <File FileName="libTerminus/cRegex.cs" Line="151" Column="52" />
+      <File FileName="libTerminus/Enums.cs" Line="52" Column="2" />
+      <File FileName="libTerminus/cTerminus.cs" Line="593" Column="4" />
       <File FileName="libTerminus/Label.cs" Line="39" Column="21" />
-      <File FileName="Terminus/AssemblyInfo.cs" Line="20" Column="33" />
+      <File FileName="Terminus/AssemblyInfo.cs" Line="20" Column="35" />
+      <File FileName="libTerminus/cLogger.cs" Line="54" Column="2" />
+      <File FileName="libTerminus/cDictonary.cs" Line="59" Column="1" />
+      <File FileName="libTerminus/cPool.cs" Line="158" Column="5" />
+      <File FileName="libTerminus/cArgumentParser.cs" Line="63" Column="14" />
+      <File FileName="libTerminus/cRevertData.cs" Line="27" Column="26" />
+      <File FileName="libTerminus/cConfigPlatform.cs" Line="135" Column="5" />
+      <File FileName="Terminus/Main.cs" Line="28" Column="27" />
+      <File FileName="Path/cPathEnvironment.cs" Line="96" Column="3" />
+      <File FileName="libTerminus/cWelcome.cs" Line="22" Column="7" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Distrib" expanded="True" />
+          <Option id="ShowAllFiles" value="True" />
           <Node name="libTerminus" expanded="True">
+            <Node name="References" expanded="True" />
             <Node name="UserInterface" expanded="True" />
-            <Node name="MessageBox.cs" selected="True" />
+            <Node name="cWelcome.cs" selected="True" />
           </Node>
           <Node name="Path" expanded="True" />
-          <Node name="Path_Final" expanded="True" />
+          <Node name="Path_Final" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
           <Node name="Terminus" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="UserInterface" expanded="True">
+              <Node name="MainWindow" expanded="True" />
+            </Node>
             <Node name="bin" expanded="True" />
           </Node>
+          <Node name="Translationen" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
@@ -45,14 +59,14 @@
       <Breakpoint file="/home/christoph/Dropbox/Programmieren/Terminus/libTerminus/cRegex.cs" line="125" />
       <Breakpoint hitAction="PrintExpression" traceExpression="{pr}" file="/home/christoph/Dropbox/Programmieren/Terminus/libTerminus/cTerminus.cs" line="1126" />
       <Breakpoint file="/home/christoph/Dropbox/Programmieren/Terminus/Terminus/MainWindow.cs" line="498" />
-      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="284" />
-      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="253" />
-      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="125" />
-      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="306" />
-      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="350" />
-      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="430" />
-      <Breakpoint file="/home/christoph/Github/Terminus/Main.cs" line="32" />
+      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="291" />
+      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="254" />
+      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="313" />
+      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="357" />
+      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="441" />
       <Breakpoint file="/home/christoph/Github/libTerminus/cSyntax.cs" line="1" />
+      <Breakpoint file="/home/christoph/Github/libTerminus/cTerminus.cs" line="250" />
+      <Breakpoint file="/home/christoph/Github/Terminus/MainWindow.cs" line="246" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

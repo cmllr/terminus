@@ -18,13 +18,20 @@ namespace Terminus
 		/// </param>
 		public static void Main (string[] args)
 		{
-			//Mono.Unix.Catalog.Init("i18n1","./locale");
+
 			//Initalize a new object of the argument parser
 			libTerminus.cArgumentParser argsP = new libTerminus.cArgumentParser (args, Assembly.GetExecutingAssembly ().GetName ().Version.ToString ());
 			GLib.ExceptionManager.UnhandledException += delegate(GLib.UnhandledExceptionArgs argsEx) {
 				Console.WriteLine (argsEx.ExceptionObject.ToString ());
 			};
 			new libTerminus.cPathEnvironment ().ConfFileManagement (); 
+			if (argsP.Path == "") {
+				Mono.Unix.Catalog.Init ("i8n1", "./locale");
+				Console.WriteLine ("Useing locale path \"{0}\"", "./locale");
+			} else {
+				Console.WriteLine ("Useing locale path \"{0}\"", argsP.Path + "/locale");
+				Mono.Unix.Catalog.Init ("i8n1", argsP.Path + "/locale");
+			}
 			//if the program should be runned..
 			if (argsP.AllowedToRun) {			
 				Application.Init ();
@@ -41,6 +48,8 @@ namespace Terminus
 				new libTerminus.cShell ();
 			} else
 				Environment.Exit (-1);
+
+		
 
 		}
 	}

@@ -30,7 +30,8 @@ namespace libTerminus
 			// Container child libTerminus.cConfig.Gtk.Container+ContainerChild
 			this.frame1 = new global::Gtk.Frame ();
 			this.frame1.Name = "frame1";
-			this.frame1.ShadowType = ((global::Gtk.ShadowType)(0));
+			this.frame1.ShadowType = ((global::Gtk.ShadowType)(2));
+			this.frame1.LabelYalign = 0F;
 			// Container child frame1.Gtk.Container+ContainerChild
 			this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
 			this.GtkAlignment.Name = "GtkAlignment";
@@ -174,6 +175,8 @@ namespace libTerminus
 			this.GtkAlignment.Add (this.vbox3);
 			this.frame1.Add (this.GtkAlignment);
 			this.GtkLabel7 = new global::Gtk.Label ();
+			this.GtkLabel7.WidthRequest = 136;
+			this.GtkLabel7.HeightRequest = 113;
 			this.GtkLabel7.Name = "GtkLabel7";
 			this.GtkLabel7.LabelProp = global::Mono.Unix.Catalog.GetString ("Programmeinstellungen");
 			this.GtkLabel7.UseMarkup = true;

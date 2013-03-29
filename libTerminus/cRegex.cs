@@ -99,7 +99,7 @@ namespace libTerminus
 				DataSource.Buffer.Changed += delegate {
 					addToDataHistory ();
 				};
-				Expression.PasteClipboard += delegate {
+				Expression.KeyReleaseEvent += delegate {
 					cTerminus.MarkSyntax (ref Expression);
 				};
 				//Start Marking the Syntax
@@ -315,7 +315,8 @@ namespace libTerminus
 					//bgw.RunWorkerAsync ();
 					//this.g_DataSource = DataSource.Buffer.Text;
 					//this.g_Expression = Expression.Buffer.Text;
-					//g_options = options;
+					//TODO: If any bug appears, comment this line
+					g_options = options;
 					//g_mode = mode;
 					//g_resultdisplay = resultdisplay;
 					Regex rgx = new Regex (expression, options);
@@ -345,9 +346,11 @@ namespace libTerminus
 					}
 					//new MessageBox().Show(expression + ";" + dataSource + ";" + result  + success.ToString(),"",Gtk.ButtonsType.Close,Gtk.MessageType.Info);
 					resultdisplay.Buffer.Text = result;
+					g_lastresult = result;
 					DateTime _End = DateTime.Now;
 					cTerminus.g_lastResultTimeSpan = _End - _Begin;
-					new cRevertData ().setRestoredData (DateTime.Now, expression, "");
+					if (cTerminus.enableDataBase)
+						new cRevertData ().setRestoredData (DateTime.Now, expression, "");
 				} else {
 					MessageBox.Show ("Die Daten enthalten keinen Ausdruck", cTerminus.g_programName, Gtk.ButtonsType.Ok, Gtk.MessageType.Warning);
 				}
@@ -533,15 +536,6 @@ namespace libTerminus
 				MessageBox.Show ("Fehler beim Laden des Schema's.\nEs wurde das Standardschema geladen.", "Fehler", ButtonsType.Close, MessageType.Warning, null);
 			}
 		}
-		/// <summary>
-		/// Ises the literal.
-		/// </summary>
-		/// <returns>
-		/// The literal.
-		/// </returns>
-		/// <param name='_value'>
-		/// If set to <c>true</c> _value.
-		/// </param>
 
 
 	}

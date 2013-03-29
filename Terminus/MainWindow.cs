@@ -1,17 +1,16 @@
 	using System;
 using Gtk;
 using libTerminus;
-using Mono.Unix;
 using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Diagnostics;
-
+using Mono.Posix;
 /// <summary>
 /// Main window.
 /// </summary>
 public partial class MainWindow: Gtk.Window
 {	
-	
+
 	/// <summary>
 	/// Initializes a new instance of the <see cref="MainWindow"/> class.
 	/// </summary>
@@ -27,7 +26,7 @@ public partial class MainWindow: Gtk.Window
 		cTerminus.g_programVersion = Assembly.GetExecutingAssembly ().GetName ().Version;
 		this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
 		cTerminus.AddTab (notebook1, "");
-		
+
 	}
 	/// <summary>
 	/// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -50,7 +49,7 @@ public partial class MainWindow: Gtk.Window
 		//cTerminus.enableSyntax = true;
 		cTerminus.g_programVersion = Assembly.GetExecutingAssembly ().GetName ().Version;
 		this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
-		cStatusLabele.Text = "Bereit.";
+		cStatusLabele.Text = Catalog.GetString ("Ready");
 		cTerminus.AddTab (notebook1, "");
 	}
 	/// <summary>
@@ -68,14 +67,25 @@ public partial class MainWindow: Gtk.Window
 		copyAction.Activated += OnCopyAction1Activated;
 		cutAction.Activated += OnCutAction1Activated;
 		pasteAction.Activated += OnPasteAction1Activated;
-		selectAllAction1.Activated += OnSelectAllActionActivated;
+		Library.Activated += OnSelectAllActionActivated;
 		aboutAction1.Activated += OnAboutActionActivated;
 		if (cTerminus.Configuration.HideText)
 			toolbar1.ToolbarStyle = ToolbarStyle.Icons;
-		mediaPlayAction.Activated += OnExecuteActionActivated;
+		mediaPlayAction1.Activated += OnExecuteActionActivated;
 		clearAction1.Activated += OnClearActionActivated;	
 		notebook1.SwitchPage += OnNoteBookSwitched;
+		/*
+		IgnoreCase.Toggled += delegate {
+			setStatusOfCheckBoxes (true);
+		};
+		ExplicitCapture.Toggled += delegate {
+			setStatusOfCheckBoxes (true);
+		};
+		IgnorePatternWhitespace.Toggled += delegate {
+			setStatusOfCheckBoxes (true);
+		};*/
 	}
+
 	/// <summary>
 	/// Raises the delete event event.
 	/// </summary>
@@ -103,9 +113,39 @@ public partial class MainWindow: Gtk.Window
 		//If the Engine is Ready (cTerminus is a static class), get the Title of the current tab page
 		if (cTerminus.g_isReady == true) {
 			this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
-			//cTerminus.CurrentRegexUniqueID = ((cRegex)notebook1.GetNthPage()).uniqueID;
 			cTerminus.CurrentIndexTab = notebook1.Page;
+			setStatusOfCheckBoxes ();
 		}	
+	}
+	private void setStatusOfCheckBoxes ()
+	{
+		try {
+
+			cRegex p_current = ((cRegex)notebook1.GetNthPage (notebook1.Page));
+			if (p_current.g_lastresult != "" && p_current.g_lastresult != this.Output.Buffer.Text) {
+				this.Output.Buffer.Text = p_current.g_lastresult;
+			} else if (String.IsNullOrEmpty (p_current.g_lastresult)) {
+				this.Output.Buffer.Text = "";
+			}
+			/*if (p_current.g_options.HasFlag ((Enum)RegexOptions.IgnoreCase)) {
+				IgnoreCase.Active = true;
+			} else {
+				IgnoreCase.Active = false;
+			}
+			if (p_current.g_options.HasFlag ((Enum)RegexOptions.IgnorePatternWhitespace)) {
+				IgnorePatternWhitespace.Active = true;
+			} else {
+				IgnorePatternWhitespace.Active = false;
+			}
+			if (p_current.g_options.HasFlag ((Enum)RegexOptions.ExplicitCapture)) {
+				ExplicitCapture.Active = true;
+			} else {
+				ExplicitCapture.Active = false;
+			}
+	*/
+		} catch {
+
+		}
 	}
 	/// <summary>
 	/// Raises the save action1 activated event.
@@ -252,7 +292,7 @@ public partial class MainWindow: Gtk.Window
 	protected void OnExecuteActionActivated (object sender, System.EventArgs e)
 	{
 		try {
-			this.cStatusLabele.Text = "Arbeite..";
+			this.cStatusLabele.Text = Catalog.GetString ("Working");
 			//get the current Options and run the parser.
 			Output.Buffer.Text = "";
 			RegexOptions _optionen = RegexOptions.None;
@@ -273,11 +313,11 @@ public partial class MainWindow: Gtk.Window
 			if (radiobutton3.Active)
 				mode = libTerminus.ParsingMode.OnlyGroups;
 			((libTerminus.cRegex)notebook1.GetNthPage (notebook1.Page)).parse (ref Output, _optionen, mode);
-			this.cStatusLabele.Text = "Bereit. Ausdruck vearbeitet in " + cTerminus.g_lastResultTimeSpan.TotalSeconds + " Sekunden.";
+			this.cStatusLabele.Text = String.Format (Catalog.GetString ("Phrase parsed in {0} seconds"), cTerminus.g_lastResultTimeSpan.TotalSeconds);
 			//this.cStatusLabele.Text = cTerminus.getMemory ().ToString () + " MB";
 		} catch (Exception ex) {
 			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);		
-			this.cStatusLabele.Text = "Bereit. Ausdruck vearbeitet in " + cTerminus.g_lastResultTimeSpan.TotalSeconds + " Sekunden.";
+			this.cStatusLabele.Text = String.Format (Catalog.GetString ("Phrase parsed in {0} seconds"), cTerminus.g_lastResultTimeSpan.TotalSeconds);
 		}
 	}
 	/// <summary>
@@ -473,17 +513,6 @@ public partial class MainWindow: Gtk.Window
 			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);				
 		}
 	}
-	protected void OnDialogQuestionActionActivated (object sender, EventArgs e)
-	{
-		try {
-			MessageBox.Show (cTerminus.getBuildInfo (), cTerminus.g_programName, ButtonsType.Ok, MessageType.Info, null);
-		} catch (Exception ex) {
-			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);				
-		}
-	}
-
-
-
 	protected void OnCancelActionActivated (object sender, EventArgs e)
 	{
 		try {
@@ -499,7 +528,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		try {
 			Process xdg = new Process ();
-			xdg.StartInfo = new ProcessStartInfo (@"http://scribble.pf-control.de/");
+			xdg.StartInfo = new ProcessStartInfo (@"http://github.com/squarerootfury/terminus-project");
 			xdg.Start ();
 		} catch (Exception ex) {
 			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);				
@@ -532,15 +561,6 @@ public partial class MainWindow: Gtk.Window
 			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);				
 		}
 	}
-
-	protected void OnWillkommensseiteActionActivated (object sender, EventArgs e)
-	{
-		try {
-			cTerminus.addWelcomeTab (notebook1);
-		} catch (Exception ex) {
-			cLogger.Log (ex.Message, new StackTrace ().GetFrame (0).GetMethod ().Name);				
-		}
-	}
 	protected void OnPrintActionActivated (object sender, EventArgs e)
 	{
 		//FIXME: THIS IS ONLY A WORKAROUND!
@@ -552,9 +572,8 @@ public partial class MainWindow: Gtk.Window
 			cTerminus.CurrentIndexTab = notebook1.Page;
 			this.Title = cTerminus.getTitle (notebook1, notebook1.Page);
 			//cTerminus.CurrentRegexUniqueID = ((cRegex)notebook1.GetNthPage()).uniqueID;
-		
+			MessageBox.Show ("test", "test", ButtonsType.Cancel, MessageType.Error, null);
 		}	
 	}
-
 
 }
