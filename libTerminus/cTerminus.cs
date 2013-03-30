@@ -95,7 +95,7 @@ namespace libTerminus
 		public static bool isWelcomeTabOpen;
 		public static int CurrentIndexTab;
 		private static cRegex g_tmp;
-		public static bool enableDataBase;
+		//public static bool enableDataBase;
 		/// <summary>
 		/// Adds a new tab to the given notebook
 		/// </summary>
@@ -123,17 +123,7 @@ namespace libTerminus
 			} catch (Exception ex) {
 				MessageBox.Show (ex.Message, cTerminus.g_programName, ButtonsType.Close, MessageType.Error);
 			}
-		}
-		public static void addWelcomeTab (Notebook _nb)
-		{
-			if (isWelcomeTabOpen != true) {
-				cWelcome web = new cWelcome ();
-				_nb.AppendPage (web, new Label ("Start", ref _nb, web));
-				_nb.ShowAll ();			
-				_nb.Page = _nb.NPages - 1;
-				isWelcomeTabOpen = true;
-			}
-		}
+		}	
 		/// <summary>
 		/// Adds the config tab.
 		/// </summary>
@@ -212,16 +202,13 @@ namespace libTerminus
 				} else if (_nb.GetNthPage (_nb.Page) is cPool) {
 					cTerminus.isLibTabOpen = false;
 					LibTabIndex = -1;
-				} else if (_nb.GetNthPage (_nb.Page) is cWelcome) {
-					cTerminus.isWelcomeTabOpen = false;
+
+					//Remove the tab
+					_nb.RemovePage (_index);
 
 				}
-
-				//Remove the tab
-				_nb.RemovePage (_index);
-
+				_nb.ParentWindow.Title = cTerminus.getTitle (_nb, _nb.Page);
 			}
-			_nb.ParentWindow.Title = cTerminus.getTitle (_nb, _nb.Page);
 		}
 		/// <summary>
 		/// Adds the tab from file.

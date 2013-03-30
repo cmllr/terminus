@@ -70,8 +70,6 @@
     <Compile Include="gtk-gui\libTerminus.cRestoreWizard.cs" />
     <Compile Include="cRevertData.cs" />
     <Compile Include="cDataBaseStrings.cs" />
-    <Compile Include="cWelcome.cs" />
-    <Compile Include="gtk-gui\libTerminus.cWelcome.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="cDictonary.cs" />
   </ItemGroup>

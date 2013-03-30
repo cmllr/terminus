@@ -69,15 +69,16 @@ namespace libTerminus
 		{
 			IDbConnection dbcon = null;
 			try {
-
-				dbcon = (IDbConnection)new SqliteConnection (ConnectionString);
-				dbcon.Open ();
-				IDbCommand dbcmd = dbcon.CreateCommand ();
-				string sql = string.Format ("INSERT into Phrases (Phrase,Date,Hour,Filename) VALUES('{0}','{1}','{2}','{3}')", _phrase, _date.ToShortDateString (), _date.Hour, _filename);
-				dbcmd.CommandText = sql;
-				dbcmd.ExecuteNonQuery ();
-				dbcmd.Dispose ();
-				dbcmd = null;
+				if (cTerminus.Configuration.enableRestoring){
+					dbcon = (IDbConnection)new SqliteConnection (ConnectionString);
+					dbcon.Open ();
+					IDbCommand dbcmd = dbcon.CreateCommand ();
+					string sql = string.Format ("INSERT into Phrases (Phrase,Date,Hour,Filename) VALUES('{0}','{1}','{2}','{3}')", _phrase, _date.ToShortDateString (), _date.Hour, _filename);
+					dbcmd.CommandText = sql;
+					dbcmd.ExecuteNonQuery ();
+					dbcmd.Dispose ();
+					dbcmd = null;
+				}
 			} catch {
 
 			} finally {

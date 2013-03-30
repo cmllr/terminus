@@ -12,7 +12,7 @@
 // 
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  MERCHANTABILITY or FITNESS FOR enableRestoringPOSE.  See the
 //  GNU Lesser General Public License for more details.
 // 
 //  You should have received a copy of the GNU Lesser General Public License
@@ -67,6 +67,7 @@ namespace libTerminus
 			this.SyntaxEnabled.Active = _cfgPlatform.useSyntax;
 			DisplayStyle.Active = _cfgPlatform.HideText;
 			reduce.Active = _cfgPlatform.ReduceSyntaxChanging;
+			enableRestoring.Active = _cfgPlatform.enableRestoring;
 			//set the events to change the values in the main config class
 			IgnoreCase.Toggled += delegate {
 				cTerminus.Configuration.IgnoreCase = IgnoreCase.Active;
@@ -92,12 +93,12 @@ namespace libTerminus
 					cTerminus.Configuration.Theme = (string)((Gtk.ComboBox)sender).Model.GetValue (iter, 0);
 				}
 			};
-			if (cTerminus.enableDataBase == false) {
-				button1.Sensitive = false;
-			}
 			button1.Clicked += delegate(object sender, EventArgs e) {
 				if (MessageBox.Show ("Möchten Sie die Ausdrücke wirklich löschen? Diese können <b>nicht</b> wiederhergestellt werden!", "Bestätigen", Gtk.ButtonsType.YesNo, Gtk.MessageType.Question, null) == Gtk.ResponseType.Yes)
 					new cRevertData ().Clear ();
+			};
+			this.enableRestoring.Toggled += delegate {
+				cTerminus.Configuration.enableRestoring = enableRestoring.Active;
 			};
 		}
 	}

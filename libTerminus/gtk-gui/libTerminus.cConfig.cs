@@ -14,6 +14,7 @@ namespace libTerminus
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.CheckButton DisplayStyle;
 		private global::Gtk.CheckButton reduce;
+		private global::Gtk.CheckButton enableRestoring;
 		private global::Gtk.HBox hbox3;
 		private global::Gtk.Button button1;
 		private global::Gtk.HBox hbox2;
@@ -42,7 +43,7 @@ namespace libTerminus
 			this.vbox3.Spacing = 6;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.IgnoreCase = new global::Gtk.CheckButton ();
-			this.IgnoreCase.TooltipMarkup = "Die Groß- und Kleinschreibung Ihres Ausdrucks wird ignoriert.\nBeispiel: \"test\" trifft auch auf \"TEST\" zu.";
+			this.IgnoreCase.TooltipMarkup = global::Mono.Unix.Catalog.GetString ("Die Groß- und Kleinschreibung Ihres Ausdrucks wird ignoriert.\nBeispiel: \"test\" trifft auch auf \"TEST\" zu.");
 			this.IgnoreCase.CanFocus = true;
 			this.IgnoreCase.Name = "IgnoreCase";
 			this.IgnoreCase.Label = global::Mono.Unix.Catalog.GetString ("Groß- /Kleinschreibung ignorieren.");
@@ -55,7 +56,7 @@ namespace libTerminus
 			w1.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.ExplicitCapture = new global::Gtk.CheckButton ();
-			this.ExplicitCapture.TooltipMarkup = "Die Datenquelle muss genau auf den Ausdruck übereinstimmen.";
+			this.ExplicitCapture.TooltipMarkup = global::Mono.Unix.Catalog.GetString ("Die Datenquelle muss genau auf den Ausdruck übereinstimmen.");
 			this.ExplicitCapture.CanFocus = true;
 			this.ExplicitCapture.Name = "ExplicitCapture";
 			this.ExplicitCapture.Label = global::Mono.Unix.Catalog.GetString ("Explicit Capture");
@@ -68,7 +69,7 @@ namespace libTerminus
 			w2.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.IgnorePatternWhitespace = new global::Gtk.CheckButton ();
-			this.IgnorePatternWhitespace.TooltipMarkup = "Leerzeichen werden im Ausdruck/ Datenquelle ignoriert.";
+			this.IgnorePatternWhitespace.TooltipMarkup = global::Mono.Unix.Catalog.GetString ("Leerzeichen werden im Ausdruck/ Datenquelle ignoriert.");
 			this.IgnorePatternWhitespace.CanFocus = true;
 			this.IgnorePatternWhitespace.Name = "IgnorePatternWhitespace";
 			this.IgnorePatternWhitespace.Label = global::Mono.Unix.Catalog.GetString ("Leerzeichen ignorieren");
@@ -81,7 +82,7 @@ namespace libTerminus
 			w3.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.SyntaxEnabled = new global::Gtk.CheckButton ();
-			this.SyntaxEnabled.TooltipMarkup = "Das Programm kann Ihnen verschiedene Teile des Regex - Syntaxes farbig markieren, um Ihnen die Arbeit zu erleichtern.";
+			this.SyntaxEnabled.TooltipMarkup = global::Mono.Unix.Catalog.GetString ("Das Programm kann Ihnen verschiedene Teile des Regex - Syntaxes farbig markieren, um Ihnen die Arbeit zu erleichtern.");
 			this.SyntaxEnabled.CanFocus = true;
 			this.SyntaxEnabled.Name = "SyntaxEnabled";
 			this.SyntaxEnabled.Label = global::Mono.Unix.Catalog.GetString ("Syntaxhervorhebung aktivieren");
@@ -98,7 +99,7 @@ namespace libTerminus
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.DisplayStyle = new global::Gtk.CheckButton ();
-			this.DisplayStyle.TooltipMarkup = "Sie können die Beschreibungen der Elemente der Toolbar ein- oder ausblenden.";
+			this.DisplayStyle.TooltipMarkup = global::Mono.Unix.Catalog.GetString ("Sie können die Beschreibungen der Elemente der Toolbar ein- oder ausblenden.");
 			this.DisplayStyle.CanFocus = true;
 			this.DisplayStyle.Name = "DisplayStyle";
 			this.DisplayStyle.Label = global::Mono.Unix.Catalog.GetString ("Toolbar - Beschreibungen ausblenden");
@@ -114,7 +115,7 @@ namespace libTerminus
 			w6.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.reduce = new global::Gtk.CheckButton ();
-			this.reduce.TooltipMarkup = "Diese Option bewirkt, dass der Regex - Syntax nur bei jedem 5. Zeichen modifiziert wird, dies verbessert die Leistung vor allem bei leistungsschwachen Rechnern.";
+			this.reduce.TooltipMarkup = global::Mono.Unix.Catalog.GetString ("Diese Option bewirkt, dass der Regex - Syntax nur bei jedem 5. Zeichen modifiziert wird, dies verbessert die Leistung vor allem bei leistungsschwachen Rechnern.");
 			this.reduce.CanFocus = true;
 			this.reduce.Name = "reduce";
 			this.reduce.Label = global::Mono.Unix.Catalog.GetString ("Syntax - Markierungen reduzieren (erhöht Leistung)");
@@ -126,6 +127,19 @@ namespace libTerminus
 			w7.Expand = false;
 			w7.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
+			this.enableRestoring = new global::Gtk.CheckButton ();
+			this.enableRestoring.TooltipMarkup = global::Mono.Unix.Catalog.GetString ("De- oder aktivieren Sie die Ausdruckswiederherstellung.");
+			this.enableRestoring.CanFocus = true;
+			this.enableRestoring.Name = "enableRestoring";
+			this.enableRestoring.Label = global::Mono.Unix.Catalog.GetString ("Ausdruckswiederherstellung aktiveren");
+			this.enableRestoring.DrawIndicator = true;
+			this.enableRestoring.UseUnderline = true;
+			this.vbox3.Add (this.enableRestoring);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.enableRestoring]));
+			w8.Position = 6;
+			w8.Expand = false;
+			w8.Fill = false;
+			// Container child vbox3.Gtk.Box+BoxChild
 			this.hbox3 = new global::Gtk.HBox ();
 			this.hbox3.Name = "hbox3";
 			this.hbox3.Spacing = 6;
@@ -136,15 +150,15 @@ namespace libTerminus
 			this.button1.UseUnderline = true;
 			this.button1.Label = global::Mono.Unix.Catalog.GetString ("Daten für die Ausdruckswiederherstellung löschen");
 			this.hbox3.Add (this.button1);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.button1]));
-			w8.Position = 0;
-			w8.Expand = false;
-			w8.Fill = false;
-			this.vbox3.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox3]));
-			w9.Position = 6;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.button1]));
+			w9.Position = 0;
 			w9.Expand = false;
 			w9.Fill = false;
+			this.vbox3.Add (this.hbox3);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox3]));
+			w10.Position = 7;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.hbox2 = new global::Gtk.HBox ();
 			this.hbox2.Name = "hbox2";
@@ -154,30 +168,31 @@ namespace libTerminus
 			this.label1.Name = "label1";
 			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Farbschema");
 			this.hbox2.Add (this.label1);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label1]));
-			w10.Position = 0;
-			w10.Expand = false;
-			w10.Fill = false;
-			// Container child hbox2.Gtk.Box+BoxChild
-			this.combobox2 = global::Gtk.ComboBox.NewText ();
-			this.combobox2.TooltipMarkup = "Sie können hier das Designschema für die Syntax - Hervorhebung Ihres Regulären Ausdrucks einstellen. <b>Hinweis</b> Es wird ein Neustart empfohlen.";
-			this.combobox2.Name = "combobox2";
-			this.hbox2.Add (this.combobox2);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.combobox2]));
-			w11.Position = 1;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label1]));
+			w11.Position = 0;
 			w11.Expand = false;
 			w11.Fill = false;
-			this.vbox3.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
-			w12.Position = 7;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.combobox2 = global::Gtk.ComboBox.NewText ();
+			this.combobox2.TooltipMarkup = global::Mono.Unix.Catalog.GetString ("Sie können hier das Designschema für die Syntax - Hervorhebung Ihres Regulären Ausdrucks einstellen. <b>Hinweis</b> Es wird ein Neustart empfohlen.");
+			this.combobox2.Name = "combobox2";
+			this.hbox2.Add (this.combobox2);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.combobox2]));
+			w12.Position = 1;
 			w12.Expand = false;
 			w12.Fill = false;
+			this.vbox3.Add (this.hbox2);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
+			w13.Position = 8;
+			w13.Expand = false;
+			w13.Fill = false;
 			this.GtkAlignment.Add (this.vbox3);
 			this.frame1.Add (this.GtkAlignment);
 			this.GtkLabel7 = new global::Gtk.Label ();
-			this.GtkLabel7.WidthRequest = 136;
-			this.GtkLabel7.HeightRequest = 113;
+			this.GtkLabel7.WidthRequest = 149;
+			this.GtkLabel7.HeightRequest = 20;
 			this.GtkLabel7.Name = "GtkLabel7";
+			this.GtkLabel7.Xalign = 0F;
 			this.GtkLabel7.LabelProp = global::Mono.Unix.Catalog.GetString ("Programmeinstellungen");
 			this.GtkLabel7.UseMarkup = true;
 			this.frame1.LabelWidget = this.GtkLabel7;

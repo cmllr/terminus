@@ -80,10 +80,7 @@ namespace libTerminus
 						cTerminus.Configuration.CustomInterval = int.Parse (_args [i + 1]);
 					} catch {
 						Console.WriteLine ("No value set.");
-					}
-				} else if (_args [i] == "--ed" || _args [i] == "--enable-database") {
-					cTerminus.enableDataBase = true;
-					AllowedToRun = true;
+					}		
 				} else if (_args [i] == "--locale") {
 					Path = _args [i + 1];
 				}

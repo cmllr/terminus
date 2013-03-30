@@ -102,6 +102,13 @@ namespace libTerminus
 		/// The custom interval.
 		/// </value>
 		public int CustomInterval { get; set; }
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="libTerminus.cConfigPlatform"/> enable restoring.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if enable restoring; otherwise, <c>false</c>.
+		/// </value>
+		public bool enableRestoring { get; set; }
 		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="libTerminus.cConfigPlatform"/> class.
@@ -118,7 +125,7 @@ namespace libTerminus
 				//set the Path of the configuration file
 				ConfFile = _confFileName;
 				//Get the values using an regular expression - a Split() - Command would be to mainstream.
-				String rgx = @"ExplicitCapture;(?<ec>[a-z]*)\nIgnoreCase;(?<ic>[a-z]*)\nIgnoreWhitespace;(?<iw>[a-z]*)\nUseSyntax;(?<useSyntax>[a-z]*)\nHideText;(?<hide>[a-z]*)\nLanguage;(?<language>[a-z]*)\nTheme;(?<theme>[a-z]*)\nreducesyntaxchanging;(?<reducesyntaxchanging>[a-z]*)";
+				String rgx = @"ExplicitCapture;(?<ec>[a-z]*)\nIgnoreCase;(?<ic>[a-z]*)\nIgnoreWhitespace;(?<iw>[a-z]*)\nUseSyntax;(?<useSyntax>[a-z]*)\nHideText;(?<hide>[a-z]*)\nLanguage;(?<language>[a-z]*)\nTheme;(?<theme>[a-z]*)\nreducesyntaxchanging;(?<reducesyntaxchanging>[a-z]*)\nrestoring;(?<restoring>[a-z]*)";
 				Regex _rgx = new Regex (rgx, RegexOptions.IgnoreCase);
 
 				MatchCollection matches = _rgx.Matches (File.ReadAllText (_confFileName));
@@ -131,6 +138,7 @@ namespace libTerminus
 					Language = mt.Groups ["language"].Value;
 					Theme = mt.Groups ["theme"].Value;
 					ReduceSyntaxChanging = Boolean.Parse (mt.Groups ["reducesyntaxchanging"].Value);
+					enableRestoring = Boolean.Parse(mt.Groups["restoring"].Value);
 				}
 
 			} catch (Exception ex) {
@@ -142,7 +150,7 @@ namespace libTerminus
 		/// </summary>
 		public void Save ()
 		{		
-			File.WriteAllText (ConfFile, String.Format ("ExplicitCapture;{0}\nIgnoreCase;{1}\nIgnoreWhitespace;{2}\nUseSyntax;{3}\nHideText;{4}\nLanguage;{5}\nTheme;{6}\nreducesyntaxchanging;{7}", Explicit, IgnoreCase, IgnoreWhitespace, useSyntax, HideText, Language, Theme, ReduceSyntaxChanging));
+			File.WriteAllText (ConfFile, String.Format ("ExplicitCapture;{0}\nIgnoreCase;{1}\nIgnoreWhitespace;{2}\nUseSyntax;{3}\nHideText;{4}\nLanguage;{5}\nTheme;{6}\nreducesyntaxchanging;{7}\nrestoring;{8}", Explicit, IgnoreCase, IgnoreWhitespace, useSyntax, HideText, Language, Theme, ReduceSyntaxChanging,enableRestoring));
 		}
 	}
 }

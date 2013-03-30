@@ -108,13 +108,14 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="libTerminus.cConfig" design-size="657 380">
+  <widget class="Gtk.Bin" id="libTerminus.cConfig" design-size="657 437">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
       <widget class="Gtk.Frame" id="frame1">
         <property name="MemberName" />
         <property name="ShadowType">Out</property>
+        <property name="LabelXalign">0,5</property>
         <property name="LabelYalign">0</property>
         <child>
           <widget class="Gtk.Alignment" id="GtkAlignment">
@@ -246,6 +247,23 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                   </packing>
                 </child>
                 <child>
+                  <widget class="Gtk.CheckButton" id="enableRestoring">
+                    <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes" context="yes" comments="DisableRestoringText">DisableRestoringText|Diese Option bewirkt, dass der Regex - Syntax nur bei jedem 5. Zeichen modifiziert wird, dies verbessert die Leistung vor allem bei leistungsschwachen Rechnern.</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Label" translatable="yes" context="yes" comments="DisableRestoringText">DisableRestoringText|Ausdruckswiederherstellung aktiveren</property>
+                    <property name="DrawIndicator">True</property>
+                    <property name="HasLabel">True</property>
+                    <property name="UseUnderline">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">6</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="Gtk.HBox" id="hbox3">
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
@@ -272,7 +290,7 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">6</property>
+                    <property name="Position">7</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -310,7 +328,7 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">7</property>
+                    <property name="Position">8</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -326,8 +344,9 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
         <child>
           <widget class="Gtk.Label" id="GtkLabel7">
             <property name="MemberName" />
-            <property name="WidthRequest">136</property>
-            <property name="HeightRequest">113</property>
+            <property name="WidthRequest">149</property>
+            <property name="HeightRequest">20</property>
+            <property name="Xalign">0</property>
             <property name="LabelProp" translatable="yes">Programmeinstellungen</property>
             <property name="UseMarkup">True</property>
           </widget>
@@ -869,13 +888,6 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
           </packing>
         </child>
       </widget>
-    </child>
-  </widget>
-  <widget class="Gtk.Bin" id="libTerminus.cWelcome" design-size="300 300">
-    <property name="MemberName" />
-    <property name="Visible">False</property>
-    <child>
-      <placeholder />
     </child>
   </widget>
 </stetic-interface>

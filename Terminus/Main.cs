@@ -48,9 +48,6 @@ namespace Terminus
 				new libTerminus.cShell ();
 			} else
 				Environment.Exit (-1);
-
-		
-
 		}
 	}
 }

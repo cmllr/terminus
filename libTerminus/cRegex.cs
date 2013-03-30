@@ -348,9 +348,8 @@ namespace libTerminus
 					resultdisplay.Buffer.Text = result;
 					g_lastresult = result;
 					DateTime _End = DateTime.Now;
-					cTerminus.g_lastResultTimeSpan = _End - _Begin;
-					if (cTerminus.enableDataBase)
-						new cRevertData ().setRestoredData (DateTime.Now, expression, "");
+					cTerminus.g_lastResultTimeSpan = _End - _Begin;				
+					new cRevertData ().setRestoredData (DateTime.Now, expression, "");
 				} else {
 					MessageBox.Show ("Die Daten enthalten keinen Ausdruck", cTerminus.g_programName, Gtk.ButtonsType.Ok, Gtk.MessageType.Warning);
 				}

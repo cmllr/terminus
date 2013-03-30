@@ -448,7 +448,7 @@
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
             <property name="ButtonStyle">Both</property>
-            <property name="IconSize">SmallToolbar</property>
+            <property name="IconSize">Button</property>
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="newAction1" />
               <node type="Toolitem" action="OpenRegex" />
