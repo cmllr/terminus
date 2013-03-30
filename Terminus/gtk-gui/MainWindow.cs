@@ -261,8 +261,10 @@ public partial class MainWindow
 		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
 		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("Terminus.bin.Debug.Boot.Images.Programm.png");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(1));
+		this.BorderWidth = ((uint)(2));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='DateiAction' action='DateiAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='saveAsAction' action='saveAsAction'/><menuitem name='saveAsAction2' action='saveAsAction2'/><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction1' action='quitAction1'/></menu><menu name='BearbeitenAction' action='BearbeitenAction'><menuitem name='undoAction1' action='undoAction1'/><menuitem name='redoAction1' action='redoAction1'/><menuitem name='cutAction1' action='cutAction1'/><menuitem name='copyAction1' action='copyAction1'/><menuitem name='pasteAction1' action='pasteAction1'/><menuitem name='preferencesAction' action='preferencesAction'/></menu><menu name='RegexAction' action='RegexAction'><menuitem name='mediaPlayAction1' action='mediaPlayAction1'/><menu name='convertAction' action='convertAction'><menuitem name='NurTextTxtAction' action='NurTextTxtAction'/><menuitem name='HypertextHtmlAction' action='HypertextHtmlAction'/><menuitem name='KommaGetrenntCsvAction' action='KommaGetrenntCsvAction'/></menu><menuitem name='clearAction1' action='clearAction1'/></menu><menu name='ExtrasAction' action='ExtrasAction'><menuitem name='selectAllAction' action='selectAllAction'/><menuitem name='restore' action='restore'/></menu><menu name='HilfeAction' action='HilfeAction'><menuitem name='connectAction' action='connectAction'/><menuitem name='selectFontAction' action='selectFontAction'/><menuitem name='cancelAction' action='cancelAction'/><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
@@ -432,6 +434,7 @@ public partial class MainWindow
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.cStatusLabele = new global::Gtk.Label ();
 		this.cStatusLabele.Name = "cStatusLabele";
+		this.cStatusLabele.Xpad = 3;
 		this.cStatusLabele.Xalign = 0F;
 		this.vbox1.Add (this.cStatusLabele);
 		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.cStatusLabele]));
@@ -442,8 +445,8 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 1514;
-		this.DefaultHeight = 723;
+		this.DefaultWidth = 935;
+		this.DefaultHeight = 500;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.newAction.Activated += new global::System.EventHandler (this.OnNewActionActivated);

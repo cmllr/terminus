@@ -204,9 +204,10 @@ namespace libTerminus
 					LibTabIndex = -1;
 
 					//Remove the tab
-					_nb.RemovePage (_index);
+
 
 				}
+				_nb.RemovePage (_index);
 				_nb.ParentWindow.Title = cTerminus.getTitle (_nb, _nb.Page);
 			}
 		}

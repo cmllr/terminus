@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Path_Final", "Path_Final\Pa
 EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Translationen", "Translationen\Translationen.mdproj", "{12D2F0CD-9861-4D3E-8491-F583ACF1FA0C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5C2E0FC8-DDCC-436D-BD6D-7427F236022B}"
+	ProjectSection(SolutionItems) = preProject
+		Distrib\2.15.2.0.tar.gz = Distrib\2.15.2.0.tar.gz
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -37,6 +42,8 @@ Global
 		{8D2E9A36-CC15-4C2B-9279-96918ABD430C}.Debug|x86.Build.0 = Debug|x86
 		{8D2E9A36-CC15-4C2B-9279-96918ABD430C}.Release|x86.ActiveCfg = Release|x86
 		{8D2E9A36-CC15-4C2B-9279-96918ABD430C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Terminus\Terminus.csproj

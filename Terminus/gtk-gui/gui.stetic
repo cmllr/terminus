@@ -9,7 +9,7 @@
     <widget-library name="../../libTerminus/bin/Debug/libTerminus.dll" />
     <widget-library name="../bin/Debug/Terminus.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1514 723">
+  <widget class="Gtk.Window" id="MainWindow" design-size="935 500">
     <action-group name="Default">
       <action id="DateiAction">
         <property name="Type">Action</property>
@@ -389,6 +389,7 @@
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="Icon">resource:Terminus.bin.Debug.Boot.Images.Programm.png</property>
     <property name="WindowPosition">Center</property>
+    <property name="BorderWidth">2</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -689,6 +690,7 @@ Beispiel: "test" trifft auch auf "TEST" zu.</property>
         <child>
           <widget class="Gtk.Label" id="cStatusLabele">
             <property name="MemberName" />
+            <property name="Xpad">3</property>
             <property name="Xalign">0</property>
           </widget>
           <packing>
