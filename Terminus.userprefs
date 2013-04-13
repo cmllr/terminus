@@ -13,7 +13,7 @@
       <File FileName="libTerminus/cArgumentParser.cs" Line="80" Column="56" />
       <File FileName="libTerminus/cRevertData.cs" Line="63" Column="15" />
       <File FileName="libTerminus/cConfigPlatform.cs" Line="142" Column="1" />
-      <File FileName="Terminus/Main.cs" Line="39" Column="44" />
+      <File FileName="Terminus/Main.cs" Line="40" Column="18" />
       <File FileName="Path/cPathEnvironment.cs" Line="96" Column="3" />
       <File FileName="libTerminus/cSyntax.cs" Line="93" Column="49" />
       <File FileName="Terminus/MainWindow.cs" Line="50" Column="8" />
@@ -24,23 +24,9 @@
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowAllFiles" value="True" />
-          <Node name="libTerminus" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="UserInterface" expanded="True" />
+          <Node name="Packages" expanded="True">
+            <Node name="2.15.2.0.tar.gz" selected="True" />
           </Node>
-          <Node name="Path" expanded="True" />
-          <Node name="Path_Final" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
-          <Node name="Terminus" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="UserInterface" expanded="True">
-              <Node name="MainWindow" expanded="True" />
-            </Node>
-            <Node name="bin" expanded="True" />
-            <Node name="Main.cs" selected="True" />
-          </Node>
-          <Node name="Translationen" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
