@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Path", "Path\Path.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Path_Final", "Path_Final\Path_Final.csproj", "{337DF905-E55E-4B87-8E2A-870907E80BBD}"
 EndProject
-Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Translationen", "Translationen\Translationen.mdproj", "{12D2F0CD-9861-4D3E-8491-F583ACF1FA0C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages", "Packages\Packages.csproj", "{012211D5-D468-4333-9929-59D2E9EF9E8D}"
+EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Translationen", "Translationen\Translationen.mdproj", "{12D2F0CD-9861-4D3E-8491-F583ACF1FA0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
