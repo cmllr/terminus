@@ -33,5 +33,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="2.15.2.0.tar.gz" />
+    <None Include="Programm.ico" />
+    <None Include="Programm.png" />
   </ItemGroup>
 </Project>
